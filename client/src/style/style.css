@@ -1,0 +1,264 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+form {
+    margin: 0 !important;
+}
+
+
+/*this desperately needs to be sorted out and organised...*/
+
+.create-btn {
+    font-size: 50px;
+    height: 100%;
+    border-radius: 15px;
+    display: inline-block;
+    text-align: left;
+    background-color: #fff;
+    float: left;
+}
+
+.create-btn:hover {
+    background-color: #eee;
+}
+
+.ribbon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: block;
+    float: left;
+    vertical-align: middle;
+    font-size: 50px;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    padding: auto;
+}
+
+.node {
+    transition: visibility 0.2s ease;
+    text-align: center;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px solid grey;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.node-container {
+    position: absolute;
+    display: inline-block;
+    width: auto;
+}
+
+.editor {
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
+    min-width: 194px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: inline-block;
+    border-top: 1px solid grey;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+
+.editor ul div {
+    display: inline-block;
+
+}
+
+.style-btn {
+    display: inline-block;
+    /*height: 30px;*/
+    width: 30px;
+    font-size: 80%;
+    border-radius: 2px;
+    /*border: 1px solid grey;*/
+}
+
+.style-btn:hover {
+    background-color: lightgrey;
+}
+
+.style-btn-active {
+    color: #0081a8;
+    background-color: blue;
+}
+
+.editor-ctrl {
+    border-top: 1px solid grey;
+    padding-bottom: 3px;
+    max-height: 30px;
+}
+
+.open-icon {
+    opacity: 0;
+    position: relative;
+    margin-right: 5px;
+    font-size: 150%;
+}
+
+.node-container:hover .open-icon {
+    opacity: 100;
+}
+
+.node p {
+    display: inline;
+    margin-bottom: 5px;
+    padding: 6px 6px 6px 10px;
+}
+
+.node-header {
+    /*height: 30px;*/
+}
+
+.title-box {
+    display: inline-block;
+    float: left;
+    font-size: 15px;
+    box-sizing: content-box;
+    margin-top: 22px;
+    margin-left: 10px;
+}
+
+.selected {
+    border: 1.5px solid #0081a8;
+    transition: border-color 0.2s ease;
+    z-index: 100;
+}
+
+
+/* SVG and connections
+------------------------------------------------- */
+
+svg {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.floating-option {
+    position: absolute;
+    width: 75px;
+    height: 38px;
+}
+
+.floating-option button {
+    border-radius: 10px;
+    padding: 0 10px;
+    background-color: white;
+}
+
+/* Node Controls
+------------------------------------------------- */
+
+.node-controls {
+    position: relative;
+
+}
+
+.node-controls button {
+    display: inline-block;
+    padding: 0 6px 0 6px;
+    background-color: #fff;
+    font-size: 85%;
+    font-weight: 150%;
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-left: 0px;
+}
+
+.node-controls .save-btn {
+    background-color: #0081a8;
+    color: #fff;
+}
+
+
+
+/* Confirm Dialog
+------------------------------------------------- */
+
+
+.confirm-box button, .confirm-box {
+    background-color: white;
+}
+
+.confirm-box {
+    width: 220px;
+    height: 110px;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 999;
+    border: 1px solid grey;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.confirm-box p {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.confirm-box button:first-of-type {
+    margin-right: 5px;
+}
+
+.confirm-box div {
+    padding: 0 auto;
+    display: table;
+    margin: 0 auto;
+}
+
+
+/* Utilities
+------------------------------------------------- */
+
+.hide {
+    display: none;
+}
+
+.fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+}
+
+.fade-out {
+    opacity: 0;
+    animation-name: fadeOutOpacity;
+}
+
+.fade-in, .fade-out {
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.1s;
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutOpacity {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
