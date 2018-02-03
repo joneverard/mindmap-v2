@@ -1,21 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import './index.css';
+import './style/style.css';
+import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
+
+import axios from 'axios';
+window.axios = axios;
 
 
-// import '../style/style.css';
-// import './index.css';
-
-import './style/normalize.css';
-// import './style/skeleton.css';
-import 'materialize-css/dist/css/materialize.min.css';
-import './style/style.css';
-
-const store = createStore(reducers);
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
     <Provider store={store}>

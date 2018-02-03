@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import '../style/skeleton.css';
-// import '../style/normalize.css';
-// import '../style/style.css';
+import '../style/skeleton.css';
+import '../style/normalize.css';
+import '../style/style.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createNode, createConnection } from '../actions';
@@ -30,7 +30,7 @@ class Ribbon extends Component {
                 <form onSubmit={(e) => {this.handleSubmit(e)}}>
                     <button
                         type="submit"
-                        className="create-btn btn-floating btn-large waves-effect waves-light red"
+                        className="create-btn"
                         >
                     +
                     </button>

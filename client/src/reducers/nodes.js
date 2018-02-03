@@ -31,6 +31,7 @@ initialState.push(
 
 
 export default function NodesReducer(state=initialState, action) {
+    // console.log(state);
     var data;
     switch (action.type) {
         case CREATE:

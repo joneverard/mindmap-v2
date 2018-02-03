@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import 'materialize-css/dist/css/materialize.min.css';
+import { connect } from 'react-redux';
+import * as actions from '../actions'
+// import 'materialize-css/dist/css/materialize.min.css';
 
 // component to perform meta functions.
 // --> create map
@@ -9,21 +11,52 @@ import 'materialize-css/dist/css/materialize.min.css';
 // will be present on nearly all views.
 
 class Header extends Component {
+	renderAppControls() {
+		return [
+			<li key={1} className="control-list-item" onClick={(e) => {console.log('new')}}>New</li>,
+			<li key={2} className="control-list-item" onClick={() => {console.log('open')}}>Open</li>,
+			<li 
+				key={3}
+				className="control-list-item" 
+				onClick={() => this.props.saveMap(this.props.Nodes, this.props.Connections)}>Save</li>
+		]
+	}
+
+	renderUserControls() {
+		switch(this.props.user) {
+			case false:
+				return (
+					<li className="control-list-item"><a href="/auth/google">Login with google</a></li>
+				)
+			default:
+				return (
+					<li className="control-list-item"><a href="/api/logout">Log out</a></li>
+				)
+		}
+	}
+
 	render() {
 		return (
-			<nav>
-				<div className="class-wrapper">
-					<div className="left brand-logo">
-						NoteMaps
+			<nav className="">
+				<div className="">
+					<div className="logo">
+						<h6>NoteMaps</h6>
 					</div>
-					<ul className="right"></ul>
+					<ul className="app-controls control-list">{this.renderAppControls()}</ul>
+					<ul className="user-controls control-list">{this.renderUserControls()}</ul>
 				</div>
 			</nav>
 		)
 	}
 }
 
-export default Header;
+function mapStateToProps({Nodes, Connections}) {
+	return { Nodes, Connections };
+}
+
+export default connect(mapStateToProps, actions)(Header);
+
+
 
 
 // class Header extends Component {

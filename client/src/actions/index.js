@@ -1,4 +1,5 @@
 import { ContentState } from 'draft-js';
+import axios from 'axios';
 
 export const CREATE = 'create';
 export const SELECT = 'select';
@@ -16,10 +17,30 @@ export const CONNECT_NODES = 'connect_nodes';
 export const TOGGLE_DISPLAY = 'toggle_display';
 export const DELETE_CONNECTION = 'delete_connection';
 export const TRIGGER_DIALOG = 'trigger_dialog';
+export const FETCH_USER = 'fetch_user';
+export const SAVE_MAP = 'save_map';
 // some notes...
 // this file is getting a little large. would be better to separate the action creators into files regarding nodes,
 // connections, save / edit functions etc.
 
+// this function returns another function. the returned function gets used by redux thunk, and passes in dispatch
+export const fetchUser = () => async dispatch => {
+    const res = await axios.get('/api/current_user');
+    dispatch({
+        // create and send an action object
+        type: FETCH_USER,
+        payload: res.data
+    });
+};
+
+
+export const saveMap = (nodes, svg) => async dispatch =>  {
+    let mapContent = {nodes, svg, name: 'testing-1'}
+    console.log(mapContent);
+    const res = await axios.post('/api/maps/save', mapContent);
+    console.log(res);
+    dispatch({type: SAVE_MAP, payload: res.data})
+};
 
 
 export function createNode(title, selected) {

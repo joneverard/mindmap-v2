@@ -5,6 +5,7 @@ import ConnectionReducer from './connections';
 import styleReducer from './style_reducer';
 import connectNodeReducer from './connect_pair';
 import confirmReducer from './confirm_reducer';
+import userReducer from './authReducer';
 
 const rootReducer = combineReducers({
     Nodes: NodesReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     Connections: ConnectionReducer,
     style: styleReducer,
     connect: connectNodeReducer,
-    confirmBox: confirmReducer
+    confirmBox: confirmReducer,
+    user: userReducer
 })
 
 export default rootReducer;

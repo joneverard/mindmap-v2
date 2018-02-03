@@ -2,6 +2,7 @@ import { DRAG, CREATE_CONN, DELETE_NODE, ZOOM, PAN, DELETE_CONNECTION } from '..
 
 
 export default function ConnectionsReducer(state=[], action) {
+    // console.log(state);
     var data;
     switch (action.type) {
         case DRAG:
