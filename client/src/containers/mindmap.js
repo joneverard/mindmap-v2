@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import Node from '../components/node';
 import MapView from '../components/map';
 import ConfirmBox from '../components/confirm_box';
-import { zoomMap, deleteNode, triggerDialog } from '../actions';
+import * as actions from '../actions';
 
 class MindMap extends Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class MindMap extends Component {
     }
 
     componentDidMount() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight })
+        this.setState({ width: window.innerWidth, height: window.innerHeight });
     }
 
     updateWindowDimensions() {  
@@ -85,8 +85,8 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({zoomMap, deleteNode, triggerDialog}, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//     return bindActionCreators({zoomMap, deleteNode, triggerDialog}, dispatch);
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MindMap);
+export default connect(mapStateToProps, actions)(MindMap);

@@ -35,6 +35,45 @@ nav ul {
     padding: 5px;
 }
 
+.map-card {
+    background-color: white;
+    /*border-radius: 3px;*/
+    padding: 0 5px;
+    /*margin-bottom: 5px;*/
+    margin: 5px 0;
+    margin-right: 10px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.map-card:hover {
+    background-color: lightgrey;
+}
+
+.map-card p {
+    margin: 0;
+    display: inline-block;
+}
+
+.map-card i {
+    margin-top: 3px;
+}
+
+.right {
+    float: right;
+}
+
+.app-landing {
+    position: relative;
+    margin: 0 auto;
+    top: 100px;
+    /*float: left;*/
+    text-align: center;
+    /*height: 100px;*/
+    width: 50%;
+    padding: 1px auto;
+    display: block;
+}
+
 .logo {
     display: inline-block;
     margin-right: 15px;
@@ -60,6 +99,65 @@ nav ul {
     float: right;
 }
 
+.open-container {
+    display: inline-block;
+    float: left;
+}
+
+.open-dialog {
+    height: 300px;
+    width: 300px;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 999;
+    border: 1px solid grey;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.open-dialog, .open-dialog-btn button {
+    background-color: white;
+}
+
+.open-dialog-btn button {
+    float: right;
+    margin-bottom: 15px;
+}
+
+.maps-container {
+    height: 175px;
+    margin-bottom: 15px;
+    overflow-y: scroll;
+}
+
+.create-new-box {
+    width: 300px;
+    height: 125px;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 999;
+    border: 1px solid grey;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.create-new-box input {
+    margin-left: 10px;
+}
+
+.create-new-box button {
+    padding: 0 15px;
+    margin-left: 15px;
+    float: right;
+}
+
+.create-new-box p, .create-new-box input {
+    display: inline-block;
+}
+
+.create-new-box button, .create-new-box {
+    background-color: white;
+}
 
 .create-btn {
     font-size: 50px;
@@ -92,6 +190,7 @@ nav ul {
 }
 
 .node {
+    background-color: white;
     transition: visibility 0.2s ease;
     text-align: center;
     border-radius: 15px;

@@ -12,32 +12,41 @@ class App extends Component {
 		this.props.fetchUser();
 	}
 
-	renderMain() {
-		switch(this.props.user) {
-			case false:
-				return (
-					<div>Welcome to notemaps!</div>
-				)
-			default:
-				return [
-					<Ribbon key={1} />,
-					<MindMap key={2} />
-				]
+	renderApp() {
+		if (!this.props.header.active) {
+			return (
+				<div className="app-landing">Open or create a map to get started!</div>
+			);
+		} else {
+			return [<Ribbon key={1} />, <MindMap key={2} />];
 		}
 	}
 
-  render() {
-    return (
-      <div className="App">
-      	<Header user={this.props.user}/>
-      	{this.renderMain()}
-      </div>
-    );
-  }
+	renderMain() {
+		switch (this.props.user) {
+			case false:
+				return (
+					<div className="app-landing">
+						Welcome to notemaps! Please log in to continue
+					</div>
+				);
+			default:
+				return this.renderApp();
+		}
+	}
+
+	render() {
+		return (
+			<div className="App">
+				<Header user={this.props.user} />
+				{this.renderMain()}
+			</div>
+		);
+	}
 }
 
-function mapStateToProps({ user }) {
-	return { user };
+function mapStateToProps({ user, header }) {
+	return { user, header };
 }
 
 export default connect(mapStateToProps, actions)(App);

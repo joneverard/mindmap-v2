@@ -10,7 +10,6 @@ class CreateNewMap extends Component {
             boxSize: {width: 0, height: 0},
             value: ''
         };
-        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -19,27 +18,27 @@ class CreateNewMap extends Component {
         }
     }
 
-    handleClick() {
-        this.props.confirmDelete();
-    }
-
     render() {
         var position = {
-            left: this.props.windowSize.width/2 - 110,
-            top: this.props.windowSize.height/2 - 55
+            left: 100,
+            top: 50
         }
 
         if(this.props.display) {
             return (
                 <div
-                    className="confirm-box"
+                    className="create-new-box"
                     style={position}
                     ref={(box) => this.box = box}>
                     <p>Enter a title:</p>
-                    <input type="text" value={this.state.value}></input>
+                    <input 
+                        type="text" 
+                        value={this.state.value} 
+                        onChange={(e) => {this.setState({value: e.target.value})}}>
+                    </input>
                     <div className="confirm-box-btns">
-                        <button onClick={(e) => {this.props.confirm()}}>yes</button>
-                        <button onClick={(e) => {this.props.cancel(false, null)}}>no</button>
+                        <button onClick={(e) => {this.props.cancel()}}>Cancel</button>
+                        <button onClick={(e) => {this.props.confirm(this.state.value); this.setState({value: ''})}}>Submit</button>
                     </div>
                 </div>
             )
@@ -50,4 +49,4 @@ class CreateNewMap extends Component {
     }
 }
 
-export default ConfirmBox;
+export default CreateNewMap;

@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const PositionSchema = require('./PositionModel');
+const AnchorSchema = require('./AnchorSchema');
 
 const ConnectionModel = new Schema({
-	start: PositionSchema,
-	end: PositionSchema,
-	tempId: Number
+	start: AnchorSchema,
+	end: AnchorSchema,
+	appId: Number
 });
 
 module.exports = ConnectionModel;

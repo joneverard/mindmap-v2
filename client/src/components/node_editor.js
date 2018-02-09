@@ -1,5 +1,5 @@
 import React from 'react';
-import { Editor, RichUtils, convertToRaw } from 'draft-js';
+import { Editor, RichUtils } from 'draft-js';
 import EditorControls from './editor_controls';
 import '../style/Draft.css';
 
@@ -7,7 +7,7 @@ class NodeEditor extends React.Component {
   constructor(props) {
     super(props);
     this.setState = this.setState.bind(this);
-    this.onChange = (editorState) => {console.log(convertToRaw(editorState.getCurrentContent())); this.props.onEditorChange(editorState);};
+    this.onChange = (editorState) => {this.props.onEditorChange(editorState);};
     this.toggleBlock = this.toggleBlock.bind(this);
     this.toggleInline = this.toggleInline.bind(this);
     this.onTab = this.onTab.bind(this);

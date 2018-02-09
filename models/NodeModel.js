@@ -11,7 +11,7 @@ const NodeModel = new Schema({
 	position: PositionSchema,
 	selected: {type: Boolean, default: false},
 	title: String,
-	tempId: Number
+	nodeId: Number
 });
 
 module.exports = NodeModel;

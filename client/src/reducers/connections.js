@@ -1,25 +1,45 @@
-import { DRAG, CREATE_CONN, DELETE_NODE, ZOOM, PAN, DELETE_CONNECTION } from '../actions';
+import { DRAG, CREATE_CONN, DELETE_NODE, ZOOM, PAN, DELETE_CONNECTION, CREATE_MAP, OPEN_MAP } from '../actions';
 
 
 export default function ConnectionsReducer(state=[], action) {
     // console.log(state);
     var data;
     switch (action.type) {
+        case CREATE_MAP:
+            return [];
+
+        case OPEN_MAP:
+            // why did i place it under position...?
+            // return action.payload.connections.map(conn => {
+            //     return {
+            //         start: {position: {x: conn.start.x, y: conn.start.y}},
+            //         end: {position: {x: conn.end.x, y: conn.end.y}}
+            //     }
+            // });
+            return action.payload.connections.map(conn => {
+                return {
+                    id: conn._id,
+                    start: {id: conn.start.nodeId, position: conn.start.position},
+                    end: {id: conn.end.nodeId, position: conn.end.position}
+                }
+            })
+
         case DRAG:
-            data = [...state].map(function(connection) {
-                if (connection.end.id === action.payload.id) {
-                    connection.end.position.x = action.payload.anchor.x
-                    connection.end.position.y = action.payload.anchor.y
+            data = [...state].map(conn => {
+                if (conn.end.id === action.payload.id) {
+                    conn.end.position.x = action.payload.anchor.x
+                    conn.end.position.y = action.payload.anchor.y
                 }
-                if (connection.start.id === action.payload.id) {
-                    connection.start.position.x = action.payload.anchor.x
-                    connection.start.position.y = action.payload.anchor.y
+                if (conn.start.id === action.payload.id) {
+                    conn.start.position.x = action.payload.anchor.x
+                    conn.start.position.y = action.payload.anchor.y
                 }
-                return connection
+                return conn
             });
             return data;
 
         case CREATE_CONN:
+            console.log(state);
             if (action.payload.start) {
                 var newConn = {
                     start: {

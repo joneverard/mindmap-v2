@@ -1,5 +1,5 @@
 import { getCartesianCoords } from '../utilities';
-import { ContentState } from 'draft-js';
+import { ContentState, convertFromHTML } from 'draft-js';
 import {
     CREATE,
     UPDATE_POS,
@@ -10,7 +10,9 @@ import {
     SAVE_NODE,
     ZOOM,
     PAN,
-    TOGGLE_DISPLAY
+    TOGGLE_DISPLAY,
+    CREATE_MAP,
+    OPEN_MAP
 } from '../actions';
 
 var initialState = []
@@ -29,11 +31,39 @@ initialState.push(
     }
 );
 
+function CreateContentState(htmlString) {
+    const blocksFromHTML = convertFromHTML(htmlString);
+    // console.log(blocksFromHTML);
+    if (blocksFromHTML.contentBlocks) {
+        const content = ContentState.createFromBlockArray(
+            blocksFromHTML.contentBlocks,
+            blocksFromHTML.entityMap
+        );
+        return content;
+    }
+    return ContentState.createFromText('');
+}
+
 
 export default function NodesReducer(state=initialState, action) {
     // console.log(state);
     var data;
     switch (action.type) {
+        case CREATE_MAP:
+            return action.payload.nodes || [];
+
+        case OPEN_MAP:
+            // probably need to use convert from raw here first.
+            return [...action.payload.nodes].map(node => {
+                var ret = {...node};
+                console.log(node.content);
+                ret.content = CreateContentState(node.content);
+                ret.selected = false;
+                ret.id = node.nodeId;
+                return ret;
+            });
+            
+
         case CREATE:
             // console.log(action.payload.selected);
             if (action.payload.selected) {

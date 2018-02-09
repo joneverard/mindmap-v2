@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions'
+import * as actions from '../actions';
+
+import CreateNewMap from './CreateNewMap';
+import OpenDialog from './OpenDialog';
+import ConfirmBox from './confirm_box';
 // import 'materialize-css/dist/css/materialize.min.css';
 
 // component to perform meta functions.
@@ -11,28 +15,99 @@ import * as actions from '../actions'
 // will be present on nearly all views.
 
 class Header extends Component {
-	renderAppControls() {
-		return [
-			<li key={1} className="control-list-item" onClick={(e) => {console.log('new')}}>New</li>,
-			<li key={2} className="control-list-item" onClick={() => {console.log('open')}}>Open</li>,
-			<li 
-				key={3}
-				className="control-list-item" 
-				onClick={() => this.props.saveMap(this.props.Nodes, this.props.Connections)}>Save</li>
-		]
+	constructor(props) {
+		super(props);
+		this.state = { createNew: false, openMap: false };
+		this.submitNew = this.submitNew.bind(this);
+		this.openMap = this.openMap.bind(this);
+		this.toggleConfirm = this.toggleConfirm.bind(this);
+		this.confirmDelete = this.confirmDelete.bind(this);
 	}
 
+	componentDidMount() {
+		this.setState({ width: window.innerWidth, height: window.innerHeight });
+		// console.log(this.props.header);
+		this.props.fetchMaps();
+		// this.props.openMap(this.props.header.active);
+	}
+
+	updateWindowDimensions() {
+		// should really extract this up to the app level.
+		this.setState({ width: window.innerWidth, height: window.innerHeight });
+	}
+
+	renderAppControls() {
+		return [
+			<li
+				key={1}
+				className="control-list-item"
+				onClick={e => {
+					this.setState({ createNew: true });
+				}}
+			>
+				New
+			</li>,
+			<li
+				key={2}
+				className="control-list-item"
+				onClick={e => {
+					this.setState({ openMap: true });
+				}}
+			>
+				<p>Open</p>
+			</li>,
+			<li
+				key={3}
+				className="control-list-item"
+				onClick={() =>
+					this.props.saveMap(this.props.Nodes, this.props.Connections, this.props.header.active)
+				}
+			>
+				Save
+			</li>
+		];
+	}
+
+	// saveMap needs to take in the nodes, connections and current mapId.
+	// this means we need to track / keep in state which map is 'active'.
+	// maybe get the switching between maps working first.
+
 	renderUserControls() {
-		switch(this.props.user) {
+		switch (this.props.user) {
 			case false:
 				return (
-					<li className="control-list-item"><a href="/auth/google">Login with google</a></li>
-				)
+					<li className="control-list-item">
+						<a href="/auth/google">Login with google</a>
+					</li>
+				);
 			default:
 				return (
-					<li className="control-list-item"><a href="/api/logout">Log out</a></li>
-				)
+					<li className="control-list-item">
+						<a href="/api/logout">Log out</a>
+					</li>
+				);
 		}
+	}
+
+	openMap(mapId) {
+		this.setState({ openMap: false });
+		this.props.openMap(mapId);
+	}
+
+	submitNew(title) {
+		// call action creator here and set state.
+		this.props.createMap(title);
+		this.setState({ createNew: false });
+	}
+
+	toggleConfirm(mapId) {
+		this.setState({selectedMap: mapId, showConfirm: true});
+	}
+
+	confirmDelete() {
+		// call action creator
+		this.props.deleteMap(this.state.selectedMap);
+		this.setState({selectedMap: 0, showConfirm: false});
 	}
 
 	render() {
@@ -42,22 +117,45 @@ class Header extends Component {
 					<div className="logo">
 						<h6>NoteMaps</h6>
 					</div>
-					<ul className="app-controls control-list">{this.renderAppControls()}</ul>
-					<ul className="user-controls control-list">{this.renderUserControls()}</ul>
+					<ul className="app-controls control-list">
+						{this.renderAppControls()}
+					</ul>
+					<ul className="user-controls control-list">
+						{this.renderUserControls()}
+					</ul>
 				</div>
+				<CreateNewMap
+					display={this.state.createNew}
+					confirm={this.submitNew}
+					cancel={() => {
+						this.setState({ createNew: false });
+					}}
+				/>
+				<OpenDialog
+					display={this.state.openMap}
+					confirm={this.openMap}
+					mapList={this.props.header.maps}
+					toggleConfirm={this.toggleConfirm}
+					cancel={() => {
+						this.setState({ openMap: false });
+					}}
+				/>
+				<ConfirmBox
+					display={this.state.showConfirm}
+					windowSize={{height: this.state.height, width: this.state.width}}
+					confirm={this.confirmDelete}
+					cancel={() => {this.setState({showConfirm: false, selectedMap: 0})}}
+				/>
 			</nav>
-		)
+		);
 	}
 }
 
-function mapStateToProps({Nodes, Connections}) {
-	return { Nodes, Connections };
+function mapStateToProps({ Nodes, Connections, header }) {
+	return { Nodes, Connections, header };
 }
 
 export default connect(mapStateToProps, actions)(Header);
-
-
-
 
 // class Header extends Component {
 // 	renderContent() {
