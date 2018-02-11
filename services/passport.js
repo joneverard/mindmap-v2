@@ -31,8 +31,8 @@ passport.use(
 		{
 			clientID: keys.googleClientID,
 			clientSecret: keys.googleClientSecret,
-			callbackURL: '/auth/google/callback', // relative path causes http: not https:. by default googlestrategy doesnt trust the heroku proxy.
-			proxy: true
+			callbackURL: keys.googleRedirectURI // relative path causes http: not https:. by default googlestrategy doesnt trust the heroku proxy.
+			// proxy: true
 		},
 		async (accessToken, refreshToken, profile, done) => {
 			const existingUser = await User.findOne({ googleId: profile.id }); // returns a promise!
