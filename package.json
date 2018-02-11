@@ -14,7 +14,6 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "webhook": "./sendgrid_webhook.sh"
   },
-  "homepage": "https://notemaps-dev.herokuapp.com/app",
   "author": "",
   "license": "ISC",
   "description": "",
