@@ -53,6 +53,7 @@ require('./routes/mapRoutes')(app);
 
 /* Handling Production Assets and Passing off React Router requests
 -----------------------------*/
+app.use(express.static(__dirname +'/public'));
 if (process.env.NODE_ENV === 'production') {
 	// Express will serve up production assets like main.js and main.css
 	app.use(express.static('client/build'));
