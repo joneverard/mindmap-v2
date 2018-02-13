@@ -17,6 +17,12 @@ mongoose.connect(keys.mongoURI);
 
 // instantiate express
 const app = express();
+/* Helmet
+-----------------------------*/
+var helmet = require('helmet')
+app.use(helmet())
+
+
 
 /* Body Parser
 -----------------------------*/
