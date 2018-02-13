@@ -55,7 +55,7 @@ require('./routes/mapRoutes')(app);
 -----------------------------*/
 if (process.env.NODE_ENV === 'production') {
 	// Express will serve up production assets like main.js and main.css
-	app.use(express.static('client/build'));
+	app.use(express.static('public'));
 
 
 	// Express will serve up index.html if it does not recognise the route. (this passes off to react router,
