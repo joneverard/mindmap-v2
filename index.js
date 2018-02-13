@@ -62,7 +62,7 @@ if (process.env.NODE_ENV === 'production') {
 	// which is contained in main.js, which is in index.html)
 	// this is needed to avoid 404 errors, which will occur if you do not serve index.html 
 	const path = require('path');
-	app.get('/app/*', (req, res) => {
+	app.get('/app*', (req, res) => {
 		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 	});
 	// this is a fall back route, a catch all!
