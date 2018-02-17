@@ -123,8 +123,8 @@ class MapView extends Component {
             this.handleMove(e);
           }}
           // ref={svg => (this.svg = svg)} // this might be needed...
-          // onMouseDown={(e) => {this.handlePan(e, true)}}
-          // onMouseUp={(e) => {this.handlePan(e, false)}}
+          onMouseDown={(e) => {this.handlePan(e, true)}}
+          onMouseUp={(e) => {this.handlePan(e, false)}}
         >
           {this.props.connections.map(this.renderLine)}
         </svg>
@@ -154,6 +154,8 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapView);
 
+
+// below is old d3 based code. still need to remove d3 entirely. currently SVG component is still rendered using d3.
 // renderMap() {
 //     var mapConnections = select('g')
 //             .selectAll('line')

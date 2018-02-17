@@ -238,8 +238,8 @@ nav ul {
 }
 
 .style-btn-active {
-    color: #0081a8;
-    background-color: blue;
+    /*color: #0081a8;*/
+    background-color: #f39c12;
 }
 
 .editor-ctrl {

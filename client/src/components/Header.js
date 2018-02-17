@@ -37,35 +37,38 @@ class Header extends Component {
 	}
 
 	renderAppControls() {
-		return [
-			<li
-				key={1}
-				className="control-list-item"
-				onClick={e => {
-					this.setState({ createNew: true });
-				}}
-			>
-				New
-			</li>,
-			<li
-				key={2}
-				className="control-list-item"
-				onClick={e => {
-					this.setState({ openMap: true });
-				}}
-			>
-				<p>Open</p>
-			</li>,
-			<li
-				key={3}
-				className="control-list-item"
-				onClick={() =>
-					this.props.saveMap(this.props.Nodes, this.props.Connections, this.props.header.active)
-				}
-			>
-				Save
-			</li>
-		];
+		if (this.props.user) {
+			return [
+				<li
+					key={1}
+					className="control-list-item"
+					onClick={e => {
+						this.setState({ createNew: true });
+					}}
+				>
+					New
+				</li>,
+				<li
+					key={2}
+					className="control-list-item"
+					onClick={e => {
+						this.setState({ openMap: true });
+					}}
+				>
+					<p>Open</p>
+				</li>,
+				<li
+					key={3}
+					className="control-list-item"
+					onClick={() =>
+						this.props.saveMap(this.props.Nodes, this.props.Connections, this.props.header.active)
+					}
+				>
+					Save
+				</li>
+			]
+		}
+		return null;
 	}
 
 	// saveMap needs to take in the nodes, connections and current mapId.
@@ -151,8 +154,8 @@ class Header extends Component {
 	}
 }
 
-function mapStateToProps({ Nodes, Connections, header }) {
-	return { Nodes, Connections, header };
+function mapStateToProps({ Nodes, Connections, header, user }) {
+	return { Nodes, Connections, header, user };
 }
 
 export default connect(mapStateToProps, actions)(Header);

@@ -3,68 +3,75 @@ import React, { Component } from 'react';
 import '../style/Draft.css';
 
 const blockStyles = [
-    {display: 'list-ul', style: 'unordered-list-item'},
-    {display: 'list-ol', style: 'ordered-list-item'}
+    { display: 'list-ul', style: 'unordered-list-item' },
+    { display: 'list-ol', style: 'ordered-list-item' }
 ];
 
 const inlineStyles = [
-    {display: 'bold', style: 'BOLD'},
-    {display: 'italic', style: 'ITALIC'},
-    {display: 'underline', style: 'UNDERLINE'}
+    { display: 'bold', style: 'BOLD' },
+    { display: 'italic', style: 'ITALIC' },
+    { display: 'underline', style: 'UNDERLINE' }
 ];
 
 class StyleButton extends Component {
     constructor(props) {
         super(props);
-        this.onToggle = (e) => {
+        this.onToggle = e => {
             e.preventDefault();
             this.props.onToggle(this.props.style);
-        }
+        };
     }
 
     render() {
         var className = `fa fa-${this.props.display}`;
-        // console.log(this.props.active);
         return (
-            <div className={(this.props.active ? "style-btn style-btn-active" : "style-btn")} onMouseDown={this.onToggle}>
-                <i className={className} aria-hidden="true"></i>
+            <div
+                className={
+                    this.props.active
+                        ? 'style-btn style-btn-active'
+                        : 'style-btn'
+                }
+                onMouseDown={this.onToggle}>
+                <i className={className} aria-hidden="true" />
             </div>
-        )
+        );
     }
 }
 
 class EditorControls extends Component {
     render() {
         const contentSelection = this.props.editorState.getSelection();
-        const blockType = this.props.editorState.getCurrentContent().getBlockForKey(contentSelection.getStartKey()).getType();
+        const blockType = this.props.editorState
+            .getCurrentContent()
+            .getBlockForKey(contentSelection.getStartKey())
+            .getType();
         var currentStyle = this.props.editorState.getCurrentInlineStyle();
-        // console.log(currentStyle);
         return (
             <div className="editor-ctrl">
-                {inlineStyles.map((styleBtn) => {
+                {inlineStyles.map(styleBtn => {
                     return (
                         <StyleButton
                             onToggle={this.props.toggleInline}
                             key={styleBtn.display}
                             style={styleBtn.style}
                             display={styleBtn.display}
-                            active={(styleBtn.style === blockType)}
+                            active={currentStyle.has(styleBtn.style)}
                         />
-                    )
+                    );
                 })}
-                {blockStyles.map((styleBtn) => {
+                {blockStyles.map(styleBtn => {
                     return (
                         <StyleButton
                             onToggle={this.props.toggleBlock}
                             key={styleBtn.display}
                             style={styleBtn.style}
                             display={styleBtn.display}
-                            active={currentStyle.has(styleBtn.style)}
+                            active={styleBtn.style === blockType}
                         />
-                    )
+                    );
                 })}
             </div>
-        )
+        );
     }
 }
 

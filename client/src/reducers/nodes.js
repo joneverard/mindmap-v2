@@ -56,7 +56,7 @@ export default function NodesReducer(state=initialState, action) {
             // probably need to use convert from raw here first.
             return [...action.payload.nodes].map(node => {
                 var ret = {...node};
-                console.log(node.content);
+                // console.log(node.content);
                 ret.content = CreateContentState(node.content);
                 ret.selected = false;
                 ret.id = node.nodeId;
