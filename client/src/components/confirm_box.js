@@ -15,7 +15,7 @@ class ConfirmBox extends Component {
             this.setState({boxSize: this.box.getBoundingClientRect()});    
         }
     }
-
+    
     handleClick() {
         this.props.confirmDelete();
     }

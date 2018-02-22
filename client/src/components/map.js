@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { select } from 'd3';
@@ -46,6 +47,7 @@ class MapView extends Component {
       .append('g')
       .attr('class', 'links')
       .attr('stroke', '#3F3F3F');
+    ReactDOM.findDOMNode(this.svg).addEventListener('mouseUp', (e) => this.props.mouseUp(e));
   }
 
   componentWillUnmount() {
@@ -108,7 +110,6 @@ class MapView extends Component {
   }
 
   render() {
-    // console.log(this.props.children)
     var selectedConn = [...this.props.connections].filter(
       connection => connection.id === this.state.selectedId
     )[0];
@@ -122,9 +123,9 @@ class MapView extends Component {
           onMouseMove={e => {
             this.handleMove(e);
           }}
-          // ref={svg => (this.svg = svg)} // this might be needed...
+          ref={svg => {this.svg = svg}}
           onMouseDown={(e) => {this.handlePan(e, true)}}
-          onMouseUp={(e) => {this.handlePan(e, false)}}
+          onMouseUp={(e) => {this.handlePan(e, false); this.props.mouseUp()}}
         >
           {this.props.connections.map(this.renderLine)}
         </svg>
@@ -155,7 +156,7 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(MapView);
 
 
-// below is old d3 based code. still need to remove d3 entirely. currently SVG component is still rendered using d3.
+// below is old d3 based code. still need to remove d3 entirely. currently SVG component
 // renderMap() {
 //     var mapConnections = select('g')
 //             .selectAll('line')

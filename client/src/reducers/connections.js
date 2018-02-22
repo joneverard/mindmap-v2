@@ -1,4 +1,4 @@
-import { DRAG, CREATE_CONN, DELETE_NODE, ZOOM, PAN, DELETE_CONNECTION, CREATE_MAP, OPEN_MAP } from '../actions';
+import { DRAG, CREATE_CONN, DELETE_NODE, ZOOM, PAN, DELETE_CONNECTION, CREATE_MAP, OPEN_MAP, UPDATE_LINES } from '../actions';
 
 
 export default function ConnectionsReducer(state=[], action) {
@@ -25,17 +25,46 @@ export default function ConnectionsReducer(state=[], action) {
             })
 
         case DRAG:
+            // the more i think about this the more i feel that both the nodes and the connections state should be
+            // kept as an object with keys. this would likely result in LARGE performance enhancements. 
+            // since these two arrays can get quite large, you are mapping over a not-insignificant amount of 
+            // data every time...
+            // data = [...state].map(conn => {
+            //     if (conn.end.id === action.payload.id) {
+            //         conn.end.position.x = action.payload.anchor.x
+            //         conn.end.position.y = action.payload.anchor.y
+            //     }
+            //     if (conn.start.id === action.payload.id) {
+            //         conn.start.position.x = action.payload.anchor.x
+            //         conn.start.position.y = action.payload.anchor.y
+            //     }
+            //     return conn
+            // });
             data = [...state].map(conn => {
                 if (conn.end.id === action.payload.id) {
-                    conn.end.position.x = action.payload.anchor.x
-                    conn.end.position.y = action.payload.anchor.y
+                    conn.end.position.x += action.payload.mouseDelta.x;
+                    conn.end.position.y += action.payload.mouseDelta.y;
                 }
                 if (conn.start.id === action.payload.id) {
-                    conn.start.position.x = action.payload.anchor.x
-                    conn.start.position.y = action.payload.anchor.y
+                    conn.start.position.x += action.payload.mouseDelta.x;
+                    conn.start.position.y += action.payload.mouseDelta.y;
                 }
-                return conn
-            });
+                return conn;
+            })
+            return data;
+
+        case UPDATE_LINES:
+            data = [...state].map(conn => {
+                if (conn.end.id === action.payload.id) {
+                    conn.end.position.x = action.payload.anchor.x;
+                    conn.end.position.y = action.payload.anchor.y;
+                }
+                if (conn.start.id === action.payload.id) {
+                    conn.start.position.x = action.payload.anchor.x;
+                    conn.start.position.y = action.payload.anchor.y;
+                }
+                return conn;
+            })
             return data;
 
         case CREATE_CONN:

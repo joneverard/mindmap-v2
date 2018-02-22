@@ -6,7 +6,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 
 // import these files, upon importing they get 'executed' in this 'namespace'
-// this is a bit like importing in parts of a big old html file in php.
+// this is a bit like importing in parts of a big old html file in php. 
 require('./models/user');
 require('./models/MapModel');
 // require('./models/Survey');

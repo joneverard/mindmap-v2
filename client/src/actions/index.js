@@ -18,6 +18,7 @@ export const CONNECT_NODES = 'connect_nodes';
 export const TOGGLE_DISPLAY = 'toggle_display';
 export const DELETE_CONNECTION = 'delete_connection';
 export const TRIGGER_DIALOG = 'trigger_dialog';
+export const UPDATE_LINES = 'update_lines';
 
 export const FETCH_USER = 'fetch_user';
 export const SAVE_MAP = 'save_map';
@@ -121,26 +122,33 @@ export function selectNode(id) {
 export function toggleDisplay(id) {
   return {
     type: TOGGLE_DISPLAY,
-    payload: id
+    payload: {id}
   };
 }
 
-export function updatePosition(nodeid, rect) {
+export function updatePosition(nodeId, rect, mouseDelta) {
   return {
     type: UPDATE_POS,
     payload: {
-      id: nodeid,
-      position: { x: rect.x, y: rect.y },
-      anchor: { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 }
+      id: nodeId,
+      mouseDelta
     }
+  }
+}
+
+
+export function dragLines(nodeid, anchor, mouseDelta) {
+  return {
+    type: DRAG,
+    payload: { id: nodeid, anchor: anchor, mouseDelta }
   };
 }
 
-export function dragLines(nodeid, anchor) {
+export function updateLines(nodeId, anchor) {
   return {
-    type: DRAG,
-    payload: { id: nodeid, anchor: anchor }
-  };
+    type: UPDATE_LINES,
+    payload: {id: nodeId, anchor}
+  }
 }
 
 export function createConnection(start, end) {
@@ -152,10 +160,10 @@ export function createConnection(start, end) {
   };
 }
 
-export function updateAnchor(nodeid, anchor) {
+export function updateAnchor(nodeid, anchor, mouseDelta) {
   return {
     type: UPDATE_ANCHOR,
-    payload: { id: nodeid, anchor: anchor }
+    payload: { id: nodeid, anchor: anchor, mouseDelta }
   };
 }
 

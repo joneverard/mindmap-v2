@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { EditorState } from 'draft-js';
-import Draggable from 'react-draggable';
+import Draggable, { DraggableCore } from 'react-draggable';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { debounce } from '../utilities';
@@ -10,201 +11,265 @@ import NodeEditor from './node_editor';
 import NodeHeader from './node_header';
 import '../style/css/font-awesome.css';
 import {
-    selectNode,
-    updatePosition,
-    dragLines,
-    updateAnchor,
-    deleteNode,
-    editNode,
-    saveNode,
-    zoomMap,
-    connectNode,
-    createConnection,
-    toggleDisplay,
-    triggerDialog
+  selectNode,
+  updatePosition,
+  dragLines,
+  updateAnchor,
+  deleteNode,
+  editNode,
+  saveNode,
+  zoomMap,
+  connectNode,
+  createConnection,
+  toggleDisplay,
+  triggerDialog
 } from '../actions';
+import * as actions from '../actions';
 
 class Node extends Component {
-    constructor(props) {
-        super(props);
-        this.setState = this.setState.bind(this);
-        this.deleteNode = this.deleteNode.bind(this);
-        this.editNode = this.editNode.bind(this);
-        this.getPosition = this.getPosition.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);
-        this.onTitleEdit = this.onTitleEdit.bind(this);
-        this.saveNode = this.saveNode.bind(this);
-        this.toggleDisplay = this.toggleDisplay.bind(this);
-        this.onEditorChange = this.onEditorChange.bind(this);
+  constructor(props) {
+    super(props);
+    this.setState = this.setState.bind(this);
+    this.deleteNode = this.deleteNode.bind(this);
+    this.editNode = this.editNode.bind(this);
+    this.getPosition = this.getPosition.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.onTitleEdit = this.onTitleEdit.bind(this);
+    this.saveNode = this.saveNode.bind(this);
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+    this.onEditorChange = this.onEditorChange.bind(this);
+    // this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.toggleDrag.bind(this);
 
-        this.state = {editorState: EditorState.createEmpty()}
+    this.state = { editorState: EditorState.createEmpty() };
+  }
+
+  getPosition() {
+    var rect = this.node.getBoundingClientRect();
+    var anchorPos = {
+      x: rect.x + rect.width / 2,
+      y: rect.y + rect.height / 2
+    };
+    return { rect, anchorPos };
+  }
+
+  componentDidMount() {
+    var position = this.getPosition();
+    this.setState({
+      rect: position.rect,
+      editorState: EditorState.createWithContent(this.props.node.content),
+      title: this.props.node.title
+    });
+    this.props.dragLines(this.props.id, position.anchorPos, { x: 0, y: 0 });
+    this.props.updateAnchor(this.props.id, position.anchorPos, { x: 0, y: 0 });
+  }
+
+  toggleDrag(dragging) {
+    // call this on mouse down, set the state on the mindmap component above, to call the update
+    // position, updat eanchor and drag lines functions.
+    // need to calculate the delta based on the origin and the current mouse position.
+    // then need to set position based on the relative position of the node to the origin mouss position
+    this.props.triggerDrag(
+      dragging,
+      this.props.mouse,
+      this.getPosition(),
+      this.props.nodeId
+    );
+  }
+
+  toggleDisplay() {
+    var { id } = this.props;
+    this.props.toggleDisplay(id, this.getPosition().anchorPos);
+    setTimeout(() => {
+      this.props.updateLines(id, this.getPosition().anchorPos);
+    }, 1);
+  }
+
+  onTitleEdit(title) {
+    this.setState({ title: title });
+  }
+
+  editNode() {
+    if (!this.props.node.display) {
+      this.props.toggleDisplay(this.props.node.id);
     }
+    this.props.editNode(this.props.id);
+  }
 
-    getPosition() {
-        var rect = this.node.getBoundingClientRect();
-        var anchorPos = {x: rect.x + rect.width/2, y: rect.y + rect.height/2};
-        return {rect, anchorPos};
+  saveNode() {
+    this.props.saveNode(
+      this.props.id,
+      this.state.title,
+      this.state.editorState.getCurrentContent()
+    );
+    this.props.editNode(null);
+    this.props.selectNode(null);
+  }
+
+  deleteNode() {
+    this.props.triggerDialog(true, this.props.node);
+  }
+
+  handleCancel(e) {
+    this.props.editNode(null);
+    this.props.selectNode(null);
+  }
+
+  handleClick() {
+    if (this.props.connect.active) {
+      this.props.createConnection(this.props.connect.node, this.props.node);
     }
+    this.props.connectNode(null, null);
+  }
 
-    componentDidMount() {
-        var position = this.getPosition();
-        this.setState({
-            rect: position.rect,
-            editorState: EditorState.createWithContent(this.props.node.content),
-            title: this.props.node.title
-        });
-        this.props.dragLines(this.props.id, position.anchorPos);
-        this.props.updateAnchor(this.props.id, position.anchorPos);
+  onEditorChange(editorState) {
+    this.setState({ editorState });
+  }
+
+  render() {
+    var selectedId;
+    if (this.props.selected) {
+      selectedId = this.props.selected.id;
+    } else {
+      selectedId = 0;
     }
-
-    handleStart(e) {
-        var position = this.getPosition();
-        this.props.updatePosition(this.props.id, position.rect);
-        this.props.updateAnchor(this.props.id, position.anchorPos);
-        this.props.dragLines(this.props.id, position.anchorPos);
-    }
-
-    handleDrag(e) {
-        var position = this.getPosition();
-        this.props.updatePosition(this.props.id, position.rect);
-        this.props.updateAnchor(this.props.id, position.anchorPos);
-        this.props.dragLines(this.props.id, position.anchorPos);
-    }
-
-    handleStop(e) {
-        var position = this.getPosition();
-        this.props.updatePosition(this.props.id, position.rect);
-        this.props.updateAnchor(this.props.id, position.anchorPos);
-    }
-
-    onTitleEdit(title) {
-        this.setState({title: title});
-    }
-
-    editNode() {
-        if (!this.props.node.display) {
-            this.props.toggleDisplay(this.props.node.id);
-        }
-        this.props.editNode(this.props.id);
-    }
-
-    saveNode() {
-        this.props.saveNode(this.props.id, this.state.title, this.state.editorState.getCurrentContent());
-        this.props.editNode(null);
-        this.props.selectNode(null);
-    }
-
-    deleteNode() {
-        this.props.triggerDialog(true, this.props.node);
-    }
-
-    handleCancel(e) {
-        this.props.editNode(null);
-        this.props.selectNode(null);
-    }
-
-    handleClick() {
-        if (this.props.connect.active) {
-            this.props.createConnection(this.props.connect.node, this.props.node);
-        }
-        this.props.connectNode(null, null);
-    }
-
-    toggleDisplay() {
-        this.props.toggleDisplay(this.props.node.id);
-        setTimeout(() => {
-            this.props.updateAnchor(this.props.node.id, this.getPosition().anchorPos);
-            this.props.dragLines(this.props.node.id, this.getPosition().anchorPos);
-            this.props.updatePosition(this.props.id, this.getPosition().rect);
-        }, 1);
-
-    }
-
-    onEditorChange(editorState) {
-        this.setState({editorState});
-    }
-
-    render() {
-        var selectedId;
-        if (this.props.selected) {
-            selectedId = this.props.selected.id;
-        } else {
-            selectedId = 0;
-        }
-        var handleClass = (!this.props.node.edit ? "node-container handle" : "node-container");
-        var selectedClass = (selectedId === this.props.id ? "selected node" : "node");
-        return (
-            <Draggable
-                position={this.props.node.position}
-                onStart={(e) => {this.handleStart(e)}}
-                onDrag={(e) => {debounce(this.handleDrag(e), 5, true)}}
-                onStop={(e) => {this.handleStop(e)}}
-                handle=".handle"
-                axis={this.props.node.edit ? "none" : "both"}
-                onMouseDown={(e) => {this.props.selectNode(this.props.node);}}
-                >
-                <div
-                    className={handleClass}
-                    style={(selectedId === this.props.id) ? {zIndex: 100} : {zIndex: 0}}
-                    onWheel={this.props.handleWheel}
-                    onMouseMove={this.props.handleMove}>
-                    <div
-                        ref={(node) => {this.node = node}}
-                        onClick={(e) => {this.handleClick()}}
-                        onDoubleClick={(e) => {this.toggleDisplay()}}
-                        className={selectedClass}
-                        style={this.props.style}>
-                        {this.props.node.edit ?
-                            <div>
-                                <EditNode
-                                title={this.props.node.title}
-                                onTitleEdit={this.onTitleEdit}
-                                saveNode={this.saveNode}/>
-                            </div> :
-                            <NodeHeader title={this.props.node.title} handleClick={this.toggleDisplay} display={this.props.node.display}/>
-                        }
-                        {this.props.node.display ?
-                            <NodeEditor
-                                onEditorChange={this.onEditorChange}
-                                editorState={this.state.editorState}
-                                edit={this.props.node.edit} /> : null }
-
-                    </div>
-                    { (selectedId === this.props.id) ?
-                        <NodeControls
-                            edit={this.props.node.edit}
-                            editNode={this.editNode}
-                            delete={this.deleteNode}
-                            cancel={(e) => this.handleCancel()}
-                            saveNode={this.saveNode}
-                            connectNode={this.props.connectNode}
-                            node={this.props.node} /> : null}
-                </div>
-            </Draggable>
-        )
-    }
+    var handleClass = !this.props.node.edit
+      ? 'node-container handle'
+      : 'node-container';
+    var selectedClass = selectedId === this.props.id ? 'selected node' : 'node';
+    return (
+      <Draggable
+        position={this.props.node.position}
+        disabled={true}
+        handle=".handle"
+        axis={this.props.node.edit ? 'none' : 'both'}
+        onMouseDown={e => {
+          this.toggleDrag(true);
+          this.props.selectNode(this.props.node);
+          this.props.triggerDrag(
+            true,
+            this.props.mouse,
+            this.getPosition(),
+            this.props.id
+          );
+        }}
+        onMouseUp={e => {
+          this.toggleDrag(false);
+          this.props.mouseUp();
+        }}>
+        <div
+          className={handleClass}
+          style={selectedId === this.props.id ? { zIndex: 100 } : { zIndex: 0 }}
+          onWheel={this.props.handleWheel}
+          onMouseMove={this.props.handleMove}>
+          <div
+            ref={node => {
+              this.node = node;
+            }}
+            onClick={e => {
+              this.handleClick();
+            }}
+            onDoubleClick={e => {
+              this.toggleDisplay(this.props.id);
+            }}
+            className={selectedClass}
+            style={this.props.style}>
+            {this.props.node.edit ? (
+              <div>
+                <EditNode
+                  title={this.props.node.title}
+                  onTitleEdit={this.onTitleEdit}
+                  saveNode={this.saveNode}
+                />
+              </div>
+            ) : (
+              <NodeHeader
+                title={this.props.node.title}
+                handleClick={e => {
+                  this.toggleDisplay(this.props.id);
+                }}
+                display={this.props.node.display}
+              />
+            )}
+            {this.props.node.display ? (
+              <NodeEditor
+                onEditorChange={this.onEditorChange}
+                editorState={this.state.editorState}
+                edit={this.props.node.edit}
+              />
+            ) : null}
+          </div>
+          {selectedId === this.props.id ? (
+            <NodeControls
+              edit={this.props.node.edit}
+              editNode={this.editNode}
+              delete={this.deleteNode}
+              cancel={e => this.handleCancel()}
+              saveNode={this.saveNode}
+              connectNode={this.props.connectNode}
+              node={this.props.node}
+            />
+          ) : null}
+        </div>
+      </Draggable>
+    );
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-        selectNode,
-        updatePosition,
-        dragLines,
-        updateAnchor,
-        deleteNode,
-        editNode,
-        saveNode,
-        zoomMap,
-        connectNode,
-        createConnection,
-        toggleDisplay,
-        triggerDialog
-    }, dispatch);
+  return bindActionCreators(
+    {
+      selectNode,
+      updatePosition,
+      dragLines,
+      updateAnchor,
+      deleteNode,
+      editNode,
+      saveNode,
+      zoomMap,
+      connectNode,
+      createConnection,
+      toggleDisplay,
+      triggerDialog
+    },
+    dispatch
+  );
 }
 
 function mapStateToProps(state) {
-    // should use an object as global state. with ids as keys.
-    return {selected: state.Selected, connect: state.connect}
+  // should use an object as global state. with ids as keys.
+  return { selected: state.Selected, connect: state.connect };
 }
+export default connect(mapStateToProps, actions)(Node);
+// export default connect(mapStateToProps, mapDispatchToProps)(Node);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Node);
+// old drag handlers
+
+// onStart={e => {
+//     this.handleStart(e);
+// }}
+// onDrag={e => {
+//     debounce(this.handleDrag(e), 5, true);
+// }}
+// onStop={e => {
+//     this.handleStop(e);
+// }}
+// handleStart(e) {
+//     var position = this.getPosition();
+//     this.props.updatePosition(this.props.id, position.rect);
+//     this.props.updateAnchor(this.props.id, position.anchorPos);
+//     this.props.dragLines(this.props.id, position.anchorPos);
+// }
+
+// handleDrag(e) {
+//     var position = this.getPosition();
+//     this.props.updatePosition(this.props.id, position.rect);
+//     this.props.updateAnchor(this.props.id, position.anchorPos);
+//     this.props.dragLines(this.props.id, position.anchorPos);
+// }
+
+// handleStop(e) {
+//     var position = this.getPosition();
+//     this.props.updatePosition(this.props.id, position.rect);
+//     this.props.updateAnchor(this.props.id, position.anchorPos);
+// }

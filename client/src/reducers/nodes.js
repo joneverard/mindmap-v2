@@ -104,21 +104,31 @@ export default function NodesReducer(state=initialState, action) {
 
         case TOGGLE_DISPLAY:
             data = [...state].map(function(node) {
-                if (node.id === action.payload) {
+                if (node.id === action.payload.id) {
                     node.display = !node.display;
                 }
                 return node;
             });
             return data;
 
+        // case UPDATE_POS:
+        //     data = [...state].map(function (node) {
+        //         if (node.id === action.payload.id) {
+        //             node.position = action.payload.position
+        //         }
+        //         return node;
+        //     })
+        //     // console.log('data', data);
+        //     return data;
+
         case UPDATE_POS:
-            data = [...state].map(function (node) {
+            data = [...state].map(node => {
                 if (node.id === action.payload.id) {
-                    node.position = action.payload.position
+                    node.position.x += action.payload.mouseDelta.x;
+                    node.position.y += action.payload.mouseDelta.y;
                 }
                 return node;
-            })
-            // console.log('data', data);
+            });
             return data;
 
         case EDIT_NODE:
@@ -141,7 +151,13 @@ export default function NodesReducer(state=initialState, action) {
         case UPDATE_ANCHOR:
             data = [...state].map(function(node) {
                 if (node.id === action.payload.id) {
-                    node.anchor = action.payload.anchor;
+                    // node.anchor = action.payload.anchor;
+                    if (action.payload.mouseDelta) {
+                        node.anchor.x += action.payload.mouseDelta.x
+                        node.anchor.y += action.payload.mouseDelta.y
+                    } else {
+                        node.anchor = action.payload.anchor;
+                    }
                 }
                 return node;
             })
@@ -163,6 +179,7 @@ export default function NodesReducer(state=initialState, action) {
 
         case PAN:
             data = [...state].map(function(node) {
+                // node.disabled = true;
                 node.position.x += action.payload.delta.x;
                 node.position.y += action.payload.delta.y;
                 node.anchor.x += action.payload.delta.x;

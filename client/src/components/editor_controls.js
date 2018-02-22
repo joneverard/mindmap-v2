@@ -13,6 +13,7 @@ const inlineStyles = [
     { display: 'underline', style: 'UNDERLINE' }
 ];
 
+
 class StyleButton extends Component {
     constructor(props) {
         super(props);
