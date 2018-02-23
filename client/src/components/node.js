@@ -1,29 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { EditorState } from 'draft-js';
-import Draggable, { DraggableCore } from 'react-draggable';
+import Draggable from 'react-draggable';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { debounce } from '../utilities';
 import NodeControls from './node_controls';
 import EditNode from './edit_node';
 import NodeEditor from './node_editor';
 import NodeHeader from './node_header';
 import '../style/css/font-awesome.css';
-import {
-  selectNode,
-  updatePosition,
-  dragLines,
-  updateAnchor,
-  deleteNode,
-  editNode,
-  saveNode,
-  zoomMap,
-  connectNode,
-  createConnection,
-  toggleDisplay,
-  triggerDialog
-} from '../actions';
 import * as actions from '../actions';
 
 class Node extends Component {
@@ -227,26 +210,6 @@ class Node extends Component {
       </Draggable>
     );
   }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      selectNode,
-      updatePosition,
-      dragLines,
-      updateAnchor,
-      deleteNode,
-      editNode,
-      saveNode,
-      zoomMap,
-      connectNode,
-      createConnection,
-      toggleDisplay,
-      triggerDialog
-    },
-    dispatch
-  );
 }
 
 function mapStateToProps(state) {

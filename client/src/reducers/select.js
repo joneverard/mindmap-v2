@@ -1,4 +1,4 @@
-import { SELECT, UPDATE_POS, DELETE_NODE } from '../actions';
+import { SELECT, DELETE_NODE } from '../actions';
 
 export default function SelectReducer(state=null, action) {
     switch (action.type) {
