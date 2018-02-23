@@ -12,7 +12,8 @@ import {
     PAN,
     TOGGLE_DISPLAY,
     CREATE_MAP,
-    OPEN_MAP
+    OPEN_MAP,
+    UPDATE_RANK
 } from '../actions';
 
 var initialState = []
@@ -137,6 +138,16 @@ export default function NodesReducer(state=initialState, action) {
                     node.edit = true;
                 } else {
                     node.edit = false; // only one at a time please!
+                }
+                return node;
+            });
+            return data;
+
+        case UPDATE_RANK:
+            console.log('hello there');
+            data = [...state].map(node => {
+                if (node.nodeId === action.payload.nodeId) {
+                    node.rank = action.payload.rank;
                 }
                 return node;
             });

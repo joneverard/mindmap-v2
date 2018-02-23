@@ -11,20 +11,22 @@ class NodeControls extends Component {
 
   // split this up into two...?
 
-  increment(value) {
+  promote() {
     // these two functions are pretty bad... should probably refactor these.
-    var { level } = { ...this.state };
-    if (level === 5) {
-    } else {
-      this.setState({ level: level + value });
+    // var { level } = { ...this.state };
+    var { id, rank } = this.props.node;
+    if (!rank) {
+      this.props.updateRank(id, 1);
+    } else if (rank < 5) {
+      this.props.updateRank(id, rank + 1);
     }
   }
 
-  decrement(value) {
-    var { level } = { ...this.state };
-    if (level === 0) {
-    } else {
-      this.setState({ level: level + value });
+  demote(value) {
+    // var { level } = { ...this.state };
+    var { id, rank } = this.props.node;
+    if (rank > 0) {
+      this.props.updateRank(id, rank - 1);
     }
   }
 
@@ -76,11 +78,11 @@ class NodeControls extends Component {
   renderExtraControls() {
     return (
       <div className="level-controls">
-        <p>Level: {this.state.level}</p>
+        <p>Level: {this.props.node.rank}</p>
         <button
           type="submit"
           onClick={() => {
-            this.increment(1);
+            this.promote();
           }}
         >
           up
@@ -88,7 +90,7 @@ class NodeControls extends Component {
         <button
           type="submit"
           onClick={() => {
-            this.decrement(-1);
+            this.demote();
           }}
         >
           down

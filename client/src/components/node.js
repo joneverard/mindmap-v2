@@ -208,6 +208,7 @@ class Node extends Component {
               saveNode={this.saveNode}
               connectNode={this.props.connectNode}
               node={this.props.node}
+              updateRank={this.props.updateRank}
             />
           ) : null}
         </div>
