@@ -144,14 +144,16 @@ class Node extends Component {
         handle=".handle"
         axis={this.props.node.edit ? 'none' : 'both'}
         onMouseDown={e => {
-          this.toggleDrag(true);
           this.props.selectNode(this.props.node);
-          this.props.triggerDrag(
-            true,
-            this.props.mouse,
-            this.getPosition(),
-            this.props.id
-          );
+          if (!this.props.node.edit) {
+            this.toggleDrag(true);
+            this.props.triggerDrag(
+              true,
+              this.props.mouse,
+              this.getPosition(),
+              this.props.id
+            );
+          }
         }}
         onMouseUp={e => {
           this.toggleDrag(false);
@@ -159,7 +161,15 @@ class Node extends Component {
         }}>
         <div
           className={handleClass}
-          style={selectedId === this.props.id ? { zIndex: 100 } : { zIndex: 0 }}
+          style={
+            selectedId === this.props.id
+              ? { zIndex: 250 }
+              : {
+                  zIndex: this.props.node.style
+                    ? this.props.node.style.zIndex // nested ternaries? come on jon
+                    : 0
+                }
+          }
           onWheel={this.props.handleWheel}
           onMouseMove={this.props.handleMove}>
           <div
@@ -173,7 +183,8 @@ class Node extends Component {
               this.toggleDisplay(this.props.id);
             }}
             className={selectedClass}
-            style={this.props.style}>
+            // style={this.props.style}
+            style={this.props.node.style}>
             {this.props.node.edit ? (
               <div>
                 <EditNode
@@ -189,6 +200,7 @@ class Node extends Component {
                   this.toggleDisplay(this.props.id);
                 }}
                 display={this.props.node.display}
+                styleProps={this.props.node.style}
               />
             )}
             {this.props.node.display ? (

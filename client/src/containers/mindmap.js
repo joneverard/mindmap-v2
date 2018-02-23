@@ -106,7 +106,6 @@ class MindMap extends Component {
         handleMove={this.handleMouseMove}
         mouseUp={() => {
           this.setState({ dragging: false });
-          console.log("hello triggering mouse");
         }}
         mouse={this.state.mouse}
         triggerDrag={this.triggerDrag}

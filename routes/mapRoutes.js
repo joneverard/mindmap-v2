@@ -36,11 +36,10 @@ module.exports = app => {
 				position: node.position,
 				selected: false,
 				title: node.title,
+				rank: (node.rank ? node.rank : 0),
 				nodeId: node.id
 			}
 		});
-		// console.log(nodes);
-		console.log(req.body.connections);
 		const connections = req.body.connections.map(conn => {
 			return {
 				start: {nodeId: conn.start.id, position: conn.start.position},

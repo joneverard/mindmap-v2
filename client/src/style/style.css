@@ -34,6 +34,11 @@ nav ul {
     margin: 0;
     padding: 5px;
 }
+/*
+li {
+    margin: 0 !important;
+    padding: 0;
+}*/
 
 .map-card {
     background-color: white;
@@ -222,6 +227,38 @@ nav ul {
 .editor ul div {
     display: inline-block;
 
+}
+
+.editor ul li {
+    margin-bottom: 0;
+}
+
+.editor ul {
+    margin: 0;
+}
+
+.level-controls {
+    margin-top: 5px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 3px;
+    border: 1px solid lightgrey;
+}
+
+.level-controls p {
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.level-controls p span {
+    margin-left: 10px;
+}
+
+.level-controls button:first-of-type {
+    /*margin-left: 40px !important;*/
 }
 
 .style-btn {

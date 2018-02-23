@@ -10,6 +10,7 @@ const NodeModel = new Schema({
 	edit: {type: Boolean, default: false},
 	position: PositionSchema,
 	selected: {type: Boolean, default: false},
+	rank: {type: Number, default: 0},
 	title: String,
 	nodeId: Number
 });

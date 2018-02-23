@@ -78,14 +78,14 @@ class NodeControls extends Component {
   renderExtraControls() {
     return (
       <div className="level-controls">
-        <p>Level: {this.props.node.rank}</p>
+        <p>Level: <span>{this.props.node.rank}</span></p>
         <button
           type="submit"
           onClick={() => {
             this.promote();
           }}
         >
-          up
+          <i className="fa fa-arrow-up" aria-hidden="true"></i>
         </button>
         <button
           type="submit"
@@ -93,7 +93,7 @@ class NodeControls extends Component {
             this.demote();
           }}
         >
-          down
+          <i className="fa fa-arrow-down" aria-hidden="true"></i>
         </button>
       </div>
     );

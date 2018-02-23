@@ -148,6 +148,11 @@ export default function NodesReducer(state=initialState, action) {
             data = [...state].map(node => {
                 if (node.nodeId === action.payload.nodeId) {
                     node.rank = action.payload.rank;
+                    if (node.style) {
+                        var styleProps = {...node.style};
+                        styleProps.zIndex = action.payload.rank * 10;
+                        node.style = styleProps;
+                    }
                 }
                 return node;
             });
@@ -184,6 +189,18 @@ export default function NodesReducer(state=initialState, action) {
                 node.position.y += action.payload.scale*unitVector[1];
                 node.anchor.x += action.payload.scale*unitVector[0];
                 node.anchor.y += action.payload.scale*unitVector[1];
+                var styleProps = {}
+                if (action.payload.scale < 0) {
+                    styleProps.opacity = node.rank * 0.1 + 0.5;
+                    // styleProps.color = `rgba(0,0,0,${node.rank*10+50})`
+                } else {
+                    styleProps.opacity = 1;
+                    // styleProps.color = `rgba(0,0,0,${100})`
+
+                }
+                styleProps.zIndex = node.rank * 10;
+                node.style = styleProps
+
                 return node
             });
             return data

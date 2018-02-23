@@ -208,7 +208,7 @@ export function zoomMap(origin, scale) {
     type: ZOOM,
     payload: {
       origin,
-      scale: scale / 3000
+      scale: scale / 2000
     }
   };
 }
