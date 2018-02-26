@@ -74,25 +74,41 @@ module.exports = app => {
 			connections: false
 		});
 		res.send(maps);
-	})
+	});
 
 	// create a new map
 	app.post('/api/maps', requireLogin, async (req, res) => {
-		const { title } = req.body;
-		const map = new NoteMap({
-			title,
-			_user: req.user.id
+		// need to check that the user has permission to create a map.
+		// use middleware...? or just check here?
+		var msg
+		const maps = await NoteMap.find({ _user: req.user.id }).select({
+			nodes: false,
+			connections: false
 		});
+		console.log(maps);
+		console.log(req.user.maximumMaps);
+		if (maps.length >= req.user.maximumMaps) {
+			// big mess here... currently trying to get it to return a useful response when the user has reached its limit.
+			res.send({map: false, user: req.user, msg: 'You can only create a maximum of 5 maps.'});
+		} else {
+		// if (maps.length >= req.user.maximumMaps) {
+		// 	msg = 'You do not have permission to create more than 5 maps.';
+		// 	return res.send({maps, user, msg});
+			const { title } = req.body;
+			const map = new NoteMap({
+				title,
+				_user: req.user.id
+			});
 
-		try {
-			await map.save();
-			const user = await req.user.save(); // super up to date!
+			try {
+				await map.save();
+				const user = await req.user.save(); // super up to date!
 
-			res.send({map, user});
-		} catch (err) {
-			res.send(422).send(err);
+				res.send({map, user, msg: ''});
+			} catch (err) {
+				res.send(422).send(err);
+			}
 		}
-		
 	});
 };
 

@@ -38,13 +38,15 @@ class Node extends Component {
 
   componentDidMount() {
     var position = this.getPosition();
+    var {id, node} = this.props;
     this.setState({
       rect: position.rect,
-      editorState: EditorState.createWithContent(this.props.node.content),
-      title: this.props.node.title
+      editorState: EditorState.createWithContent(node.content),
+      title: node.title
     });
-    this.props.dragLines(this.props.id, position.anchorPos, { x: 0, y: 0 });
-    this.props.updateAnchor(this.props.id, position.anchorPos, { x: 0, y: 0 });
+    this.props.dragLines(id, position.anchorPos, { x: 0, y: 0 });
+    this.props.updateAnchor(id, position.anchorPos, { x: 0, y: 0 });
+    this.props.updateLines(id, position.anchorPos);
   }
 
   toggleDrag(dragging) {

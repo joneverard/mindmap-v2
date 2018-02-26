@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import CreateNewMap from './CreateNewMap';
 import OpenDialog from './OpenDialog';
 import ConfirmBox from './confirm_box';
+import MessageBox from './MessageBox';
 // import 'materialize-css/dist/css/materialize.min.css';
 
 // component to perform meta functions.
@@ -44,8 +45,7 @@ class Header extends Component {
 					className="control-list-item"
 					onClick={e => {
 						this.setState({ createNew: true });
-					}}
-				>
+					}}>
 					New
 				</li>,
 				<li
@@ -53,20 +53,22 @@ class Header extends Component {
 					className="control-list-item"
 					onClick={e => {
 						this.setState({ openMap: true });
-					}}
-				>
+					}}>
 					<p>Open</p>
 				</li>,
 				<li
 					key={3}
 					className="control-list-item"
 					onClick={() =>
-						this.props.saveMap(this.props.Nodes, this.props.Connections, this.props.header.active)
-					}
-				>
+						this.props.saveMap(
+							this.props.Nodes,
+							this.props.Connections,
+							this.props.header.active
+						)
+					}>
 					Save
 				</li>
-			]
+			];
 		}
 		return null;
 	}
@@ -104,16 +106,17 @@ class Header extends Component {
 	}
 
 	toggleConfirm(mapId) {
-		this.setState({selectedMap: mapId, showConfirm: true});
+		this.setState({ selectedMap: mapId, showConfirm: true });
 	}
 
 	confirmDelete() {
 		// call action creator
 		this.props.deleteMap(this.state.selectedMap);
-		this.setState({selectedMap: 0, showConfirm: false});
+		this.setState({ selectedMap: 0, showConfirm: false });
 	}
 
 	render() {
+		var { height, width } = this.state;
 		return (
 			<nav className="">
 				<div className="">
@@ -145,10 +148,22 @@ class Header extends Component {
 				/>
 				<ConfirmBox
 					display={this.state.showConfirm}
-					windowSize={{height: this.state.height, width: this.state.width}}
+					windowSize={{ height, width }}
 					confirm={this.confirmDelete}
-					cancel={() => {this.setState({showConfirm: false, selectedMap: 0})}}
+					cancel={() => {
+						this.setState({ showConfirm: false, selectedMap: 0 });
+					}}
 				/>
+				{this.props.header.msg ? (
+					<MessageBox
+						display={true}
+						windowSize={{ height, width }}
+						cancel={() => {
+							this.props.closeMsg();
+						}}
+						msg={this.props.header.msg}
+					/>
+				) : null}
 			</nav>
 		);
 	}

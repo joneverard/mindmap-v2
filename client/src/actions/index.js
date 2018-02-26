@@ -20,6 +20,7 @@ export const DELETE_CONNECTION = 'delete_connection';
 export const TRIGGER_DIALOG = 'trigger_dialog';
 export const UPDATE_LINES = 'update_lines';
 export const UPDATE_RANK = 'update_rank';
+export const CLOSE_MSG = 'close_msg';
 
 export const FETCH_USER = 'fetch_user';
 export const SAVE_MAP = 'save_map';
@@ -62,6 +63,7 @@ export const fetchMaps = () => async dispatch => {
 
 export const createMap = title => async dispatch => {
   const res = await axios.post('/api/maps', { title });
+  console.log(res.data);
   dispatch({
     type: CREATE_MAP,
     payload: res.data
@@ -244,4 +246,11 @@ export function triggerDialog(display, context) {
       context
     }
   };
+}
+
+export function closeMsg() {
+  return {
+    type: CLOSE_MSG,
+    payoad: 1
+  }
 }

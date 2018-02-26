@@ -123,6 +123,7 @@ export default function NodesReducer(state=initialState, action) {
         //     return data;
 
         case UPDATE_POS:
+            console.log(state);
             data = [...state].map(node => {
                 if (node.id === action.payload.id) {
                     node.position.x += action.payload.mouseDelta.x;
@@ -144,7 +145,7 @@ export default function NodesReducer(state=initialState, action) {
             return data;
 
         case UPDATE_RANK:
-            console.log('hello there');
+            // console.log('hello there');
             data = [...state].map(node => {
                 if (node.nodeId === action.payload.nodeId) {
                     node.rank = action.payload.rank;

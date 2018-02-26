@@ -136,7 +136,7 @@ li {
 }
 
 .create-new-box {
-    width: 300px;
+    width: 350px;
     height: 125px;
     box-sizing: border-box;
     position: absolute;
@@ -364,6 +364,34 @@ svg {
 .node-controls .save-btn {
     background-color: #0081a8;
     color: #fff;
+}
+
+/* Message Box
+------------------------------------------------- */
+.message-box button, .message-box {
+    background-color: white;
+}
+
+.message-box {
+    width: 220px;
+    height: 110px;
+    box-sixing: border-box;
+    position: absolute;
+    z-index: 999;
+    border: 1px solid grey;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.message-box p {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.message-box div {
+    padding: 0 auto;
+    display: table;
+    margin: 0 auto;
 }
 
 
