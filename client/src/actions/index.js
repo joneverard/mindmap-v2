@@ -110,7 +110,10 @@ export function createNode(title, selected) {
       position: { x: 100, y: 100 },
       anchor: { x: 100, y: 100 },
       display: false,
-      content: ContentState.createFromText('')
+      content: ContentState.createFromText(''),
+      opacity: 1,
+      style: {zIndex: 0},
+      rank: 0
     }
   };
 }
@@ -148,6 +151,7 @@ export function dragLines(nodeid, anchor, mouseDelta) {
 }
 
 export function updateLines(nodeId, anchor) {
+  console.log(anchor);
   return {
     type: UPDATE_LINES,
     payload: {id: nodeId, anchor}

@@ -68,7 +68,7 @@ export default function ConnectionsReducer(state=[], action) {
             return data;
 
         case CREATE_CONN:
-            // console.log(state);
+            console.log(state);
             if (action.payload.start) {
                 var newConn = {
                     start: {

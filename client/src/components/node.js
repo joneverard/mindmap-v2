@@ -44,8 +44,9 @@ class Node extends Component {
       editorState: EditorState.createWithContent(node.content),
       title: node.title
     });
-    this.props.dragLines(id, position.anchorPos, { x: 0, y: 0 });
-    this.props.updateAnchor(id, position.anchorPos, { x: 0, y: 0 });
+    console.log(position);
+    // this.props.dragLines(id, position.anchorPos); // , { x: 0, y: 0 }
+    this.props.updateAnchor(id, position.anchorPos); // , { x: 0, y: 0 }
     this.props.updateLines(id, position.anchorPos);
   }
 
@@ -54,6 +55,7 @@ class Node extends Component {
     // position, updat eanchor and drag lines functions.
     // need to calculate the delta based on the origin and the current mouse position.
     // then need to set position based on the relative position of the node to the origin mouss position
+    
     this.props.triggerDrag(
       dragging,
       this.props.mouse,

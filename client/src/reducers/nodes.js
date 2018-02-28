@@ -70,7 +70,7 @@ export default function NodesReducer(state=initialState, action) {
             if (action.payload.selected) {
                 var newNode = {...action.payload};
                 // calculate node position based on selected node (origin) specified radius and random angle.
-                newNode.position = getCartesianCoords(action.payload.selected.position, 100, Math.random()*Math.PI*2);
+                // newNode.position = getCartesianCoords(action.payload.selected.position, 100, Math.random()*Math.PI*2);
                 return [...state, newNode];
             } else {
                 return [...state, action.payload];
@@ -123,7 +123,7 @@ export default function NodesReducer(state=initialState, action) {
         //     return data;
 
         case UPDATE_POS:
-            console.log(state);
+            // console.log(state);
             data = [...state].map(node => {
                 if (node.id === action.payload.id) {
                     node.position.x += action.payload.mouseDelta.x;
@@ -147,7 +147,7 @@ export default function NodesReducer(state=initialState, action) {
         case UPDATE_RANK:
             // console.log('hello there');
             data = [...state].map(node => {
-                if (node.nodeId === action.payload.nodeId) {
+                if (node.id === action.payload.nodeId) {
                     node.rank = action.payload.rank;
                     if (node.style) {
                         var styleProps = {...node.style};

@@ -9,15 +9,10 @@ class NodeControls extends Component {
     this.renderNoteControls = this.renderNoteControls.bind(this);
   }
 
-  // split this up into two...?
-
   promote() {
-    // these two functions are pretty bad... should probably refactor these.
     // var { level } = { ...this.state };
     var { id, rank } = this.props.node;
-    if (!rank) {
-      this.props.updateRank(id, 1);
-    } else if (rank < 5) {
+    if (rank < 5) {
       this.props.updateRank(id, rank + 1);
     }
   }
