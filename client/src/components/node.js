@@ -45,7 +45,7 @@ class Node extends Component {
       title: node.title
     });
     console.log(position);
-    // this.props.dragLines(id, position.anchorPos); // , { x: 0, y: 0 }
+    // this.props.dragLines(id, position.anchorPos); // , { x: 0, y: 0 } dont need to drag lines any more!
     this.props.updateAnchor(id, position.anchorPos); // , { x: 0, y: 0 }
     this.props.updateLines(id, position.anchorPos);
   }

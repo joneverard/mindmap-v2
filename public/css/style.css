@@ -1,0 +1,45 @@
+/* Temporary styles
+----------------------------------------------- */
+div {
+    height: 250px;
+    border: 1px solid red;
+}
+
+
+
+/* Basic styling
+----------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+/*body {
+    background-color: #fff;
+    color: #555;
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}*/
+
+.clearfix {zoom: 1;}
+.clearfix:after {
+    content: '.';
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.centered {
+    text-align: center;
+}
+
+.app-link {
+    background-color: darkgreen;
+}
+
