@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NoteMaps helps you organise your notes by visually drawing connections between them and providing a big-picture view.">
-    
+
+    <link rel="stylesheet" type="text/css" href="css/css/font-awesome.css"> 
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/skeleton.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -14,68 +15,96 @@
 	<body>
 		<header>
 			<div class="row">
-				<nav class="twelve columns">
+				<nav id="navbar">
 					<ul class="main-nav js--main-nav">
 	          <li><a href="#features">About</a></li>
 	          <li><a href="#works">Pricing</a></li>
+	          <li><a href="#cities">Privacy</a></li>
 	          <li><a href="#cities">Login</a></li>
 	          <!-- <li><a href="#plans">Sign up</a></li> -->
 		      </ul>
 				</nav>
 			</div>
 		</header>
-		<section>
-			<div class="container centered">
-				<div class="row">
-					<h1>Information, Visually Connected.</h1>
-					<p>put image here.</p>
-					<button>call to action button</button>
+		<section class="hero">
+			<div class="container centered hero-box" id="hero-container">
+				<div class="row hero-content centered">
+					<h1 class="hero-text">Information, Visually Connected</h1>
+					<h5 class="hero-text-copy">NoteMaps allows you to visually draw connections between your notes. So you never get lost in information again.</h5>
+					<a class="cta-button button" href="/app/">Try the app for free</a>
 				</div>
 			</div>
 			<!-- <img /> -->
 		</section>
 
-		<section>
+		<section class="main-copy">
 			<div class="container">
-				<div class="row">
-					<p>Take better notes. this is where the main sales copy goes.</p>
-					<p>put another screen grab here.</p>
-				</div>
-			</div>
-		</section>
-
-		<section>
-			<div class="container">
-				<div class="row">
-					<div class="four columns centered">
-						key benefit one
+				<div class="row main-copy-container">
+					<div class="six columns main-copy-text">
+						<p>
+							 Visually layout your notes in a mindmap. This allows you to never get lost in 
+							 your notes again. Easily see the connections between each piece of information,
+							 drawing connections and keeping track of everything in one place.
+							 We believe in simple, minimalistic design to clear the clutter and allow you to focus on what really matters.
+						</p>
 					</div>
-					<div class="four columns centered">
-						key benefit two
-					</div>
-					<div class="four columns centered">
-						key benefit three
+					<div class="six columns main-copy-screenshot">
+						<div>
+							<img class="main-screenshot" src="../images/app-screenshot-2.png">
+						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section>
+		<section class="key-benefits">
 			<div class="container">
 				<div class="row">
-					<div class="six columns">
-						<p>testinmonial section</p>
+					<div class="four columns centered">
+						<div class="key-benefit-card">
+							<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+							<h5>Get Organised</h5>
+							<p>Our simple, easy to use design allows you to focus on your information and get organised.</p>
+						</div>
 					</div>
-					<div class="six columns">
-						<p>place holder for now</p>
+					<div class="four columns centered">
+						<div class="key-benefit-card">
+							<i class="fa fa-map-o" aria-hidden="true"></i>
+							<h5>See the whole picture</h5>
+							<p>Zoom out and see all your notes at a glance.</p>
+						</div>
+					</div>
+					<div class="four columns centered">
+						<div class="key-benefit-card">
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+							<h5>Find new ideas</h5>
+							<p>See how each note is connected and watch ideas jump out of the screen.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="testimonial">
+			<div class="container">
+				<div class="row">
+					<div class="twelve columns centered">
+						<blockquote class="testimonial-text">
+							I created NoteMaps to organise my notes. I grew tired of being unable to see the connections and filter out the clutter. NoteMaps allows me to do both of these things. I believe in simple, easy to use design as this way I can focus on what truly matters: the information I'm looking at. <br /><br /> ~ Jon, Creator ~
+						</blockquote>
+						<a class="cta-button button" href="/app/">Try the app for free</a>
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<footer>
-			<div>
-				footer section. important links and contact information
+			<div class="container">
+				<div class="row">
+					<div class="eight columns">
+					</div>
+					<div class="four columns">
+					</div>
 			</div>
 		</footer>
 
@@ -83,5 +112,7 @@
 		<div class="app-link">
 			<p>click <a href="/app/">here</a> to access the application</p>
 		</div>
+
+		<script src="js/script.js"></script>
 	</body>
 </html>

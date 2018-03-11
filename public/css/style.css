@@ -1,11 +1,26 @@
 /* Temporary styles
 ----------------------------------------------- */
 div {
-    height: 250px;
-    border: 1px solid red;
+    /*height: 250px;*/
+    /*border: 1px solid red;*/
 }
 
+.app-link {
+    background-color: darkgreen;
+}
 
+.placeholder {
+    width: 300px;
+    height: 300px;
+    background-color: blue;
+}
+
+/* stored stuff for later
+----------------------------------------------- */
+/*
+#f39c12 -- orange
+#0081a8
+*/
 
 /* Basic styling
 ----------------------------------------------- */
@@ -16,15 +31,20 @@ div {
 }
 
 html,
-/*body {
-    background-color: #fff;
-    color: #555;
-    font-family: 'Lato', 'Arial', sans-serif;
+body {
+    height: 2000px;
+    /*background-color: #fff;*/
+    /*color: #555;*/
+    /*font-family: 'Lato', 'Arial', sans-serif;*/
     font-weight: 300;
-    font-size: 20px;
+    /*font-size: 20px;*/
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
-}*/
+}
+
+ul, li {
+    margin: 0;
+}
 
 .clearfix {zoom: 1;}
 .clearfix:after {
@@ -39,7 +59,201 @@ html,
     text-align: center;
 }
 
-.app-link {
-    background-color: darkgreen;
+
+/* Navigation
+----------------------------------------------- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 30px;
+  z-index: 999;
 }
 
+.main-nav {
+    float: right;
+    list-style: none;
+    /*margin: 8px 0;*/
+    height: 40px;
+}
+
+.main-nav ul {
+    float: right;
+    /*margin-top: 10px;*/
+    /*margin-bottom: 10px !important;*/
+}
+
+.main-nav li {
+    display: inline-block;
+    /*box-sizing: border-box;*/
+    /*margin-left: 40px;*/
+    padding: 7px 20px;
+    /*margin: 0 20px;*/
+    height: 40px;
+}
+
+.main-nav li a:link,
+.main-nav li a:visited {
+    /*padding: 8px 0;*/
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 100%;
+    border-bottom: 2px solid transparent;
+    -webkit-transition: border-bottom 0.2s;
+    transition: border-bottom 0.2s;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+    /*border-bottom: 2px solid #f39c12;*/
+}
+
+.nav-scroll {
+    transition: 0.5s linear all;
+    background-color: #188CF3;
+    color: #fff;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.nav-scroll li a:link,
+.nav-scroll li a:visited {
+    color: white !important;
+}
+
+.nav-scroll li:hover {
+    background-color: #33A0FF;
+}
+
+/*e67e22*/
+
+/* Hero Box
+----------------------------------------------- */
+.hero {
+    /*background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(images/hero-2-min.jpg);*/
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(../images/hero-2-min.jpeg);
+    /*background-image: url('../images/hero-2-min.jpeg');*/
+    /*background-color: rgba(0,0,0,0.5);*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero-box {
+    display: block;
+    position: relative;
+    /*padding: 10% 0;*/
+    /*color: #000;*/
+/*    background-image: url('../images/hero-min.jpeg');
+    background-size: cover;*/
+}
+
+.hero-content {
+    display: block;
+    padding: 10% 0;
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hero-text-copy {
+    text-align: center;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #F39E18;
+    border: none;
+    color: #000;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.cta-button:hover {
+    background-color: #B36600;
+    color: #000;
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+
+/* Main Copy
+----------------------------------------------- */
+.main-copy {
+    height: 500px;
+    padding-top: 15px;
+    padding: 10% 0;
+    background-color: #f6f6f6;
+}
+
+.main-screenshot {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.main-copy-text {
+    /*height: 100%;*/
+    /*padding: 10% 0;*/
+    /*vertical-align: middle;*/
+}
+
+.main-copy p {
+    display: block;
+    /*margin-top: 30px;*/
+    text-align: center;
+    padding: 10% 0;
+    margin: 0;
+}
+
+
+/* Key Benefits
+----------------------------------------------- */
+.key-benefits {
+    height: 400px;
+    padding: 50px 30px;
+    background-color: #f6f6f6;
+}
+
+.key-benefit-card {
+    background-color: #fff;
+    height: 250px;
+    width: 100%;
+    padding: 30px 10px;
+    border: 1px solid grey;
+    border-radius: 7px;
+    box-shadow: 2px 2px 5px lightgrey;
+}
+
+.key-benefit-card i {
+    font-size: 250%;
+    margin-bottom: 15px;
+}
+
+
+/* Testimonial
+----------------------------------------------- */
+.testimonial {
+    padding: 50px 30px;
+    height: 300px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/coffee-cup-desk-pen-min.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
+}
+
+.testimonial blockquote {
+    color: #fff;
+    margin-bottom: 50px;
+}
