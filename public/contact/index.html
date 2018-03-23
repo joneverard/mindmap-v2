@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NoteMaps helps you organise your notes by visually drawing connections between them and providing a big-picture view.">
+
+    <link rel="stylesheet" type="text/css" href="../css/css/font-awesome.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/contact.css">
+
+    <title>NoteMaps</title>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <nav id="navbar">
+          <ul class="main-nav js--main-nav">
+            <li><a href="../about/">About</a></li>
+            <!-- <li><a href="#works">Pricing</a></li> -->
+            <li><a href="../privacy/">Privacy</a></li>
+            <li><a href="../contact/">Contact</a></li>
+            <li><a href="../disclaimer/">Login</a></li>
+            <!-- <li><a href="#plans">Sign up</a></li> -->
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="about-copy">
+      <div class="container">
+        <div class="row">
+          <h1>Get in touch!</h1>
+            <p>We want to hear your feedback, help us get better by telling us what you think.</p>
+        </div>
+    </section>
+    
+    <section class="form-section">
+      <div class="container">
+        <form action="/api/contactform/" method="POST">
+          <div class="row">
+            <div class="six columns">
+              <label for="exampleEmailInput">Your email</label>
+              <input class="u-full-width" type="email" placeholder="test@example.com" id="exampleEmailInput" name="email">
+            </div>
+            <div class="six columns">
+              <label for="exampleRecipientInput">Reason for contacting</label>
+              <select class="u-full-width" id="exampleRecipientInput" name="reason">
+                <option value="suggestion">I have a suggestion</option>
+                <option value="signing in">I have questions about signing in.</option>
+                <option value="get in touch">I'd like to get in touch</option>
+                <option value="account">It's about my account</option>
+              </select>
+            </div>
+          </div>
+          <label for="exampleMessage">Your Message</label>
+          <textarea class="u-full-width" placeholder="Your message here" id="exampleMessage" name="content"></textarea>
+          <label class="example-send-yourself-copy">
+            <input type="checkbox">
+            <span class="label-body">Send a copy to yourself</span>
+          </label>
+          <input class="cta-button form-submit" type="submit" value="Submit">
+        </form>
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <div class="row footer-links">
+            <ul>
+              <li><a href="/">&copy NoteMaps 2018</a></li>
+              <li><a href="../privacy/">Privacy Policy</a></li>
+              <li><a href="../privacy/">Terms of use</a></li>
+              <li><a href="../contact/">Contact us</a></li>
+            </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/script.js"></script>
+  
+  </body>
+</html>

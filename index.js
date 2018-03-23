@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 // this is a bit like importing in parts of a big old html file in php. 
 require('./models/user');
 require('./models/MapModel');
+require('./models/MessageModel');
 // require('./models/Survey');
 require('./services/passport');
 
@@ -27,6 +28,7 @@ app.use(helmet())
 /* Body Parser
 -----------------------------*/
 // parse incoming post requests and add the contents to req.body.
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 /* Authentication
@@ -53,6 +55,7 @@ app.use(passport.session());
 // import the function which sets the routes from auth_routes, and call it with our app object.
 require('./routes/auth_routes')(app);
 require('./routes/mapRoutes')(app);
+require('./routes/contactRoutes')(app);
 // require('./routes/billing_routes')(app);
 // require('./routes/surveyRoutes')(app);
 
@@ -73,6 +76,14 @@ if (process.env.NODE_ENV === 'production') {
 	});
 	// this is a fall back route, a catch all!
 } 
+app.use((err, req, res, next) => {
+	console.log(err);
+	res.status(500).send('Something went wrong. Please try again later.')
+})
+
+app.use((req, res, next) => {
+	res.status(404).send('Error 404: File not found.');
+})
 
 // listen for traffic on port... this essentially starts the server.
 const PORT = process.env.PORT || 5000;
