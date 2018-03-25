@@ -151,7 +151,6 @@ export function dragLines(nodeid, anchor, mouseDelta) {
 }
 
 export function updateLines(nodeId, anchor) {
-  console.log(anchor);
   return {
     type: UPDATE_LINES,
     payload: {id: nodeId, anchor}

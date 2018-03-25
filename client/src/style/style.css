@@ -171,6 +171,11 @@ li {
     float: right;
 }
 
+.create-new-box-btns input {
+    float: right;
+}
+
+
 .create-new-box p, .create-new-box input {
     display: inline-block;
 }
