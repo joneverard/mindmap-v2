@@ -60,71 +60,28 @@ ul, li {
     text-align: center;
 }
 
+.full-height {
+    height: 100%;
+}
+
 
 /* Navigation
 ----------------------------------------------- */
-nav {
+/*nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   padding: 0 30px;
   z-index: 999;
-}
+  overflow: none;
+}*/
 
 nav img {
     /*width: 250px;*/
     height: 60px;
     /*margin-top: 2px;*/
-}
-
-.main-nav {
-    float: right;
-    list-style: none;
-    /*margin: 8px 0;*/
-    height: 40px;
-}
-
-.main-nav ul {
-    float: right;
-    /*margin-top: 10px;*/
-    /*margin-bottom: 10px !important;*/
-}
-
-.main-nav li {
-    display: inline-block;
-    /*box-sizing: border-box;*/
-    /*margin-left: 40px;*/
-    padding: 7px 20px;
-    /*margin: 0 20px;*/
-    height: 40px;
-}
-
-.main-nav li a:link,
-.main-nav li a:visited {
-    /*padding: 8px 0;*/
-    color: #000;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 100%;
-    border-bottom: 2px solid transparent;
-    -webkit-transition: border-bottom 0.2s;
-    transition: border-bottom 0.2s;
-}
-
-.main-nav li a:hover,
-.main-nav li a:active {
-    /*border-bottom: 2px solid #f39c12;*/
-}
-
-.mobile-nav-icon {
-    /*display: none;*/
-    color: black;
-    font-size: 180%;
-}
-
-.mobile-nav-icon:visited {
-    color: black;
+    margin-top: 10px;
 }
 
 .nav-scroll {
@@ -147,6 +104,51 @@ nav img {
 .nav-scroll img {
     height: 35px;
 }
+
+
+/* from w3 schools website... */
+/* Add a black background color to the top navigation */
+.topnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 30px;
+    /*background-color: #fff;*/
+    color: #000;
+    overflow: hidden;
+    z-index: 999 ;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    display: block;
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.nav-scroll a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add an active class to highlight the current page */
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+    display: none;
+}
+
+
 
 /*e67e22*/
 
@@ -318,19 +320,20 @@ nav img {
 /* Key Benefits
 ----------------------------------------------- */
 .key-benefits {
-    height: 400px;
+    /*height: 400px;*/
     padding: 50px 30px;
     background-color: #f6f6f6;
 }
 
 .key-benefit-card {
     background-color: #fff;
-    height: 250px;
+    height: 100%;
     width: 100%;
     padding: 30px 10px;
     border: 1px solid grey;
     border-radius: 7px;
     box-shadow: 2px 2px 5px lightgrey;
+    box-sizing: border-box;
 }
 
 .key-benefit-card i {
@@ -343,7 +346,7 @@ nav img {
 ----------------------------------------------- */
 .testimonial {
     padding: 50px 30px;
-    height: 350px;
+    /*height: 350px;*/
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/coffee-cup-desk-pen-min.jpg);
     background-attachment: fixed;
     background-position: center;
@@ -361,12 +364,15 @@ nav img {
 ----------------------------------------------- */
 footer {
     background-color: #666;
-    height: 50px;
+    padding-bottom: 15px;
+    text-align: center;
+    /*height: 50px;*/
 }
 
-.footer-links ul {
+.footer-links a {
     float: right;
-    height: 25px;
+    padding: 7px 0;
+    /*height: 25px;*/
 }
 
 footer li {
@@ -375,8 +381,8 @@ footer li {
     height: 20px;
 }
 
-footer li a:link,
-footer li a:visited {
+footer a:link,
+footer a:visited {
     text-decoration: none;
     font-size: 100%;
     color: #000;

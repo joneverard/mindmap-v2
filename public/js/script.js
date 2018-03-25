@@ -1,6 +1,12 @@
 window.onscroll = () => {
   const nav = document.querySelector('#navbar');
-  if(this.scrollY <= window.innerHeight/5) nav.className = ''; else nav.className = 'nav-scroll';
+  if(this.scrollY <= window.innerHeight/20) {
+    nav.classList.remove('nav-scroll');
+  } else {
+    if (!nav.classList.contains('nav-scroll')) {
+        nav.classList.add('nav-scroll');
+    }
+  }
 };
 
 // looks like this wont be super scalable with other js snippets.
@@ -20,5 +26,17 @@ ready(function() {
 	const hero = document.querySelector('#hero-container');
 	hero.setAttribute('style', 'width:'+window.innerWidth+'px');
 	hero.setAttribute('style', 'height:'+window.innerHeight+'px');
-	// document.getElementById('div_register').setAttribute("style","width:500px");
-})
+
+});
+
+
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function toggleMobileNav() {
+    var nav = document.getElementById('navbar');
+    if (nav.classList.contains('responsive')) {
+        nav.classList.remove('responsive');
+    } else {
+        nav.classList.add('responsive');
+    }
+}
+

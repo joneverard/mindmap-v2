@@ -1,6 +1,15 @@
 <!doctype html>
 <html>
   <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116384447-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-116384447-1');
+    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NoteMaps helps you organise your notes by visually drawing connections between them and providing a big-picture view.">
@@ -9,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="../css/normalize.css">
     <link rel="stylesheet" type="text/css" href="../css/skeleton.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/queries.css">
     <link rel="icon" type="image/png" href="/images/notemaps-favicon-2.png" sizes="30x30">
     <link rel="stylesheet" type="text/css" href="../css/terms.css">
 
@@ -17,16 +27,17 @@
   <body>
     <header>
       <div class="row">
-        <nav id="navbar">
-          <ul class="main-nav js--main-nav">
-            <li><a href="../about/">About</a></li>
-            <!-- <li><a href="#works">Pricing</a></li> -->
-            <li><a href="../privacy/">Privacy</a></li>
-            <li><a href="../contact/">Contact</a></li>
-            <li><a href="../disclaimer/">Login</a></li>
-            <!-- <li><a href="#plans">Sign up</a></li> -->
-          </ul>
-        </nav>
+        <div id="nav-box">
+          <nav class="topnav" id="navbar">
+            <!-- <img src="/images/NOTEMAPS1-02 original.png"> -->
+            <a href="javascript:void(0);" class="icon" onclick="toggleMobileNav()">&#9776;</a>
+            <a href="/disclaimer/">Login</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/contact/">Contact</a>
+            <a href="/about/">About</a>
+            <a href="/">Home</a>
+          </nav>
+        </div>
       </div>
     </header>
 

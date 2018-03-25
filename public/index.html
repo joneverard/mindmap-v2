@@ -1,6 +1,15 @@
 <!doctype html>
 <html>
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116384447-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-116384447-1');
+		</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="NoteMaps helps you organise your notes by visually drawing connections between them and providing a big-picture view.">
@@ -17,18 +26,29 @@
 	<body>
 		<header>
 			<div class="row">
-				<nav id="navbar">
-					<img src="/images/NOTEMAPS1-02 original.png">
+<!-- 				<nav id="navbar"> -->
+				<div id="nav-box">
+					<nav class="topnav" id="navbar">
+						<!-- <img src="/images/NOTEMAPS1-02 original.png"> -->
+					  <a href="javascript:void(0);" class="icon" onclick="toggleMobileNav()">&#9776;</a>
+					  <a href="/disclaimer/">Login</a>
+					  <a href="/privacy/">Privacy</a>
+					  <a href="/contact/">Contact</a>
+					  <a href="/about/">About</a>
+					  <a href="/">Home</a>
+					</nav>
+				</div>
+<!-- 					<img src="/images/NOTEMAPS1-02 original.png">
 					<ul class="main-nav js--main-nav">
 	          <li><a href="/about/">About</a></li>
-	          <!-- <li><a href="#works">Pricing</a></li> -->
+	          <li><a href="#works">Pricing</a></li>
 	          <li><a href="/privacy/">Privacy</a></li>
 	          <li><a href="/contact/">Contact</a></li>
 	          <li><a href="/disclaimer/">Login</a></li>
-	          <!-- <li><a href="#plans">Sign up</a></li> -->
+	          <li><a href="#plans">Sign up</a></li>
 		      </ul>
 		     	<a id="mobile-nav-icon" class="mobile-nav-icon" href="#"><i class="fa fa-bars"></i></a>
-				</nav>
+				</nav> -->
 			</div>
 		</header>
 		<section class="hero">
@@ -45,7 +65,7 @@
 			<!-- <img /> -->
 		</section>
 
-		<section class="main-copy container">
+		<section class="main-copy">
 			<div class="container">
 				<div class="row main-copy-container">
 					<div class="six columns main-copy-text">
@@ -68,21 +88,21 @@
 		<section class="key-benefits">
 			<div class="container">
 				<div class="row">
-					<div class="four columns centered">
+					<div class="four columns centered full-height">
 						<div class="key-benefit-card">
 							<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
 							<h5>Get Organised</h5>
 							<p>Our simple, easy to use design allows you to focus on your information and get organised.</p>
 						</div>
 					</div>
-					<div class="four columns centered">
+					<div class="four columns centered full-height">
 						<div class="key-benefit-card">
 							<i class="fa fa-map-o" aria-hidden="true"></i>
 							<h5>See the whole picture</h5>
 							<p>Zoom out and see all your notes at a glance.</p>
 						</div>
 					</div>
-					<div class="four columns centered">
+					<div class="four columns centered full-height">
 						<div class="key-benefit-card">
 							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
 							<h5>Find new ideas</h5>
@@ -109,15 +129,45 @@
 		<footer>
 			<div class="container">
 				<div class="row footer-links">
-						<ul>
+					<div class="three columns">
+						<a href="#">&copy NoteMaps 2018</a>
+					</div>
+					<div class="three columns">
+						<a href="/privacy/">Privacy Policy</a>
+					</div>
+					<div class="three columns">
+						<a href="/termsandconditions/">Terms and Conditions</a>
+					</div>
+					<div class="three columns">
+						<a href="/contact/">Contact us</a>
+					</div>
+				</div>
+						<!-- <ul>
 							<li><a href="/">&copy NoteMaps 2018</a></li>
 							<li><a href="/privacy/">Privacy Policy</a></li>
 							<li><a href="/termsandconditions/">Terms and Conditions</a></li>
 							<li><a href="/contact/">Contact us</a></li>
-						</ul>
-				</div>
+						</ul> -->
+				<!-- </div> -->
 			</div>
 		</footer>
+<!-- 		<script type="text/javascript">
+			while (true) {
+				try {
+					const acceptCookie = document.querySelector('#cookiescript_accept');
+	        console.log(acceptCookie);
+	        const styleString = acceptCookie.getAttribute('style');
+	        var newStyle = styleString.replace('background-color: rgb(91, 183, 91);', 'background-color: #F39E18;');
+	        newStyle = newStyle.replace('color: rgb(255, 255, 255);', 'color: rgb(0,0,0);');
+	        acceptCookie.setAttribute('style', newStyle);
+				} catch {
+
+				}
+			}
+		</script> -->
+<!--Start Cookie Script-->
+<script type="text/javascript" charset="UTF-8" src="http://chs03.cookie-script.com/s/c9f15c005bad2bafdce08f1882858ce4.js"></script>
+<!--End Cookie Script-->
 		<script src="js/script.js"></script>
 	</body>
 </html>
