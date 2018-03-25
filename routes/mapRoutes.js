@@ -64,7 +64,7 @@ module.exports = app => {
 	});
 
 	app.delete('/api/maps/:mapid', requireLogin, async (req, res) => {
-		NoteMap.remove({_id: req.params.mapid, _user: req.user}, (err, doc) => {
+		const removed = await NoteMap.remove({_id: req.params.mapid, _user: req.user}, (err, doc) => {
 			if(err) {
 				res.send(422).send(err);
 			}

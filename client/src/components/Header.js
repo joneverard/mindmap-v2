@@ -6,6 +6,8 @@ import CreateNewMap from './CreateNewMap';
 import OpenDialog from './OpenDialog';
 import ConfirmBox from './confirm_box';
 import MessageBox from './MessageBox';
+
+import logo from './NOTEMAPS1-02 original.png';
 // import 'materialize-css/dist/css/materialize.min.css';
 
 // component to perform meta functions.
@@ -54,7 +56,7 @@ class Header extends Component {
 					onClick={e => {
 						this.setState({ openMap: true });
 					}}>
-					<p>Open</p>
+					Open
 				</li>,
 				<li
 					key={3}
@@ -121,7 +123,7 @@ class Header extends Component {
 			<nav className="">
 				<div className="">
 					<div className="logo">
-						<h6>NoteMaps</h6>
+						<img className="logo-img" src={logo} alt="Logo" />
 					</div>
 					<ul className="app-controls control-list">
 						{this.renderAppControls()}

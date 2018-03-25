@@ -89,7 +89,7 @@ export const saveMap = (nodes, connections, mapid) => async dispatch => {
 
 export const deleteMap = (mapId) => async dispatch => {
   const res = await axios.delete(`/api/maps/${mapId}`);
-  // console.log(res.data);
+  console.log(res.data);
   dispatch({
     type: DELETE_MAP,
     payload: res.data
