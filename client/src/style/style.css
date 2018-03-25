@@ -244,13 +244,14 @@ li {
 
 }
 
-.editor ul li {
+.editor ul li, .editor ol li {
     margin-bottom: 0;
 }
 
-.editor ul {
+.editor ul, .editor ol {
     margin: 0;
 }
+
 
 .level-controls {
     margin-top: 5px;

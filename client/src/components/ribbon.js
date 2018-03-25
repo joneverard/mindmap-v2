@@ -37,7 +37,7 @@ class Ribbon extends Component {
                     <input
                         type="text"
                         className="title-box"
-                        placeholder="enter a node title"
+                        placeholder="enter a note title"
                         onChange={(e) => this.onInputChange(e.target.value)}
                         value={this.state.title}
                         >

@@ -63,7 +63,7 @@ export const fetchMaps = () => async dispatch => {
 
 export const createMap = title => async dispatch => {
   const res = await axios.post('/api/maps', { title });
-  console.log(res.data);
+  // console.log(res.data);
   dispatch({
     type: CREATE_MAP,
     payload: res.data
@@ -89,7 +89,7 @@ export const saveMap = (nodes, connections, mapid) => async dispatch => {
 
 export const deleteMap = (mapId) => async dispatch => {
   const res = await axios.delete(`/api/maps/${mapId}`);
-  console.log(res.data);
+  // console.log(res.data);
   dispatch({
     type: DELETE_MAP,
     payload: {data: res.data, mapId} 

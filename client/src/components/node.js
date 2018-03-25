@@ -68,7 +68,9 @@ class Node extends Component {
     var { id } = this.props;
     this.props.toggleDisplay(id, this.getPosition().anchorPos);
     setTimeout(() => {
+      this.props.updateAnchor(id, this.getPosition().anchorPos);
       this.props.updateLines(id, this.getPosition().anchorPos);
+
     }, 1);
   }
 

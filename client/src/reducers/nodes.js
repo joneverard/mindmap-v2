@@ -68,9 +68,10 @@ export default function NodesReducer(state=initialState, action) {
         case CREATE:
             // console.log(action.payload.selected);
             if (action.payload.selected) {
+                console.log('hello');
                 var newNode = {...action.payload};
                 // calculate node position based on selected node (origin) specified radius and random angle.
-                // newNode.position = getCartesianCoords(action.payload.selected.position, 100, Math.random()*Math.PI*2);
+                newNode.position = getCartesianCoords(action.payload.selected.position, 100, Math.random()*Math.PI*2);
                 return [...state, newNode];
             } else {
                 return [...state, action.payload];
