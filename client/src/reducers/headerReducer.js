@@ -18,8 +18,14 @@ export default function headerReducer(state = {maps: [], active: false}, action)
 		case OPEN_MAP:
 			return {...state, active: action.payload._id};
 		case DELETE_MAP:
-			console.log(state.active);
-			return {maps: action.payload, active: state.active};
+			// console.log(state.active);
+			var active;
+			if (action.payload.mapId === state.active) {
+				active = false;
+			} else {
+				active = state.active;
+			}
+			return {maps: action.payload.data, active};
 		default:
 			return state;
 	}

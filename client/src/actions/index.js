@@ -92,7 +92,7 @@ export const deleteMap = (mapId) => async dispatch => {
   console.log(res.data);
   dispatch({
     type: DELETE_MAP,
-    payload: res.data
+    payload: {data: res.data, mapId} 
   })
 }
 
