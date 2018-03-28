@@ -1,6 +1,7 @@
 import React from 'react';
 import { Editor, RichUtils } from 'draft-js';
 import EditorControls from './editor_controls';
+import ReactResizeDetector from 'react-resize-detector';
 import '../style/Draft.css';
 
 class NodeEditor extends React.Component {
@@ -12,6 +13,7 @@ class NodeEditor extends React.Component {
     this.toggleInline = this.toggleInline.bind(this);
     this.handleKeyCommand = this.handleKeyCommand.bind(this);
     this.onTab = this.onTab.bind(this);
+    this.handleResize = this.handleResize.bind(this);
   }
 
         // _handleKeyCommand(command) {
@@ -53,6 +55,12 @@ class NodeEditor extends React.Component {
     this.onChange(RichUtils.onTab(e, this.props.editorState, 4)); // maxdepth = 4
   }
 
+  handleResize(width, height) {
+    // console.log(width, height);
+    // need to make sure you take into account the width of the scroll bar. check if this varies from
+    // browser to browser.
+  }
+
 
   render() {
     return (
@@ -63,7 +71,8 @@ class NodeEditor extends React.Component {
           toggleInline={this.toggleInline}
           editorState={this.props.editorState}
         /> : null}
-        <div className="editor" style={{resize: (this.props.edit ? 'both' : 'none')}}>
+        <div className="editor" id="parent-div" style={{resize: (this.props.edit ? 'both' : 'none')}}>
+        <ReactResizeDetector skipOnMount handleWidth handleHeight onResize={this.handleResize} />
           <Editor
             readOnly={!this.props.edit}
             editorState={this.props.editorState}
