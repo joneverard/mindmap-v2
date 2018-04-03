@@ -4,6 +4,7 @@ const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+var sslRedirect = require('heroku-ssl-redirect');
 
 // import these files, upon importing they get 'executed' in this 'namespace'
 // this is a bit like importing in parts of a big old html file in php. 
@@ -22,6 +23,9 @@ const app = express();
 -----------------------------*/
 var helmet = require('helmet')
 app.use(helmet())
+
+// enable ssl redirect
+app.use(sslRedirect(['development','production'], 301));
 
 
 
