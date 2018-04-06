@@ -37,11 +37,17 @@ passport.use(
 		async (accessToken, refreshToken, profile, done) => {
 			const existingUser = await User.findOne({ googleId: profile.id }); // returns a promise!
 			if (existingUser) {
+				if (existingUser.emails.length === 0) {
+					// patch to capture existing user emails if they come back.
+					existingUser.emails = profile.emails;
+					const user = await existingUser.save();
+					return done(null, user);
+				}
 				// we already have a record with this id.
 				return done(null, existingUser); // first arg is for errors. second arg is whatever to pass back. (err, content)
 			}
 
-			const user = await new User({ googleId: profile.id }).save();
+			const user = await new User({ googleId: profile.id, emails: profile.emails }).save();
 			done(null, user);
 			// creates and saves a new model instance.
 			// user back from db is more up-to-date. need to call done() once async is finished.
