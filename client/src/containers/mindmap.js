@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";  
+import { connect } from "react-redux";
 import Node from "../components/node";
 import MapView from "../components/map";
 import ConfirmBox from "../components/confirm_box";

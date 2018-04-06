@@ -126,10 +126,10 @@ class Header extends Component {
 						<img className="logo-img" src={logo} alt="Logo" />
 					</div>
 					<ul className="app-controls control-list">
-						{this.renderAppControls()}
+						{this.props.desktop ? this.renderAppControls() : null}
 					</ul>
 					<ul className="user-controls control-list">
-						{this.renderUserControls()}
+						{this.props.desktop ? this.renderUserControls() : null}
 					</ul>
 				</div>
 				<CreateNewMap

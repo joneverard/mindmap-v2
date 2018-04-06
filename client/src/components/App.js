@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 // import './style/App.css';
+import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect';
 import Ribbon from './ribbon';
 import MindMap from '../containers/mindmap';
 import Header from './Header';
@@ -36,10 +37,20 @@ class App extends Component {
 	}
 
 	render() {
+		// need to include a catch for mobile devices. avoid the bad UX of a horribly broken app.
+		// needs LOTS of attention to be fixed.
 		return (
 			<div className="App">
-				<Header user={this.props.user} />
-				{this.renderMain()}
+				<BrowserView device={isBrowser}>
+					<Header user={this.props.user} desktop />
+					{this.renderMain()}
+				</BrowserView>
+				<MobileView device={isMobile}>
+					<Header user={this.props.user} mobile />
+					<div className="app-landing">
+						Welcome to NoteMaps! Please access this app on a desktop to continue. Our mobile version is coming soon.
+					</div>
+				</MobileView>
 			</div>
 		);
 	}

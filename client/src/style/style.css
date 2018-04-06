@@ -13,11 +13,11 @@ body {
 form {
     margin: 0 !important;
 }
-/*
-* {
+
+/** {
     border: 1px solid red;
-}
-*/
+}*/
+
 
 /*this desperately needs to be sorted out and organised...*/
 /* NAVIGATION
@@ -30,7 +30,7 @@ nav {
     background-color: #fff; 
     z-index: 999;
     border-bottom: 1px solid lightgrey;
-    box-shadow: 2px 2px 5px grey;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     /*color: white;*/
     /*box-shadow: 0 5px 5px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);*/
 }
