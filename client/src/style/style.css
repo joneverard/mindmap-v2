@@ -451,6 +451,16 @@ svg {
     margin: 0 auto;
 }
 
+.feedback-box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    position: absolute;
+    left: 300px;
+    top: 300px;
+}
+
+
 
 /* Utilities
 ------------------------------------------------- */
@@ -492,3 +502,4 @@ svg {
         opacity: 0;
     }
 }
+

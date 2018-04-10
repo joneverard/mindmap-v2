@@ -26,13 +26,15 @@ passport.deserializeUser((id, done) => {
 
 // tell passport to use the google strategy and configure it.
 // google strategy config requires API keys and a callback to handle returning data.
+
+// thoughts on creating a default for date... just say default is today?
 passport.use(
 	new GoogleStrategy(
 		{
 			clientID: keys.googleClientID,
 			clientSecret: keys.googleClientSecret,
-			callbackURL: keys.googleRedirectURI // relative path causes http: not https:. by default googlestrategy doesnt trust the heroku proxy.
-			// proxy: true
+			callbackURL: keys.googleRedirectURI, // relative path causes http: not https:. by default googlestrategy doesnt trust the heroku proxy.
+			proxy: true
 		},
 		async (accessToken, refreshToken, profile, done) => {
 			const existingUser = await User.findOne({ googleId: profile.id }); // returns a promise!
@@ -43,12 +45,17 @@ passport.use(
 					const user = await existingUser.save();
 					return done(null, user);
 				}
+				// need to update the last time the user logged in
+				existingUser.lastLogin = new Date();
+				existingUser.visits += 1;
+				const user = await existingUser.save();
+				console.log(user);
 				// we already have a record with this id.
 				return done(null, existingUser); // first arg is for errors. second arg is whatever to pass back. (err, content)
 			}
 
-			const user = await new User({ googleId: profile.id, emails: profile.emails }).save();
-			done(null, user);
+			const user = await new User({ googleId: profile.id, emails: profile.emails, signUpDate: new Date() }).save();
+			return done(null, user);
 			// creates and saves a new model instance.
 			// user back from db is more up-to-date. need to call done() once async is finished.
 		}

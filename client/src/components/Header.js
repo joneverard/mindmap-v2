@@ -6,6 +6,7 @@ import CreateNewMap from './CreateNewMap';
 import OpenDialog from './OpenDialog';
 import ConfirmBox from './confirm_box';
 import MessageBox from './MessageBox';
+import FeedbackBox from './FeedbackBox';
 
 import logo from './NOTEMAPS1-02 original.png';
 // import 'materialize-css/dist/css/materialize.min.css';
@@ -20,7 +21,7 @@ import logo from './NOTEMAPS1-02 original.png';
 class Header extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { createNew: false, openMap: false };
+		this.state = { createNew: false, openMap: false, feedback: false };
 		this.submitNew = this.submitNew.bind(this);
 		this.openMap = this.openMap.bind(this);
 		this.toggleConfirm = this.toggleConfirm.bind(this);
@@ -32,6 +33,9 @@ class Header extends Component {
 		// console.log(this.props.header);
 		this.props.fetchMaps();
 		// this.props.openMap(this.props.header.active);
+		setTimeout(() => {
+			this.setState({feedback: true});
+		}, 2000);
 	}
 
 	updateWindowDimensions() {
@@ -156,6 +160,7 @@ class Header extends Component {
 						this.setState({ showConfirm: false, selectedMap: 0 });
 					}}
 				/>
+				{this.state.feedback ? <FeedbackBox /> : null}
 				{this.props.header.msg ? (
 					<MessageBox
 						display={true}
