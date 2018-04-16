@@ -33,9 +33,10 @@ class Header extends Component {
 		// console.log(this.props.header);
 		this.props.fetchMaps();
 		// this.props.openMap(this.props.header.active);
-		setTimeout(() => {
-			this.setState({feedback: true});
-		}, 2000);
+		// for future use. TODO
+		// setTimeout(() => {
+		// 	this.setState({feedback: true});
+		// }, 2000);
 	}
 
 	updateWindowDimensions() {
