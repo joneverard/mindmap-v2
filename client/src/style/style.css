@@ -48,6 +48,29 @@ li {
     padding: 0;
 }*/
 
+.side-menu {
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: -33%;
+    /*height: 250px;*/
+    height: 100%;
+    width: 25%;
+    border: 1px solid red;
+    transition: 0.2s;
+}
+
+.side-menu-active {
+    left: 0;
+}
+
+
+.meta-menu {
+    padding-left: 500px;
+}
+
+
+
 .map-card {
     background-color: white;
     /*border-radius: 3px;*/
@@ -201,11 +224,18 @@ li {
 .ribbon {
     position: absolute;
     top: 50px;
-    left: 15px;
+    left: 0;
     display: block;
     float: left;
     vertical-align: middle;
     font-size: 50px;
+    padding-left: 15px;
+}
+
+.ribbon-menu-active {
+    top: 50px;
+    left: 25%;
+    transition: 0.2s;
 }
 
 .main {
@@ -213,6 +243,7 @@ li {
     width: 100%;
     padding: auto;
 }
+
 
 .node {
     background-color: white;

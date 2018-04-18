@@ -6,6 +6,7 @@ import {BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect'
 import Ribbon from './ribbon';
 import MindMap from '../containers/mindmap';
 import Header from './Header';
+import SideMenu from '../containers/SideMenu';
 // this is where to build the app...
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
 			<div className="App">
 				<BrowserView device={isBrowser}>
 					<Header user={this.props.user} desktop />
+					<SideMenu />
 					{this.renderMain()}
 				</BrowserView>
 				<MobileView device={isMobile}>

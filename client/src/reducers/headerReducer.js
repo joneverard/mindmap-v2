@@ -1,9 +1,12 @@
-import { FETCH_MAPS, CREATE_MAP, OPEN_MAP, DELETE_MAP, CLOSE_MSG } from '../actions';
+import { FETCH_MAPS, CREATE_MAP, OPEN_MAP, DELETE_MAP, CLOSE_MSG, TOGGLE_MENU } from '../actions';
 
 // if the request to check if they are logged in take a long time, then we don't want to assume either way
 // as this makes for bad UX.
-export default function headerReducer(state = {maps: [], active: false}, action) {
+export default function headerReducer(state = {maps: [], active: false, sideMenu: true}, action) {
 	switch (action.type) {
+		case TOGGLE_MENU:
+			return {maps: [...state.maps], active: state.active, sideMenu: !state.sideMenu}
+
 		case FETCH_MAPS:
 			return {maps: action.payload, active: false};
 		case CREATE_MAP:

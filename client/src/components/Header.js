@@ -126,7 +126,10 @@ class Header extends Component {
 		var { height, width } = this.state;
 		return (
 			<nav className="">
-				<div className="">
+				<div className={this.props.header.sideMenu ? "meta-menu menu-active" : "meta-menu"}>
+					<div className="toggle-menu">
+						<button onClick={this.props.toggleMenu}>hello there</button>
+					</div>
 					<div className="logo">
 						<img className="logo-img" src={logo} alt="Logo" />
 					</div>
@@ -135,6 +138,7 @@ class Header extends Component {
 					</ul>
 					<ul className="user-controls control-list">
 						{this.props.desktop ? this.renderUserControls() : null}
+
 					</ul>
 				</div>
 				<CreateNewMap

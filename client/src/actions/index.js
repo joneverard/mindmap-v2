@@ -28,6 +28,8 @@ export const FETCH_MAPS = 'fetch_maps';
 export const CREATE_MAP = 'create_map';
 export const OPEN_MAP = 'open_map';
 export const DELETE_MAP = 'delete_map';
+
+export const TOGGLE_MENU = 'toggle_menu';
 // some notes...
 // this file is getting a little large. would be better to separate the action creators into files regarding nodes,
 // connections, save / edit functions etc.
@@ -95,6 +97,20 @@ export const deleteMap = (mapId) => async dispatch => {
     payload: {data: res.data, mapId} 
   })
 }
+
+
+export const toggleMenu = () => {
+  return {
+    type: TOGGLE_MENU,
+    payload: true
+  }
+}
+
+
+
+
+
+// map actions
 
 
 export function createNode(title, selected) {
