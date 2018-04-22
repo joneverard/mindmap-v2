@@ -126,21 +126,19 @@ class Header extends Component {
 		var { height, width } = this.state;
 		return (
 			<nav className="">
-				<div className={this.props.header.sideMenu ? "meta-menu menu-active" : "meta-menu"}>
+				<div className={this.props.header.sideMenu ? "meta-menu" : "meta-menu"}>
 					<div className="toggle-menu">
-						<button onClick={this.props.toggleMenu}>hello there</button>
+						<i className="fa fa-bars" aria-hidden="true" onClick={this.props.toggleMenu}></i>
 					</div>
 					<div className="logo">
 						<img className="logo-img" src={logo} alt="Logo" />
 					</div>
-					<ul className="app-controls control-list">
-						{this.props.desktop ? this.renderAppControls() : null}
-					</ul>
-					<ul className="user-controls control-list">
-						{this.props.desktop ? this.renderUserControls() : null}
 
-					</ul>
 				</div>
+				<ul className="user-controls control-list">
+					{this.props.desktop ? this.renderUserControls() : null}
+
+				</ul>
 				<CreateNewMap
 					display={this.state.createNew}
 					confirm={this.submitNew}
@@ -186,6 +184,13 @@ function mapStateToProps({ Nodes, Connections, header, user }) {
 }
 
 export default connect(mapStateToProps, actions)(Header);
+
+					// <ul className="app-controls control-list">
+					// 	{this.props.desktop ? this.renderAppControls() : null}
+					// </ul>
+
+
+
 
 // class Header extends Component {
 // 	renderContent() {

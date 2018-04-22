@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+import AppControls from '../components/AppControls';
+
 
 class SideMenu extends Component {
 	constructor(props) {
@@ -24,7 +26,7 @@ class SideMenu extends Component {
 		console.log('maps', this.props.header);
 		return (
 			<div className={this.props.header.sideMenu ? "side-menu side-menu-active" : "side-menu"}>
-				hello!
+				<AppControls />
 			</div>
 		)
 	}

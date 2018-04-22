@@ -26,7 +26,7 @@ class Ribbon extends Component {
 
     render() {
         return (
-            <div className="ribbon">
+            <div className={this.props.header.sideMenu ? "ribbon ribbon-menu-active" : "ribbon"}>
                 <form onSubmit={(e) => {this.handleSubmit(e)}}>
                     <button
                         type="submit"
@@ -53,8 +53,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({createNode, createConnection}, dispatch);
 }
 
-function mapStateToProps(state)  {
-    return { selected: state.Selected }
+function mapStateToProps({ Selected, header })  {
+    return { selected: Selected, header }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ribbon);
