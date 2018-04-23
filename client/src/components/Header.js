@@ -29,9 +29,9 @@ class Header extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({ width: window.innerWidth, height: window.innerHeight });
-		// console.log(this.props.header);
-		this.props.fetchMaps();
+		// this.setState({ width: window.innerWidth, height: window.innerHeight });
+		// // console.log(this.props.header);
+		// this.props.fetchMaps();
 		// this.props.openMap(this.props.header.active);
 		// for future use. TODO
 		// setTimeout(() => {

@@ -2,7 +2,7 @@ import { FETCH_MAPS, CREATE_MAP, OPEN_MAP, DELETE_MAP, CLOSE_MSG, TOGGLE_MENU } 
 
 // if the request to check if they are logged in take a long time, then we don't want to assume either way
 // as this makes for bad UX.
-export default function headerReducer(state = {maps: [], active: false, sideMenu: false}, action) {
+export default function headerReducer(state = {maps: [], active: false, sideMenu: true}, action) {
 	const {sideMenu} = {...state};
 	switch (action.type) {
 		case TOGGLE_MENU:

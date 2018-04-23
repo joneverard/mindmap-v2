@@ -114,7 +114,26 @@ li {
     padding: 0 10%;
 }
 
+.create-new-map {
+    padding: 0 5%;
+    margin-bottom: 15px !important;
+}
 
+.create-new-map input:first-of-type {
+    width: 50%;
+}
+
+.create-new-map input:last-of-type {
+    float: right;   
+}
+
+.map-list {
+    height: 100%;
+    margin: 0 10px;
+    margin-top: 10px;
+    /*background-color: #fbfbfb*/
+    /*border: 1px solid red;  */
+}
 
 .map-card {
     background-color: white;
