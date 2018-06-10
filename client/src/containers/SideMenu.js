@@ -66,7 +66,7 @@ class SideMenu extends Component {
           className="map-card"
           key={map._id}
           onClick={() => {
-            this.props.confirm(map._id);
+            this.props.openMap(map._id);
           }}
           onMouseEnter={(e) => {this.setState({hover: map._id})}}
           onMouseLeave={(e) => {this.setState({hover: 0})}}>
@@ -83,11 +83,12 @@ class SideMenu extends Component {
 
 
 	render() {
+		//this.props.header.sideMenu
 		var { height, width } = this.state;
 		return (
 			<div
 				className={
-					this.props.header.sideMenu
+					this.props.display
 						? 'side-menu side-menu-active'
 						: 'side-menu'
 				}>

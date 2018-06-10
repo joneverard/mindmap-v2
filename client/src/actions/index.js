@@ -74,18 +74,21 @@ export const createMap = title => async dispatch => {
 
 export const saveMap = (nodes, connections, mapid) => async dispatch => {
   // need to convert all of the contentState objects in nodes to a html string.
-  // console.log(connections);
-  const nodeData = [...nodes].map(node => {
-    var ret = {...node};
-    ret.content = stateToHTML(node.content);
-    return ret;
-  });
+  if (mapid) {
+    // console.log('action creator');
+    const nodeData = [...nodes].map(node => {
+      var ret = {...node};
+      ret.content = stateToHTML(node.content);
+      return ret;
+    });
 
-  const res = await axios.post(`/api/maps/${mapid}`, { nodeData, connections });
-  dispatch({
-    type: SAVE_MAP,
-    payload: res.data
-  });
+    const res = await axios.post(`/api/maps/${mapid}`, { nodeData, connections });
+    console.log(res);
+    dispatch({
+      type: SAVE_MAP,
+      payload: res.data
+    });
+  };
 };
 
 
@@ -113,7 +116,7 @@ export const toggleMenu = () => {
 // map actions
 
 
-export function createNode(title, selected) {
+export function createNode(title, selected, position) {
   var d = new Date();
   return {
     type: CREATE,
@@ -123,8 +126,8 @@ export function createNode(title, selected) {
       nodeType: 'A',
       color: '#fff',
       id: d.getTime(),
-      position: { x: 100, y: 100 },
-      anchor: { x: 100, y: 100 },
+      position: position,
+      anchor: { x: position.x, y: position.y },
       display: false,
       content: ContentState.createFromText(''),
       opacity: 1,

@@ -89,7 +89,7 @@ class Header extends Component {
 			case false:
 				return (
 					<li className="control-list-item">
-						<a href="/auth/google">Login with google</a>
+						<a href="/auth/google"></a>
 					</li>
 				);
 			default:
@@ -133,12 +133,12 @@ class Header extends Component {
 					<div className="logo">
 						<img className="logo-img" src={logo} alt="Logo" />
 					</div>
+					<ul className="user-controls control-list">
+						{this.props.desktop ? this.renderUserControls() : null}
+
+					</ul>
 
 				</div>
-				<ul className="user-controls control-list">
-					{this.props.desktop ? this.renderUserControls() : null}
-
-				</ul>
 				<CreateNewMap
 					display={this.state.createNew}
 					confirm={this.submitNew}

@@ -48,6 +48,10 @@ li {
     padding: 0;
 }*/
 
+.app div {
+    height: 100%;
+}
+
 .side-menu {
     position: absolute;
     padding-top: 50px;
@@ -169,9 +173,10 @@ li {
     /*float: left;*/
     text-align: center;
     /*height: 100px;*/
-    width: 50%;
+    /*width: 50%;*/
     padding: 1px auto;
     display: block;
+    height: 100%;
 }
 
 .logo {
@@ -193,6 +198,49 @@ li {
     cursor: pointer;
     /*padding: 5px;*/
     /*margin: 0 15px;*/
+}
+
+
+/* Key Benefits
+----------------------------------------------- */
+.key-benefits {
+    /*height: 400px;*/
+    /*padding: 50px 30px;*/
+    /*background-color: #f6f6f6;*/
+}
+
+.key-benefit-card {
+    overflow-y: hidden;
+    background-color: #fff;
+    /*min-height: 250px !important;*/
+    height: 100%;
+    width: 100%;
+    padding: 30px 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    /*box-shadow: 2px 2px 5px lightgrey;*/
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-sizing: border-box;
+}
+
+.key-benefit-card i {
+    font-size: 250%;
+    margin-bottom: 15px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+
+.sign-in-btn {
+    display: inline-block; 
+    margin: 15% 0 50% 0
+}
+
+.welcome-msg {
+    margin-top: 25px;
+    /*margin-bottom: 25px;*/
 }
 
 
