@@ -30,6 +30,7 @@ export const OPEN_MAP = 'open_map';
 export const DELETE_MAP = 'delete_map';
 
 export const TOGGLE_MENU = 'toggle_menu';
+export const TOGGLE_CONNECTION = 'toggle_connection';
 // some notes...
 // this file is getting a little large. would be better to separate the action creators into files regarding nodes,
 // connections, save / edit functions etc.
@@ -258,6 +259,13 @@ export function connectNode(node, active) {
       active
     }
   };
+}
+
+export function toggleConnection(active) {
+  return {
+    type: TOGGLE_CONNECTION,
+    payload: active
+  }
 }
 
 export function triggerDialog(display, context) {

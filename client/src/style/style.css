@@ -353,6 +353,24 @@ li {
     left: 25%;
 }
 
+.ribbon form {
+    display: block;
+    text-align: left;
+}
+
+.connect-btn {
+    font-size: 12px;
+    float: left;
+    padding: 10px;
+    margin-left: 25px;
+    margin-top: 15px;
+}
+
+.temp-box {
+    display: block;
+}
+
+
 .main {
     height: 100%;
     width: 100%;
@@ -480,6 +498,7 @@ li {
     box-sizing: content-box;
     margin-top: 22px;
     margin-left: 10px;
+    margin-bottom: 22px;
 }
 
 .selected {

@@ -5,57 +5,80 @@ import '../style/style.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createNode, createConnection } from '../actions';
+import * as actions from '../actions';
 
 class Ribbon extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {title: ''};
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = { title: '' };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleConnect = this.handleConnect.bind(this);
+  }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        const position = {x: this.props.window.width/2.0, y: this.props.window.height/2.0};
-        const newNode = this.props.createNode(this.state.title, this.props.selected, position);
-        this.props.createConnection(this.props.selected, newNode.payload);
-        this.setState({title: ''});
-    }
+  handleSubmit(e) {
+    e.preventDefault();
+    const position = {
+      x: this.props.window.width / 2.0,
+      y: this.props.window.height / 2.0
+    };
+    const newNode = this.props.createNode(
+      this.state.title,
+      this.props.selected,
+      position
+    );
+    this.props.createConnection(this.props.selected, newNode.payload);
+    this.setState({ title: '' });
+  }
 
-    onInputChange(title) {
-        this.setState({title: title});
-    }
+  handleConnect(e) {
+    console.log('toggled connect');
+    // so what do we need to do here...
+    // call an action creator which will set the state of the connect function to 'active'
+    // then, onClick on node will, rather than trigger select, trigger the connect reducer..
+    // will have to suppress select reducer in some way. (or hijack it ?)
+    // so where does this state all live?
+    this.props.toggleConnection(!this.props.header.connection);
+  }
 
-    render() {
-        return (
-            <div className={this.props.header.sideMenu ? "ribbon ribbon-menu-active" : "ribbon"}>
-                <form onSubmit={(e) => {this.handleSubmit(e)}}>
-                    <button
-                        type="submit"
-                        className="create-btn"
-                        >
-                    +
-                    </button>
-                    <input
-                        type="text"
-                        className="title-box"
-                        placeholder="enter a note title"
-                        onChange={(e) => this.onInputChange(e.target.value)}
-                        value={this.state.title}
-                        >
+  onInputChange(title) {
+    this.setState({ title: title });
+  }
 
-                    </input>
-                </form>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div
+        className={
+          this.props.header.sideMenu ? 'ribbon ribbon-menu-active' : 'ribbon'
+        }>
+        <form
+          onSubmit={e => {
+            this.handleSubmit(e);
+          }}>
+          <button type="submit" className="create-btn">
+            +
+          </button>
+          <input
+            type="text"
+            className="title-box"
+            placeholder="enter a note title"
+            onChange={e => this.onInputChange(e.target.value)}
+            value={this.state.title}
+          />
+        </form>
+        <div className="temp-box">
+          <button className="connect-btn" onClick={this.handleConnect}><i className="fa fa-link" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    );
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({createNode, createConnection}, dispatch);
+  return bindActionCreators({ createNode, createConnection }, dispatch);
 }
 
-function mapStateToProps({ Selected, header })  {
-    return { selected: Selected, header }
+function mapStateToProps({ Selected, header }) {
+  return { selected: Selected, header };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Ribbon);
+export default connect(mapStateToProps, actions)(Ribbon);

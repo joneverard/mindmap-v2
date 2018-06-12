@@ -19,6 +19,7 @@ class Node extends Component {
     this.editNode = this.editNode.bind(this);
     this.getPosition = this.getPosition.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.onTitleEdit = this.onTitleEdit.bind(this);
     this.saveNode = this.saveNode.bind(this);
     this.toggleDisplay = this.toggleDisplay.bind(this);
@@ -105,11 +106,21 @@ class Node extends Component {
     this.props.selectNode(null);
   }
 
-  handleClick() {
+  handleClick(e) {
+    console.log('active', this.props.connect.active);
+    console.log('connection', this.props.header.connection);
     if (this.props.connect.active) {
+      // handle case if user clicked 'connect' button.
+      // we land here if there is a node in the 'start' location.
       this.props.createConnection(this.props.connect.node, this.props.node);
+      this.props.toggleConnection(false);
+      this.props.connectNode(null, null);
+    } 
+    else if (this.props.header.connection) {
+      this.props.connectNode(this.props.node, true);
+    } else {
+      this.props.connectNode(null, null);
     }
-    this.props.connectNode(null, null);
   }
 
   onEditorChange(editorState) {
@@ -167,9 +178,7 @@ class Node extends Component {
             ref={node => {
               this.node = node;
             }}
-            onClick={e => {
-              this.handleClick();
-            }}
+            onClick={this.handleClick}
             onDoubleClick={e => {
               this.toggleDisplay(this.props.id);
             }}
@@ -220,9 +229,9 @@ class Node extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({Selected, connect, header}) {
   // should use an object as global state. with ids as keys.
-  return { selected: state.Selected, connect: state.connect };
+  return { selected: Selected, connect, header };
 }
 export default connect(mapStateToProps, actions)(Node);
 // export default connect(mapStateToProps, mapDispatchToProps)(Node);

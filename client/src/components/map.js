@@ -11,6 +11,7 @@ import {
   connectNode,
   deleteConnection
 } from '../actions';
+import * as actions from '../actions';
 import Connection from './connection';
 import FloatingOptions from './floating_options';
 import { getHalfWayPoint } from '../utilities';
@@ -66,6 +67,7 @@ class MapView extends Component {
     this.props.selectNode(null);
     this.props.editNode(null);
     this.props.connectNode(null, null);
+    this.props.toggleConnection(false);
     this.handleConnClick(false);
   }
 
@@ -153,7 +155,7 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapView);
+export default connect(mapStateToProps, actions)(MapView);
 
 
 // below is old d3 based code. still need to remove d3 entirely. currently SVG component
