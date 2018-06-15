@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import Draggable from 'react-draggable';
 import { connect } from 'react-redux';
-import ReactResizeDetector from 'react-resize-detector';
+// import ReactResizeDetector from 'react-resize-detector';
 
 import NodeControls from './node_controls';
 import EditNode from './edit_node';

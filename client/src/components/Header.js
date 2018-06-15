@@ -85,11 +85,11 @@ class Header extends Component {
 	// maybe get the switching between maps working first.
 
 	renderUserControls() {
+						// <a href="/auth/google"></a>
 		switch (this.props.user) {
 			case false:
 				return (
 					<li className="control-list-item">
-						<a href="/auth/google"></a>
 					</li>
 				);
 			default:

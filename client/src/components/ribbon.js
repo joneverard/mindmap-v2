@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import '../style/skeleton.css';
 import '../style/normalize.css';
 import '../style/style.css';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { createNode, createConnection } from '../actions';
 import * as actions from '../actions';
 
 class Ribbon extends Component {
@@ -81,9 +79,9 @@ class Ribbon extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createNode, createConnection }, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({ createNode, createConnection }, dispatch);
+// }
 
 function mapStateToProps({ Selected, header }) {
   return { selected: Selected, header };
