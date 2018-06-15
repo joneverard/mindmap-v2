@@ -24,6 +24,7 @@ class Node extends Component {
     this.saveNode = this.saveNode.bind(this);
     this.toggleDisplay = this.toggleDisplay.bind(this);
     this.onEditorChange = this.onEditorChange.bind(this);
+    this.getClassName = this.getClassName.bind(this);
     // this.handleMouseMove = this.handleMouseMove.bind(this);
     this.toggleDrag.bind(this);
 
@@ -107,11 +108,11 @@ class Node extends Component {
   }
 
   handleClick(e) {
-    console.log('active', this.props.connect.active);
-    console.log('connection', this.props.header.connection);
     if (this.props.connect.active) {
       // handle case if user clicked 'connect' button.
       // we land here if there is a node in the 'start' location.
+
+      // need to handle case where node is already selected when the connect button is clicked.
       this.props.createConnection(this.props.connect.node, this.props.node);
       this.props.toggleConnection(false);
       this.props.connectNode(null, null);
@@ -127,6 +128,25 @@ class Node extends Component {
     this.setState({ editorState });
   }
 
+  getClassName(selectedId) {
+    // if node is selected, but not being connected, return selected node
+    // if node is selected and being connected return selected-connect node
+    // if node is not selected, but being connected, return node node-connect
+    // if node is not selected, and not being connected, returun node.
+    // ... simple right?
+    // probably a better implementation than this. but this will do for now.
+    // should really revisit this. TODO
+    if (selectedId === this.props.id && this.props.header.connection) {
+      return 'selected-connect node';
+    } else if (selectedId === this.props.id) {
+      return 'selected node';
+    } else if (this.props.header.connection) {
+      return 'node-connect node';
+    } else {
+      return 'node';
+    }
+  }
+
 
   render() {
     var selectedId;
@@ -138,7 +158,8 @@ class Node extends Component {
     var handleClass = !this.props.node.edit
       ? 'node-container handle'
       : 'node-container';
-    var selectedClass = selectedId === this.props.id ? 'selected node' : 'node';
+    var selectedClass = this.getClassName(selectedId);
+
     return (
       <Draggable
         position={this.props.node.position}

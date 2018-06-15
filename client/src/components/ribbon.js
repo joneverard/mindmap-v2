@@ -37,7 +37,13 @@ class Ribbon extends Component {
     // then, onClick on node will, rather than trigger select, trigger the connect reducer..
     // will have to suppress select reducer in some way. (or hijack it ?)
     // so where does this state all live?
+
     this.props.toggleConnection(!this.props.header.connection);
+
+    if (this.props.selected) {
+      // call connect pair...
+      this.props.connectNode(this.props.selected, true);
+    }
   }
 
   onInputChange(title) {
@@ -66,7 +72,9 @@ class Ribbon extends Component {
           />
         </form>
         <div className="temp-box">
-          <button className="connect-btn" onClick={this.handleConnect}><i className="fa fa-link" aria-hidden="true"></i></button>
+          <button className="connect-btn" onClick={this.handleConnect}>
+            <i className="fa fa-link" aria-hidden="true" />
+          </button>
         </div>
       </div>
     );

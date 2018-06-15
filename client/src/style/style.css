@@ -389,6 +389,16 @@ li {
     margin-bottom: 5px;
 }
 
+.node-connect:hover {
+    border: 2px solid orange;
+}
+
+.selected-connect {
+    border: 2px solid orange;
+}
+
+
+
 .node-container {
     position: absolute;
     display: inline-block;
