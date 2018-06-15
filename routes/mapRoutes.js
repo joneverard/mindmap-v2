@@ -101,8 +101,8 @@ module.exports = app => {
 			const map = new NoteMap({
 				title,
 				_user: req.user.id,
-				nodes: tutorial ? default_map.nodes : null,
-				connections: tutorial ? default_map.connections : null
+				nodes: tutorial ? default_map.nodes : [],
+				connections: tutorial ? default_map.connections : []
 			})
 			// } else {
 				// const map = new NoteMap({
