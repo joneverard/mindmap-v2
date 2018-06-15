@@ -19,8 +19,15 @@ class SideMenu extends Component {
 
 	componentDidMount() {
 		this.setState({ width: window.innerWidth, height: window.innerHeight });
-		// console.log(this.props.header);
-		this.props.fetchMaps();
+		this.props.fetchMaps().then(res => {
+			// if it is the user's first visit, and there are no maps, 
+				if (this.props.user.visits < 10 && res.data.length < 1) {
+					this.props.createMap('Tutorial', true);
+				}
+			}).catch(err => {
+				// console.log(err);
+			});
+		// thingy.then(res => {console.log('finished', this.props.header)});
 		// trigger api call to fetch the maps. currently handled by the header.
 		// in general, most (all) of the actions in the header component should be moved here.
 		window.addEventListener('resize', this.updateWindowDimensions);
@@ -43,7 +50,7 @@ class SideMenu extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		// console.log(e);
-		this.props.createMap(this.state.title);
+		this.props.createMap(this.state.title, false);
 		this.setState({ createNew: false, title: '' });
 	}
 

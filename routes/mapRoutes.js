@@ -4,6 +4,8 @@
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
 
+const default_map = require('./default_map');
+
 const NoteMap = mongoose.model('Maps');
 
 module.exports = app => {
@@ -85,20 +87,31 @@ module.exports = app => {
 			nodes: false,
 			connections: false
 		});
-		console.log(maps);
-		console.log(req.user.maximumMaps);
+		console.log(req.user);
 		if (maps.length >= req.user.maximumMaps) {
 			// big mess here... currently trying to get it to return a useful response when the user has reached its limit.
-			res.send({map: false, user: req.user, msg: 'You can only create a maximum of 5 maps.'});
+			res.send({map: false, user: req.user, msg: `You can only create a maximum of ${req.user.maximumMaps} maps.`});
 		} else {
 		// if (maps.length >= req.user.maximumMaps) {
 		// 	msg = 'You do not have permission to create more than 5 maps.';
 		// 	return res.send({maps, user, msg});
-			const { title } = req.body;
+			const { title, tutorial } = req.body;
+			// const map;
+			// if (tutorial) {
 			const map = new NoteMap({
 				title,
-				_user: req.user.id
-			});
+				_user: req.user.id,
+				nodes: tutorial ? default_map.nodes : null,
+				connections: tutorial ? default_map.connections : null
+			})
+			// } else {
+				// const map = new NoteMap({
+				// 	title,
+				// 	_user: req.user.id
+				// });
+			
+			// console.log(map);
+				
 
 			try {
 				await map.save();
@@ -111,6 +124,12 @@ module.exports = app => {
 		}
 	});
 };
+
+// have a default map in the database.
+// have a separate route handler /api/maps/default
+// make a call to this api to retrieve the default map
+// 
+
 
 
 		

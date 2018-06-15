@@ -30,6 +30,7 @@ class App extends Component {
 
 	componentDidMount() {
 		this.props.fetchUser();
+
 		window.addEventListener('resize', this.updateWindowDimensions);
 		this.setState({ width: window.innerWidth, height: window.innerHeight });
 		window.addEventListener('click', this.saveState);
@@ -77,7 +78,7 @@ class App extends Component {
 					<div className="app-landing">
 						<Benefits />
 						<a href="/auth/google" className="sign-in-btn">
-							<img src={this.state.width > 1000 ? signinSrcBig : signinSrcSmall} />
+							<img src={this.state.width > 1000 ? signinSrcBig : signinSrcSmall} alt="google sign in"/>
 						</a>
 					</div>
 				);

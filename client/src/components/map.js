@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { select } from 'd3';
-import {
-  selectNode,
-  editNode,
-  zoomMap,
-  panMap,
-  connectNode,
-  deleteConnection
-} from '../actions';
 import * as actions from '../actions';
 import Connection from './connection';
 import FloatingOptions from './floating_options';
@@ -148,12 +139,12 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { selectNode, editNode, zoomMap, panMap, connectNode, deleteConnection },
-    dispatch
-  );
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators(
+//     { selectNode, editNode, zoomMap, panMap, connectNode, deleteConnection },
+//     dispatch
+//   );
+// }
 
 export default connect(mapStateToProps, actions)(MapView);
 

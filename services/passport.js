@@ -43,7 +43,7 @@ passport.use(
 					// patch to capture existing user emails if they come back.
 					existingUser.emails = profile.emails;
 					const user = await existingUser.save();
-					return done(null, user);
+					// return done(null, user);
 				}
 				// need to update the last time the user logged in
 				existingUser.lastLogin = new Date();

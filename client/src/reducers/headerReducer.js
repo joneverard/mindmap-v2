@@ -75,7 +75,7 @@ export default function headerReducer(
 			} else {
 				_active = state.active;
 			}
-			return { maps: action.payload.data, active, sideMenu, connection };
+			return { maps: action.payload.data, active: _active, sideMenu, connection };
 
 		case TOGGLE_CONNECTION:
 			return {

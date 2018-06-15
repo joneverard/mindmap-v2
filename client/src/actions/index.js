@@ -62,10 +62,11 @@ export const fetchMaps = () => async dispatch => {
     type: FETCH_MAPS,
     payload: res.data
   });
+  return res;
 };
 
-export const createMap = title => async dispatch => {
-  const res = await axios.post('/api/maps', { title });
+export const createMap = (title, tutorial) => async dispatch => {
+  const res = await axios.post('/api/maps', {title, tutorial});
   // console.log(res.data);
   dispatch({
     type: CREATE_MAP,
