@@ -43,6 +43,7 @@ export const fetchUser = () => async dispatch => {
     type: FETCH_USER,
     payload: res.data
   });
+  return res;
 };
 
 // fetchMap ...

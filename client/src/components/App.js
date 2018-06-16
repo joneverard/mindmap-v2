@@ -8,6 +8,8 @@ import MindMap from '../containers/mindmap';
 import Header from './Header';
 import SideMenu from '../containers/SideMenu';
 import Benefits from './Benefits';
+
+import QuickStart from './QuickStart'
 import { throttle } from '../utilities';
 
 import signinSrcSmall from '../assets/google_sign_in_small.png';
@@ -17,7 +19,7 @@ import signinSrcBig from '../assets/google_sign_in.png';
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {width: 250, height: 250};
+		this.state = {width: 250, height: 250, quickStart: false};
 		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
 		this.saveState = throttle((e) => {
 			this.props.saveMap(
@@ -29,7 +31,12 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-
+		this.props.fetchUser().then(res => {
+			if (res.data.visits < 1) {
+				this.setState({quickStart: true});
+				console.log('changed quickStart to true.')
+			}
+		})
 
 		window.addEventListener('resize', this.updateWindowDimensions);
 		this.setState({ width: window.innerWidth, height: window.innerHeight });
@@ -94,8 +101,8 @@ class App extends Component {
 			<div className="App">
 				<BrowserView device={isBrowser}>
 					<Header user={this.props.user} desktop />
-					<SideMenu display={this.props.user && this.props.header.sideMenu}/>
-					{this.renderMain()}
+					{!this.state.quickStart ? <SideMenu display={this.props.user && this.props.header.sideMenu}/> : null}
+					{this.state.quickStart ? <QuickStart skip={() => this.setState({quickStart: false})} /> : this.renderMain()}
 				</BrowserView>
 				<MobileView device={isMobile}>
 					<Header user={this.props.user} mobile />
