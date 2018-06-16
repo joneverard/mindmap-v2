@@ -21,11 +21,21 @@ class SideMenu extends Component {
 		this.setState({ width: window.innerWidth, height: window.innerHeight });
 		this.props.fetchMaps().then(res => {
 			// if it is the user's first visit, and there are no maps, 
-				if (this.props.user.visits < 10 && res.data.length < 1) {
+				if (this.props.user.visits < 1 && res.data.length < 1) {
 					this.props.createMap('Tutorial', true);
+				} else {
+					window.data = res.data;	
+					// console.log(res.data[0].getTime());
+					// open the first map found!
+					const maps = res.data.sort((a,b) => {
+						let c = new Date(a.lastModified);
+						let d = new Date(b.lastModified);
+						return d.getTime() - c.getTime();
+					});
+					if (maps.length > 0) {
+						this.props.openMap(maps[0]._id);
+					}
 				}
-			}).catch(err => {
-				// console.log(err);
 			});
 		// thingy.then(res => {console.log('finished', this.props.header)});
 		// trigger api call to fetch the maps. currently handled by the header.
@@ -50,7 +60,9 @@ class SideMenu extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		// console.log(e);
-		this.props.createMap(this.state.title, false);
+		this.props.createMap(this.state.title, false).then(res => {
+			this.props.saveMap()
+		});
 		this.setState({ createNew: false, title: '' });
 	}
 
