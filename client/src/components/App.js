@@ -29,7 +29,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchUser();
+
 
 		window.addEventListener('resize', this.updateWindowDimensions);
 		this.setState({ width: window.innerWidth, height: window.innerHeight });

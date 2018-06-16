@@ -15,7 +15,6 @@ export default function ConnectionsReducer(state = [], action) {
     var data;
     switch (action.type) {
         case CREATE_MAP:
-            console.log(action.payload);
             return action.payload.map.connections || [];
 
         case OPEN_MAP:

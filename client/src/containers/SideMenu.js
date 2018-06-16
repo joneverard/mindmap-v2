@@ -19,24 +19,30 @@ class SideMenu extends Component {
 
 	componentDidMount() {
 		this.setState({ width: window.innerWidth, height: window.innerHeight });
-		this.props.fetchMaps().then(res => {
-			// if it is the user's first visit, and there are no maps, 
-				if (this.props.user.visits < 1 && res.data.length < 1) {
-					this.props.createMap('Tutorial', true);
-				} else {
-					window.data = res.data;	
-					// console.log(res.data[0].getTime());
-					// open the first map found!
-					const maps = res.data.sort((a,b) => {
-						let c = new Date(a.lastModified);
-						let d = new Date(b.lastModified);
-						return d.getTime() - c.getTime();
-					});
-					if (maps.length > 0) {
-						this.props.openMap(maps[0]._id);
+		// side menu should be resonsible for fetching the maps.
+		// in order to fix an uncommon bug where the user is not defined, may need to
+		// bring the call to fetchUser() into this component.
+		// currently stored in App.js
+		this.props.fetchUser().then(res => {
+			this.props.fetchMaps().then(res => {
+				// if it is the user's first visit, and there are no maps, 
+					if (this.props.user.visits < 1 && res.data.length < 1) {
+						this.props.createMap('Tutorial', true).then(res => {console.log(res)});
+					} else {
+						window.data = res.data;	
+						// console.log(res.data[0].getTime());
+						// open the first map found!
+						const maps = res.data.sort((a,b) => {
+							let c = new Date(a.lastModified);
+							let d = new Date(b.lastModified);
+							return d.getTime() - c.getTime();
+						});
+						if (maps.length > 0) {
+							this.props.openMap(maps[0]._id);
+						}
 					}
-				}
-			});
+				});
+		})
 		// thingy.then(res => {console.log('finished', this.props.header)});
 		// trigger api call to fetch the maps. currently handled by the header.
 		// in general, most (all) of the actions in the header component should be moved here.

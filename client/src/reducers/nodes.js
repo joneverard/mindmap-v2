@@ -47,17 +47,27 @@ function CreateContentState(htmlString) {
 
 
 export default function NodesReducer(state=initialState, action) {
-    // console.log(state);
+    // console.log('state', state);
+    // console.log('action', action);
     var data;
+    var ret;
     switch (action.type) {
         case CREATE_MAP:
-            return action.payload.nodes || [];
+            console.log(action);
+            // need to perform some operations on the node data...
+            return [...action.payload.map.nodes].map(node => {
+                ret = {...node};
+                ret.content = CreateContentState(node.content);
+                ret.selected = false;
+                ret.id = node.nodeId;
+                return ret;
+            }) || [];
+            
 
         case OPEN_MAP:
             // probably need to use convert from raw here first.
             return [...action.payload.nodes].map(node => {
-                var ret = {...node};
-                // console.log(node.content);
+                ret = {...node};
                 ret.content = CreateContentState(node.content);
                 ret.selected = false;
                 ret.id = node.nodeId;
