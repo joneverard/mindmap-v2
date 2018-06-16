@@ -42,6 +42,15 @@ class NodeControls extends Component {
   }
 
   renderNoteControls() {
+      // <button
+      //   type="submit"
+      //   onClick={() => {
+      //     this.setState({ displayExtra: !this.state.displayExtra });
+      //   }}
+      //   key={4}
+      // >
+      //   <i className="fa fa-ellipsis-v" aria-hidden="true" />
+      // </button>
     return [
       <button type="submit" onClick={this.props.editNode} key={1}>
         Edit
@@ -57,15 +66,6 @@ class NodeControls extends Component {
       </button>,
       <button type="submit" onClick={this.props.delete} key={3}>
         Delete
-      </button>,
-      <button
-        type="submit"
-        onClick={() => {
-          this.setState({ displayExtra: !this.state.displayExtra });
-        }}
-        key={4}
-      >
-        <i className="fa fa-ellipsis-v" aria-hidden="true" />
       </button>
     ];
   }
@@ -96,6 +96,7 @@ class NodeControls extends Component {
 
   render() {
     var classList = "node-controls fade-in";
+    // displayExtra is currently unavailable. levels have been taken out for the time being.
     return (
       <div className={classList}>
         {this.props.edit
