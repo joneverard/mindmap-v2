@@ -29,7 +29,6 @@ class Ribbon extends Component {
   }
 
   handleConnect(e) {
-    console.log('toggled connect');
     // so what do we need to do here...
     // call an action creator which will set the state of the connect function to 'active'
     // then, onClick on node will, rather than trigger select, trigger the connect reducer..
