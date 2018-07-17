@@ -131,12 +131,12 @@ export function createNode(title, selected, position) {
       id: d.getTime(),
       position: position,
       anchor: { x: position.x, y: position.y },
-      display: true,
+      display: false,
       content: ContentState.createFromText(''),
       opacity: 1,
       style: {zIndex: 0},
       rank: 0,
-      edit: true
+      edit: false
     }
   };
 }

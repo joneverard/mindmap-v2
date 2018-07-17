@@ -125,7 +125,7 @@ class Header extends Component {
 	render() {
 		var { height, width } = this.state;
 		return (
-			<nav className="">
+			<nav className="top-bar">
 				<div className={this.props.header.sideMenu ? "meta-menu" : "meta-menu"}>
 					<div className="toggle-menu">
 						<i className="fa fa-bars" aria-hidden="true" onClick={this.props.toggleMenu}></i>

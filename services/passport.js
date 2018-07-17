@@ -47,7 +47,7 @@ passport.use(
 				}
 				// need to update the last time the user logged in
 				existingUser.lastLogin = new Date();
-				existingUser.visits += 1;
+				// existingUser.visits += 1; // don't forget to put this back in
 				const user = await existingUser.save();
 				console.log(user);
 				// we already have a record with this id.

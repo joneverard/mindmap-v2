@@ -8,6 +8,18 @@ body {
     width: 100%;
     overflow-y: hidden;
     overflow-x: hidden;
+    background-color: #f9f9f9   
+}
+
+.full-height {
+    height: 100%;
+}
+.full-width {
+    width: 100%;
+}
+
+button {
+    background-color: #fff;
 }
 
 form {
@@ -48,6 +60,11 @@ li {
     padding: 0;
 }*/
 
+.app {
+    width: 100%;
+    height: 100%;
+}
+
 .app div {
     height: 100%;
 }
@@ -62,7 +79,7 @@ li {
     height: 100%;
     width: 25%;
     /*border: 1px solid red;*/
-    background-color: #fff;
+    background-color: #f9f9f9;
     transition: 0.2s;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
@@ -80,6 +97,11 @@ li {
     /*padding-left: 25px;*/
     width: 100%;
     transition: 0.2s;
+    background-color: ;
+}
+
+.top-bar {
+    background-color: #f9f9f9;
 }
 
 .menu-active {
@@ -116,11 +138,16 @@ li {
     margin-right: 5%;
     margin-top: 5px;
     padding: 0 10%;
+    background-color: #fff;
 }
 
 .create-new-map {
     padding: 0 5%;
     margin-bottom: 15px !important;
+}
+
+.create-new-map input {
+    background-color: #fff !important;
 }
 
 .create-new-map input:first-of-type {
@@ -140,7 +167,7 @@ li {
 }
 
 .map-card {
-    background-color: white;
+    background-color: #f9f9f9;
     /*border-radius: 3px;*/
     padding: 0 5px;
     /*margin-bottom: 5px;*/
@@ -319,7 +346,7 @@ li {
 }
 
 .create-new-box button, .create-new-box {
-    background-color: white;
+    background-color: #f9f9f9;
 }
 
 .create-btn {
@@ -364,6 +391,7 @@ li {
     padding: 10px;
     margin-left: 25px;
     margin-top: 15px;
+    background-color: #fff;
 }
 
 .temp-box {
@@ -379,7 +407,7 @@ li {
 
 
 .node {
-    background-color: white;
+    background-color: #fdfdfd;
     transition: visibility 0.2s ease;
     text-align: center;
     border-radius: 15px;
@@ -635,6 +663,118 @@ svg {
     top: 300px;
 }
 
+.quick-start-container {
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+}
+
+.quick-start-container div {
+    /*border: 1px solid red;*/
+    /*background-color: #bada55;*/
+    background-color: #f9f9f9;
+}
+
+.quick-start-outer {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.quick-start-img {
+  height: 70%;
+  display: table;
+  width: 100%;
+}
+
+.quick-start-img-inner, .quick-start-intro {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.quick-start-img-inner video {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
+}
+
+.quick-start-intro {
+    width: 70%;
+    padding: 0 15%;
+}
+
+.quick-start-intro-btns {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.quick-start-intro-btns button {
+    width: 100%;
+    white-space: normal;
+    min-width: 250px;
+    max-width: 500px;
+    display: block;
+    margin: 5% auto;
+    background-color: #fff;
+}
+
+.quick-start-img img {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  /*width: 400px;*/
+  /*whatever width you want*/
+}
+
+.quick-start-txt {
+    height: 15%;
+    text-align: center;
+}
+
+.quick-start-controls {
+    height: 15%;
+    padding: 0 20%;
+}
+
+.quick-start-controls button {
+    float: right;
+    margin: 0 1%;
+    width: 20%;
+    background-color: #fff;
+}
+
+.quick-start-controls button:first-of-type {
+    float: left;
+}
+
+.quick-start-intro h3 {
+    /*width: 10px;*/
+    margin: 0 30%;
+}
+
+.cta {
+    background-color: orange !important;
+    color: #333;
+}
+
+
+.outer {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  /*whatever width you want*/
+}
 
 
 /* Utilities

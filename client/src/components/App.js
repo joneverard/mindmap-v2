@@ -34,7 +34,7 @@ class App extends Component {
 		this.props.fetchUser().then(res => {
 			if (res.data.visits < 1) {
 				this.setState({quickStart: true});
-				console.log('changed quickStart to true.')
+				console.log('changed quickStart to true.');
 			}
 		})
 
@@ -65,12 +65,12 @@ class App extends Component {
   }
 
 	renderApp() {
-		if (!this.props.header.active) {
-			return (
-				<div className="app-landing">Open a map or create a new one to get started</div>
-			);
-		} else {
+		if (this.props.header.active) {
 			return [<Ribbon key={1} window={this.state}/>, <MindMap key={2} />];
+		} else {
+			return (
+				<div className="app-landing">Create a new map to get started!</div>
+			);
 		}
 	}
 
@@ -98,8 +98,8 @@ class App extends Component {
 		// need to include a catch for mobile devices. avoid the bad UX of a horribly broken app.
 		// needs LOTS of attention to be fixed.
 		return (
-			<div className="App">
-				<BrowserView device={isBrowser}>
+			<div className="App" style={{width: this.state.width, height: this.state.height}}>
+				<BrowserView device={isBrowser} viewClassName="full-height full-width">
 					<Header user={this.props.user} desktop />
 					{!this.state.quickStart ? <SideMenu display={this.props.user && this.props.header.sideMenu}/> : null}
 					{this.state.quickStart ? <QuickStart skip={() => this.setState({quickStart: false})} /> : this.renderMain()}
