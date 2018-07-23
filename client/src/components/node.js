@@ -240,6 +240,7 @@ class Node extends Component {
               cancel={e => this.handleCancel()}
               saveNode={this.saveNode}
               connectNode={this.props.connectNode}
+              toggleConnection={this.props.toggleConnection}
               node={this.props.node}
               updateRank={this.props.updateRank}
             />

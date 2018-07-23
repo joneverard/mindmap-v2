@@ -59,6 +59,7 @@ class MapView extends Component {
     this.props.editNode(null);
     this.props.connectNode(null, null);
     this.props.toggleConnection(false);
+    this.props.toggleEditMap(null);
     this.handleConnClick(false);
   }
 

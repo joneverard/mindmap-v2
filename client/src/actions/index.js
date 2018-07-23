@@ -28,6 +28,8 @@ export const FETCH_MAPS = 'fetch_maps';
 export const CREATE_MAP = 'create_map';
 export const OPEN_MAP = 'open_map';
 export const DELETE_MAP = 'delete_map';
+export const TOGGLE_EDIT_MAP = 'toggle_edit_map';
+export const EDIT_MAP = 'edit_map';
 
 export const TOGGLE_MENU = 'toggle_menu';
 export const TOGGLE_CONNECTION = 'toggle_connection';
@@ -86,12 +88,26 @@ export const saveMap = (nodes, connections, mapid) => async dispatch => {
     });
 
     const res = await axios.post(`/api/maps/${mapid}`, { nodeData, connections });
-    console.log(res);
     dispatch({
       type: SAVE_MAP,
       payload: res.data
     });
   };
+};
+
+export const toggleEditMap = (mapId) => {
+  return {
+    type: TOGGLE_EDIT_MAP,
+    payload: mapId
+  }
+}
+
+export const editMap = (mapId, title) => async dispatch => {
+  const res = await axios.put(`/api/maps/${mapId}`, {title});
+  dispatch({
+    type: EDIT_MAP,
+    payload: res
+  });
 };
 
 

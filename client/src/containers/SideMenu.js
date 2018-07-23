@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+import MapCard from '../components/Map_Card';
 import AppControls from '../components/AppControls';
 import ConfirmBox from '../components/confirm_box';
 
@@ -82,29 +83,26 @@ class SideMenu extends Component {
 		this.setState({ selectedMap: 0, showConfirm: false });
 	}
 
-  renderMaps() {
-  		// need to wire up the open map api call properly.
-  		// 
-    return this.props.header.maps.map(map => {
-      return (
-        <div
-          className="map-card"
-          key={map._id}
-          onClick={() => {
-            this.props.openMap(map._id);
-          }}
-          onMouseEnter={(e) => {this.setState({hover: map._id})}}
-          onMouseLeave={(e) => {this.setState({hover: 0})}}>
-          <p>{map.title}</p>
-          {this.state.hover === map._id ? 
-            <i
-              onClick={(e) => {e.stopPropagation(); this.toggleConfirm(map._id)}} 
-              className="fa fa-trash right" 
-              aria-hidden="true"></i> : null }
-        </div>
-      );
-    });
-  }
+	renderMaps() {
+		// need to pass in the action creator for changing the map title.
+		// use an existing one? savemap? this.props.maps is only the titles,
+		// probably need a unique one.
+		return this.props.header.maps.map(map => {
+			return (
+				<MapCard
+				  map={map} 
+					key={map._id}
+					edit={map._id === this.props.header.edit}
+					openMap={this.props.openMap}
+					editMap={this.props.editMap}
+					toggleEdit={this.props.toggleEditMap}
+					hoverMap={mapId => {this.setState({hover: mapId})}}
+					toggleConfirm={this.toggleConfirm}
+					hover={map._id === this.state.hover}
+				/>
+			)
+		})
+	}
 
 
 	render() {
@@ -138,8 +136,36 @@ class SideMenu extends Component {
 	}
 }
 
+
 function mapStateToProps({ user, header }) {
 	return { user, header };
 }
 
 export default connect(mapStateToProps, actions)(SideMenu);
+
+
+  // renderMaps() {
+  // 		// need to wire up the open map api call properly.
+  // 		// this should probably be extracted to a mapcard component.
+  //   return this.props.header.maps.map(map => {
+  //     return (
+  //       <div
+  //         className="map-card"
+  //         key={map._id}
+  //         onClick={() => {
+  //           this.props.openMap(map._id);
+  //         }}
+  //         onMouseEnter={(e) => {this.setState({hover: map._id})}}
+  //         onMouseLeave={(e) => {this.setState({hover: 0})}}>
+  //         <p>{map.title}</p>
+  //         {this.state.hover === map._id ? 
+  //           [<i
+  //             onClick={(e) => {e.stopPropagation(); this.toggleConfirm(map._id)}} 
+  //             className="fa fa-trash right" 
+  //             aria-hidden="true"></i>, 
+  //           <i onClick={(e) => {e.stopPropagation(); console.log('hello clicky click');}} className="fa fa-pencil right" aria-hidden="true"></i>]
+  //             : null }
+  //       </div>
+  //     );
+  //   });
+  // }

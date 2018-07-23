@@ -58,6 +58,7 @@ class NodeControls extends Component {
       <button
         type="submit"
         onClick={() => {
+          this.props.toggleConnection(true);
           this.props.connectNode(this.props.node, true);
         }}
         key={2}

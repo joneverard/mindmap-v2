@@ -22,12 +22,47 @@ class QuickStart extends Component {
 		this.state = {
 			message: 'hello look at this text here for some useful tips',
 			pages: [
-				{ id: 0, text: 'Lost? You can find your maps and create new ones from the side-menu in the top left.', url: 'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-side-menu.mp4' },
-				{ id: 1, text: 'Create new notes using the add note button and place them anywhere.', url: 'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-create-new-note.mp4' },
-				{ id: 2, text: 'Expand the note using the arrow to add details to your note.', url: 'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-add-details.mp4' },
-				{ id: 3, text: 'Draw connections between notes to visualise the links between them.', url: 'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-connect.mp4' },
-				{ id: 4, text: 'Left click and drag anywhere in blank space to move the whole map around.', url: 'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-drag-around.mp4' },
-				{ id: 5, text: 'Need some space? Or to see the big picture? Use the mouse wheel to zoom in and out.', url: 'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-zoom.mp4' }
+				{
+					id: 0,
+					text:
+						'Lost? You can find your maps and create new ones from the side-menu in the top left.',
+					url:
+						'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-side-menu.mp4'
+				},
+				{
+					id: 1,
+					text:
+						'Create new notes using the add note button and place them anywhere.',
+					url:
+						'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-create-new-note.mp4'
+				},
+				{
+					id: 2,
+					text: 'Expand the note using the arrow to add details to your note.',
+					url:
+						'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-add-details.mp4'
+				},
+				{
+					id: 3,
+					text:
+						'Draw connections between notes to visualise the links between them.',
+					url:
+						'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-connect.mp4'
+				},
+				{
+					id: 4,
+					text:
+						'Left click and drag anywhere in blank space to move the whole map around.',
+					url:
+						'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-drag-around.mp4'
+				},
+				{
+					id: 5,
+					text:
+						'Need some space? Or to see the big picture? Use the mouse wheel to zoom in and out.',
+					url:
+						'https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-zoom.mp4'
+				}
 			],
 			current: 0,
 			intro: true
@@ -85,9 +120,15 @@ class QuickStart extends Component {
 			<div className="quick-start-container">
 				<div className="quick-start-img">
 					<div className="quick-start-img-inner">
-						<video autoPlay loop src={this.state.pages[this.state.current].url} type="video/mp4">
-						  <p>Your browser doesn't support HTML5 video. Here is
-						     a <a href="myVideo.mp4">link to the video</a> instead.</p>
+						<video
+							autoPlay
+							loop
+							src={this.state.pages[this.state.current].url}
+							type="video/mp4">
+							<p>
+								Your browser doesn't support HTML5 video. Here is a
+								<a href={this.state.pages[this.state.current].url}>link to the video</a> instead.
+							</p>
 						</video>
 					</div>
 				</div>

@@ -5,7 +5,8 @@ import {
 	DELETE_MAP,
 	CLOSE_MSG,
 	TOGGLE_MENU,
-	TOGGLE_CONNECTION
+	TOGGLE_CONNECTION,
+	TOGGLE_EDIT_MAP
 } from '../actions';
 
 // if the request to check if they are logged in take a long time, then we don't want to assume either way
@@ -13,6 +14,9 @@ import {
 // this file could almost be renamed the App Meta state. as this is where a lot of the state is stored
 // for parts of the app which are required for additional functionality. such as pop up menus and temporary state.
 // unfortunately this kinda just ends up being the dumping ground for stuff that doesn't really fit anywhere else.
+// shouldn't just be using this as a dumping ground for functionality that doesn't belong anywhere.
+// makes for hard to read and hard to maintain code.
+
 export default function headerReducer(
 	state = {
 		maps: [],
@@ -22,18 +26,19 @@ export default function headerReducer(
 	},
 	action
 ) {
-	const { sideMenu, connection, maps, active } = { ...state };
+	const { sideMenu, connection, maps, active, edit } = { ...state };
 	switch (action.type) {
 		case TOGGLE_MENU:
 			return {
 				maps: [...state.maps],
 				active: state.active,
 				sideMenu: !sideMenu,
-				connection
+				connection,
+				edit
 			};
 
 		case FETCH_MAPS:
-			return { maps: action.payload, active: false, sideMenu, connection };
+			return { maps: action.payload, active: false, sideMenu, connection, edit };
 
 		case CREATE_MAP:
 			// console.log(action.payload);
@@ -53,6 +58,15 @@ export default function headerReducer(
 					sideMenu,
 					connection
 				};
+			}
+
+		case TOGGLE_EDIT_MAP:
+			return {
+				maps: [...state.maps],
+				active,
+				sideMenu,
+				connection,
+				edit: action.payload
 			}
 
 		case CLOSE_MSG:

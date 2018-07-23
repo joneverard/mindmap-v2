@@ -65,6 +65,22 @@ module.exports = app => {
 
 	});
 
+
+	app.put('/api/maps/:mapid', requireLogin, async (req, res) => {
+		// should probably use a different route not just a different request...
+		const map = await NoteMap.findOneAndUpdate({
+			_id: req.params.mapid,
+		}, {
+			$set: {'title': req.body.title}
+		}, (err, doc) => {
+			if(err) {
+				console.log(err);
+				res.send(422).send(err);
+			}
+			res.send(doc);
+		}) 
+	});
+
 	app.delete('/api/maps/:mapid', requireLogin, async (req, res) => {
 		const removed = await NoteMap.remove({_id: req.params.mapid, _user: req.user}, (err, doc) => {
 			if(err) {
