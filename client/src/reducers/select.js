@@ -1,10 +1,11 @@
-import { SELECT, DELETE_NODE } from '../actions';
+import { SELECT, DELETE_NODE, EDIT_NODE } from '../actions';
 
-export default function SelectReducer(state=null, action) {
+export default function SelectReducer(state={}, action) {
     switch (action.type) {
         case SELECT:
-            // console.log(action.payload)
-            return action.payload; // payload is whole node object.
+            // console.log('select being hit')
+            // console.log(action.payload, state);
+            return action.payload.id;
             
         // case UPDATE_POS:
         //     var selected = {...state};
@@ -17,6 +18,15 @@ export default function SelectReducer(state=null, action) {
         //         y: action.payload.anchor.y
         //     }
         //     return selected;
+        // case EDIT_NODE:
+        // // FIX ME properly
+        // // edit node just takes in an id...
+        //     console.log(action.payload);
+        //     if (action.payload) {
+        //         return action.payload;
+        //     } else {
+        //         return state;
+        //     }
 
 
 

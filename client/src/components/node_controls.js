@@ -34,12 +34,12 @@ class NodeControls extends Component {
         key={1}
       >
         Save
-      </button>,
-      <button type="submit" onClick={this.props.cancel} key={2}>
-        Cancel
       </button>
     ];
   }
+      // <button type="submit" onClick={this.props.cancel} key={2}>
+      //   Cancel
+      // </button>
 
   renderNoteControls() {
       // <button

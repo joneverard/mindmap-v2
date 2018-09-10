@@ -33,13 +33,21 @@ class MapView extends Component {
     this.props.handleResize();
     // window.addEventListener('resize', this.updateWindowDimensions);
     window.addEventListener('resize', this.props.handleResize);
+
+    // d3
+    // why do we need d3 to mount a component?
     var svg = select('svg');
     svg.attr('height', this.props.height).attr('width', this.props.width);
     svg
       .append('g')
       .attr('class', 'links')
       .attr('stroke', '#3F3F3F');
-    ReactDOM.findDOMNode(this.svg).addEventListener('mouseUp', (e) => this.props.mouseUp(e));
+
+    // should use a ref here.. can it not just be:
+    // this.svg.addEventListener('mouseUp', (e) => this.props.mouseUp(e));
+    ReactDOM.findDOMNode(this.svg).addEventListener('mouseUp', e =>
+      this.props.mouseUp(e)
+    );
   }
 
   componentWillUnmount() {
@@ -55,7 +63,33 @@ class MapView extends Component {
   }
 
   cancelSelection(e) {
-    this.props.selectNode(null);
+    console.log('hello cancel selection');
+    // save node width and height at least.
+    // don't think this works..
+    // perhaps a for loop through all of the nodes? pretty terrible but might work.
+    // failing that get access to the selected node.
+    // using selected reducer is depricated.
+    // should try and use nodes reducer instead.
+    // use SELECT action to add a ref to the node object?
+    if (this.props.selected) {
+      // need to use the id in this.props.selected to find the correct node object.
+      const save_note = this.props.nodes.filter(node => node.id === this.props.selected)[0];
+      console.log('save note object', save_note);
+      
+      if (save_note) {
+        let editor = ReactDOM.findDOMNode(save_note.editor_ref);
+        this.props.saveNode(save_note.id, save_note.title, save_note.content, {
+          width: editor ? editor.clientWidth : null,
+          height: editor ? editor.clientHeight : null
+        });
+      };
+      this.props.selectNode(null);
+
+    } else {
+      // this.props.saveNode();
+      this.props.selectNode(null);
+    }
+
     this.props.editNode(null);
     this.props.connectNode(null, null);
     this.props.toggleConnection(false);
@@ -117,10 +151,16 @@ class MapView extends Component {
           onMouseMove={e => {
             this.handleMove(e);
           }}
-          ref={svg => {this.svg = svg}}
-          onMouseDown={(e) => {this.handlePan(e, true)}}
-          onMouseUp={(e) => {this.handlePan(e, false); this.props.mouseUp()}}
-        >
+          ref={svg => {
+            this.svg = svg;
+          }}
+          onMouseDown={e => {
+            this.handlePan(e, true);
+          }}
+          onMouseUp={e => {
+            this.handlePan(e, false);
+            this.props.mouseUp();
+          }}>
           {this.props.connections.map(this.renderLine)}
         </svg>
         <FloatingOptions
@@ -134,9 +174,11 @@ class MapView extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ Connections, Selected, Nodes }) {
   return {
-    connections: state.Connections
+    connections: Connections,
+    selected: Selected,
+    nodes: Nodes
   };
 }
 
@@ -148,7 +190,6 @@ function mapStateToProps(state) {
 // }
 
 export default connect(mapStateToProps, actions)(MapView);
-
 
 // below is old d3 based code. still need to remove d3 entirely. currently SVG component
 // renderMap() {

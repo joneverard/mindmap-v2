@@ -85,14 +85,24 @@ class Node extends Component {
     if (!this.props.node.display) {
       this.props.toggleDisplay(this.props.node.id);
     }
-    this.props.editNode(this.props.id);
+    this.props.editNode(this.props.node.id); //this.props.id);
   }
 
   saveNode() {
+    // window.editor = this.node_editor.editor;
+    // const {clientHeight, clientWidth} = this.node_editor.editor;
+    // const editorSize = {width: clientWidth, height: clientHeight};
+    // window.editorSize = editorSize;
+    console.log('save node call')
+    const {clientHeight, clientWidth} = this.node_editor.editor;
+    console.log(this.node_editor);
+    console.log(clientHeight, clientWidth)
     this.props.saveNode(
       this.props.id,
       this.state.title,
-      this.state.editorState.getCurrentContent()
+      this.state.editorState.getCurrentContent(),
+      {width: clientWidth, height: clientHeight}
+      // add an extra piece of info here to include the width and height of the editor.
     );
     this.props.editNode(null);
     this.props.selectNode(null);
@@ -151,7 +161,7 @@ class Node extends Component {
   render() {
     var selectedId;
     if (this.props.selected) {
-      selectedId = this.props.selected.id;
+      selectedId = this.props.selected
     } else {
       selectedId = 0;
     }
@@ -167,7 +177,11 @@ class Node extends Component {
         handle=".handle"
         axis={this.props.node.edit ? 'none' : 'both'}
         onMouseDown={e => {
-          this.props.selectNode(this.props.node);
+          this.props.selectNode(this.props.node.id, this.node_editor ? this.node_editor.editor : null);
+          // pass in this.node_editor to the selectNode reducer.
+          // then use this ref in svg component to get underlying domnode...
+          // and pass in clientHeight / clientWidth to savenode action creator in cancelSelection call.
+          // bloody hell jon...
           if (!this.props.node.edit) {
             this.toggleDrag(true);
             this.props.triggerDrag(
@@ -183,13 +197,14 @@ class Node extends Component {
           this.props.mouseUp();
         }}>
         <div
+          id={this.props.id}
           className={handleClass}
           style={
             selectedId === this.props.id
               ? { zIndex: 250 }
               : {
                   zIndex: this.props.node.style
-                    ? this.props.node.style.zIndex // nested ternaries? come on jon
+                    ? this.props.node.style.zIndex 
                     : 0
                 }
           }
@@ -229,6 +244,11 @@ class Node extends Component {
                 onEditorChange={this.onEditorChange}
                 editorState={this.state.editorState}
                 edit={this.props.node.edit}
+                size={this.props.node.editorSize}
+                setSize={this.handleResize}
+                ref={node_editor => {
+                  this.node_editor = node_editor;
+                }}
               />
             ) : null}
           </div>

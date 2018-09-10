@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// this component should be set up to be flexible. end game is to pass in an action to be used for the confirm 
-// cancel options. 
 
 class ConfirmBox extends Component {
     constructor(props) {
@@ -47,3 +45,7 @@ class ConfirmBox extends Component {
 }
 
 export default ConfirmBox;
+
+
+// this component should be set up to be flexible. end game is to pass in an action to be used for the confirm 
+// cancel options. 

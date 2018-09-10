@@ -108,6 +108,7 @@ class MindMap extends Component {
         mouse={this.state.mouse}
         triggerDrag={this.triggerDrag}
         toggleDisplay={this.toggleDisplay}
+        editorSize={node.editorSize}
       />
     );
   }

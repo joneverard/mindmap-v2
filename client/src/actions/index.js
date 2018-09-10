@@ -49,15 +49,14 @@ export const fetchUser = () => async dispatch => {
 };
 
 // fetchMap ...
-export const openMap = (mapid) => async dispatch => {
+export const openMap = mapid => async dispatch => {
   const res = await axios.get(`/api/maps/${mapid}`);
   // console.log(res.data);
   dispatch({
     type: OPEN_MAP,
     payload: res.data
-  })
-}
-
+  });
+};
 
 export const fetchMaps = () => async dispatch => {
   const res = await axios.get('/api/maps');
@@ -69,7 +68,7 @@ export const fetchMaps = () => async dispatch => {
 };
 
 export const createMap = (title, tutorial) => async dispatch => {
-  const res = await axios.post('/api/maps', {title, tutorial});
+  const res = await axios.post('/api/maps', { title, tutorial });
   // console.log(res.data);
   dispatch({
     type: CREATE_MAP,
@@ -82,58 +81,55 @@ export const saveMap = (nodes, connections, mapid) => async dispatch => {
   if (mapid) {
     // console.log('action creator');
     const nodeData = [...nodes].map(node => {
-      var ret = {...node};
+      var ret = { ...node };
       ret.content = stateToHTML(node.content);
+      ret.editor_ref = null;
       return ret;
     });
 
-    const res = await axios.post(`/api/maps/${mapid}`, { nodeData, connections });
+    const res = await axios.post(`/api/maps/${mapid}`, {
+      nodeData,
+      connections
+    });
     dispatch({
       type: SAVE_MAP,
       payload: res.data
     });
-  };
+  }
 };
 
-export const toggleEditMap = (mapId) => {
+export const toggleEditMap = mapId => {
   return {
     type: TOGGLE_EDIT_MAP,
     payload: mapId
-  }
-}
+  };
+};
 
 export const editMap = (mapId, title) => async dispatch => {
-  const res = await axios.put(`/api/maps/${mapId}`, {title});
+  const res = await axios.put(`/api/maps/${mapId}`, { title });
   dispatch({
     type: EDIT_MAP,
     payload: res
   });
 };
 
-
-export const deleteMap = (mapId) => async dispatch => {
+export const deleteMap = mapId => async dispatch => {
   const res = await axios.delete(`/api/maps/${mapId}`);
   // console.log(res.data);
   dispatch({
     type: DELETE_MAP,
-    payload: {data: res.data, mapId} 
-  })
-}
-
+    payload: { data: res.data, mapId }
+  });
+};
 
 export const toggleMenu = () => {
   return {
     type: TOGGLE_MENU,
     payload: true
-  }
-}
-
-
-
-
+  };
+};
 
 // map actions
-
 
 export function createNode(title, selected, position) {
   var d = new Date();
@@ -150,24 +146,26 @@ export function createNode(title, selected, position) {
       display: false,
       content: ContentState.createFromText(''),
       opacity: 1,
-      style: {zIndex: 0},
+      style: { zIndex: 0 },
       rank: 0,
-      edit: false
+      edit: false,
+      editorSize: null
     }
   };
 }
 
-export function selectNode(id) {
+export function selectNode(id, editor_ref) {
+  console.log('id', id, 'editor_ref', editor_ref);
   return {
     type: SELECT,
-    payload: id
+    payload: { id, editor_ref }
   };
 }
 
 export function toggleDisplay(id) {
   return {
     type: TOGGLE_DISPLAY,
-    payload: {id}
+    payload: { id }
   };
 }
 
@@ -178,9 +176,8 @@ export function updatePosition(nodeId, rect, mouseDelta) {
       id: nodeId,
       mouseDelta
     }
-  }
+  };
 }
-
 
 export function dragLines(nodeid, anchor, mouseDelta) {
   return {
@@ -192,8 +189,8 @@ export function dragLines(nodeid, anchor, mouseDelta) {
 export function updateLines(nodeId, anchor) {
   return {
     type: UPDATE_LINES,
-    payload: {id: nodeId, anchor}
-  }
+    payload: { id: nodeId, anchor }
+  };
 }
 
 export function createConnection(start, end) {
@@ -233,18 +230,19 @@ export function editNode(nodeId) {
   };
 }
 
-export function saveNode(nodeId, title, content) {
+export function saveNode(nodeId, title, content, editorSize) {
+  // console.log(...arguments);
   return {
     type: SAVE_NODE,
-    payload: { nodeId, title, content }
+    payload: { nodeId, title, content, editorSize }
   };
 }
 
 export function updateRank(nodeId, rank) {
   return {
     type: UPDATE_RANK,
-    payload: {nodeId, rank}
-  }
+    payload: { nodeId, rank }
+  };
 }
 
 export function zoomMap(origin, scale) {
@@ -284,7 +282,7 @@ export function toggleConnection(active) {
   return {
     type: TOGGLE_CONNECTION,
     payload: active
-  }
+  };
 }
 
 export function triggerDialog(display, context) {
@@ -301,5 +299,5 @@ export function closeMsg() {
   return {
     type: CLOSE_MSG,
     payoad: 1
-  }
+  };
 }

@@ -75,7 +75,6 @@ export default function NodesReducer(state = initialState, action) {
     case CREATE:
       // console.log(action.payload.selected);
       if (action.payload.selected) {
-        console.log('hello');
         var newNode = { ...action.payload };
         // calculate node position based on selected node (origin) specified radius and random angle.
         newNode.position = getCartesianCoords(
@@ -96,19 +95,26 @@ export default function NodesReducer(state = initialState, action) {
         if (node.id === action.payload.nodeId) {
           node.title = action.payload.title;
           node.content = action.payload.content;
+          node.editorSize = action.payload.editorSize;
         }
         return node;
       });
       return data;
 
     case SELECT:
+      // this is likely where the bug is coming from... node.id does not equal action.payload.id...
+      // action.payload is an object containing an id and a ref.
       data = [...state].map(function(node) {
         if (node && action.payload) {
           if (node.id !== action.payload.id) {
+            // reset to defaults
+            node.editor_ref = null; // reset reference to selected note HTML object
             node.edit = false;
             node.selected = false;
           } else if (node.id === action.payload.id) {
             node.selected = true;
+            console.log('editor ref in reducer.', action.payload.editor_ref);
+            node.editor_ref = action.payload.editor_ref;
           }
         }
         return node;
