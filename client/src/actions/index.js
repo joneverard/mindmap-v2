@@ -51,7 +51,7 @@ export const fetchUser = () => async dispatch => {
 // fetchMap ...
 export const openMap = mapid => async dispatch => {
   const res = await axios.get(`/api/maps/${mapid}`);
-  // console.log(res.data);
+  console.log(res.data);
   dispatch({
     type: OPEN_MAP,
     payload: res.data

@@ -113,7 +113,7 @@ export default function NodesReducer(state = initialState, action) {
             node.selected = false;
           } else if (node.id === action.payload.id) {
             node.selected = true;
-            console.log('editor ref in reducer.', action.payload.editor_ref);
+            // console.log('editor ref in reducer.', action.payload.editor_ref);
             node.editor_ref = action.payload.editor_ref;
           }
         }

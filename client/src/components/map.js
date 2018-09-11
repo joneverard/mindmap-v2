@@ -63,28 +63,26 @@ class MapView extends Component {
   }
 
   cancelSelection(e) {
-    console.log('hello cancel selection');
     // save node width and height at least.
-    // don't think this works..
-    // perhaps a for loop through all of the nodes? pretty terrible but might work.
-    // failing that get access to the selected node.
     // using selected reducer is depricated.
     // should try and use nodes reducer instead.
     // use SELECT action to add a ref to the node object?
     if (this.props.selected) {
       // need to use the id in this.props.selected to find the correct node object.
-      const save_note = this.props.nodes.filter(node => node.id === this.props.selected)[0];
+      const save_note = this.props.nodes.filter(
+        node => node.id === this.props.selected
+      )[0];
       console.log('save note object', save_note);
-      
+
       if (save_note) {
         let editor = ReactDOM.findDOMNode(save_note.editor_ref);
         this.props.saveNode(save_note.id, save_note.title, save_note.content, {
-          width: editor ? editor.clientWidth : null,
-          height: editor ? editor.clientHeight : null
+          width: editor ? editor.clientWidth : save_note.editorSize.width,
+          height: editor ? editor.clientHeight : save_note.editorSize.height
         });
-      };
+        // if you can't find it, set it to the existing value.
+      }
       this.props.selectNode(null);
-
     } else {
       // this.props.saveNode();
       this.props.selectNode(null);
