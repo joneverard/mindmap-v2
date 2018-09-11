@@ -77,8 +77,12 @@ class MapView extends Component {
       if (save_note) {
         let editor = ReactDOM.findDOMNode(save_note.editor_ref);
         this.props.saveNode(save_note.id, save_note.title, save_note.content, {
-          width: editor ? editor.clientWidth : save_note.editorSize.width,
-          height: editor ? editor.clientHeight : save_note.editorSize.height
+          width: editor
+            ? editor.clientWidth
+            : save_note.editorSize ? save_note.editorSize.width : null,
+          height: editor
+            ? editor.clientHeight
+            : save_note.editorSize ? save_note.editorSize.height : null
         });
         // if you can't find it, set it to the existing value.
       }
