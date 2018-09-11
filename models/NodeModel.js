@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const PositionSchema = require('./PositionModel');
+const EditorSizeSchema = require('./EditorSizeSchema');
+
 
 const NodeModel = new Schema({
 	anchor: PositionSchema,
@@ -12,7 +14,8 @@ const NodeModel = new Schema({
 	selected: {type: Boolean, default: false},
 	rank: {type: Number, default: 0},
 	title: String,
-	nodeId: Number
+	nodeId: Number,
+	editorSize: EditorSizeSchema
 });
 
 module.exports = NodeModel;
