@@ -6,6 +6,7 @@ export const CREATE = 'create';
 export const SELECT = 'select';
 export const UPDATE_POS = 'update';
 export const EDIT_NODE = 'edit_node';
+export const PIN_NODE = 'pin_node';
 export const DRAG = 'drag';
 export const CREATE_CONN = 'create_conn';
 export const UPDATE_ANCHOR = 'update_anchor';
@@ -167,6 +168,13 @@ export function toggleDisplay(id) {
     type: TOGGLE_DISPLAY,
     payload: { id }
   };
+}
+
+export function pinNode(id) {
+  return {
+    type: PIN_NODE,
+    payload: id
+  }
 }
 
 export function updatePosition(nodeId, rect, mouseDelta) {

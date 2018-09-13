@@ -19,9 +19,11 @@ class NodeHeader extends Component {
           aria-hidden="true"
           onClick={e => this.props.handleClick(e)}
         />
+        <i className="fa fa-lock open-icon" aria-hidden="true" onClick={e => this.props.pinNode(e)}></i>
       </div>
     );
   }
 }
 
 export default NodeHeader;
+// this could be a simple function really...

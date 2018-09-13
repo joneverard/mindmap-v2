@@ -13,7 +13,8 @@ import {
   TOGGLE_DISPLAY,
   CREATE_MAP,
   OPEN_MAP,
-  UPDATE_RANK
+  UPDATE_RANK,
+  PIN_NODE
 } from '../actions';
 
 var initialState = [];
@@ -121,6 +122,16 @@ export default function NodesReducer(state = initialState, action) {
       });
       return data;
 
+    case PIN_NODE:
+      data = [...state].map(node => {
+        if (node.id === action.payload) {
+          console.log('pinned', node);
+          node.pinned = !node.pinned;
+        }
+        return node;
+      });
+      return data;
+
     case TOGGLE_DISPLAY:
       data = [...state].map(function(node) {
         if (node.id === action.payload.id) {
@@ -143,7 +154,7 @@ export default function NodesReducer(state = initialState, action) {
     case UPDATE_POS:
       // console.log(state);
       data = [...state].map(node => {
-        if (node.id === action.payload.id) {
+        if (node.id === action.payload.id && !node.pinned) {
           node.position.x += action.payload.mouseDelta.x;
           node.position.y += action.payload.mouseDelta.y;
         }
@@ -187,7 +198,7 @@ export default function NodesReducer(state = initialState, action) {
 
     case UPDATE_ANCHOR:
       data = [...state].map(function(node) {
-        if (node.id === action.payload.id) {
+        if (node.id === action.payload.id && !node.pinned) {
           // node.anchor = action.payload.anchor;
           if (action.payload.mouseDelta) {
             node.anchor.x += action.payload.mouseDelta.x;
@@ -203,27 +214,28 @@ export default function NodesReducer(state = initialState, action) {
     case ZOOM:
       // need to calculate the unit vector for each node. then scale along that vector.
       data = [...state].map(function(node) {
-        var vector = [
-          node.anchor.x - action.payload.origin.x,
-          node.anchor.y - action.payload.origin.y
-        ];
-        // var magnitude = Math.sqrt(Math.pow(vector[0],2)+Math.pow(vector[1],2));
-        var unitVector = [vector[0], vector[1]];
-        node.position.x += action.payload.scale * unitVector[0];
-        node.position.y += action.payload.scale * unitVector[1];
-        node.anchor.x += action.payload.scale * unitVector[0];
-        node.anchor.y += action.payload.scale * unitVector[1];
-        var styleProps = {};
-        if (action.payload.scale < 0) {
-          styleProps.opacity = node.rank * 0.1 + 0.5;
-          // styleProps.color = `rgba(0,0,0,${node.rank*10+50})`
-        } else {
-          styleProps.opacity = 1;
-          // styleProps.color = `rgba(0,0,0,${100})`
+        if (!node.pinned) {
+          var vector = [
+            node.anchor.x - action.payload.origin.x,
+            node.anchor.y - action.payload.origin.y
+          ];
+          // var magnitude = Math.sqrt(Math.pow(vector[0],2)+Math.pow(vector[1],2));
+          var unitVector = [vector[0], vector[1]];
+          node.position.x += action.payload.scale * unitVector[0];
+          node.position.y += action.payload.scale * unitVector[1];
+          node.anchor.x += action.payload.scale * unitVector[0];
+          node.anchor.y += action.payload.scale * unitVector[1];
+          var styleProps = {};
+          if (action.payload.scale < 0) {
+            styleProps.opacity = node.rank * 0.1 + 0.5;
+            // styleProps.color = `rgba(0,0,0,${node.rank*10+50})`
+          } else {
+            styleProps.opacity = 1;
+            // styleProps.color = `rgba(0,0,0,${100})`
+          }
+          styleProps.zIndex = node.rank * 10;
+          node.style = styleProps;
         }
-        styleProps.zIndex = node.rank * 10;
-        node.style = styleProps;
-
         return node;
       });
       return data;
@@ -231,10 +243,12 @@ export default function NodesReducer(state = initialState, action) {
     case PAN:
       data = [...state].map(function(node) {
         // node.disabled = true;
-        node.position.x += action.payload.delta.x;
-        node.position.y += action.payload.delta.y;
-        node.anchor.x += action.payload.delta.x;
-        node.anchor.y += action.payload.delta.y;
+        if (!node.pinned) {
+          node.position.x += action.payload.delta.x;
+          node.position.y += action.payload.delta.y;
+          node.anchor.x += action.payload.delta.x;
+          node.anchor.y += action.payload.delta.y;
+        }
         return node;
       });
       return data;

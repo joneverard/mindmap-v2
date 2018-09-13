@@ -25,6 +25,7 @@ class Node extends Component {
     this.toggleDisplay = this.toggleDisplay.bind(this);
     this.onEditorChange = this.onEditorChange.bind(this);
     this.getClassName = this.getClassName.bind(this);
+    this.pinNode = this.pinNode.bind(this);
     // this.handleMouseMove = this.handleMouseMove.bind(this);
     this.toggleDrag.bind(this);
 
@@ -134,6 +135,12 @@ class Node extends Component {
     }
   }
 
+  pinNode(e) {
+    console.log(e);
+    // need to call action creator to set node status to pinned.
+    this.props.pinNode(this.props.node.id);
+  }
+
   onEditorChange(editorState) {
     this.setState({ editorState });
   }
@@ -237,6 +244,7 @@ class Node extends Component {
                 }}
                 display={this.props.node.display}
                 styleProps={this.props.node.style}
+                pinNode={this.pinNode}
               />
             )}
             {this.props.node.display ? (
