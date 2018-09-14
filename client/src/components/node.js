@@ -44,7 +44,7 @@ class Node extends Component {
 
   componentDidMount() {
     var position = this.getPosition();
-    var {id, node} = this.props;
+    var { id, node } = this.props;
     this.setState({
       rect: position.rect,
       editorState: EditorState.createWithContent(node.content),
@@ -60,7 +60,7 @@ class Node extends Component {
     // position, updat eanchor and drag lines functions.
     // need to calculate the delta based on the origin and the current mouse position.
     // then need to set position based on the relative position of the node to the origin mouss position
-    
+
     this.props.triggerDrag(
       dragging,
       this.props.mouse,
@@ -75,7 +75,6 @@ class Node extends Component {
     setTimeout(() => {
       this.props.updateAnchor(id, this.getPosition().anchorPos);
       this.props.updateLines(id, this.getPosition().anchorPos);
-
     }, 1);
   }
 
@@ -147,8 +146,7 @@ class Node extends Component {
       this.props.createConnection(this.props.connect.node, this.props.node);
       this.props.toggleConnection(false);
       this.props.connectNode(null, null);
-    } 
-    else if (this.props.header.connection) {
+    } else if (this.props.header.connection) {
       this.props.connectNode(this.props.node, true);
     } else {
       this.props.connectNode(null, null);
@@ -184,11 +182,10 @@ class Node extends Component {
     }
   }
 
-
   render() {
     var selectedId;
     if (this.props.selected) {
-      selectedId = this.props.selected
+      selectedId = this.props.selected;
     } else {
       selectedId = 0;
     }
@@ -204,7 +201,10 @@ class Node extends Component {
         handle=".handle"
         axis={this.props.node.edit ? 'none' : 'both'}
         onMouseDown={e => {
-          this.props.selectNode(this.props.node.id, this.node_editor ? this.node_editor.editor : null);
+          this.props.selectNode(
+            this.props.node.id,
+            this.node_editor ? this.node_editor.editor : null
+          );
           // pass in this.node_editor to the selectNode reducer.
           // then use this ref in svg component to get underlying domnode...
           // and pass in clientHeight / clientWidth to savenode action creator in cancelSelection call.
@@ -231,7 +231,7 @@ class Node extends Component {
               ? { zIndex: 250 }
               : {
                   zIndex: this.props.node.style
-                    ? this.props.node.style.zIndex 
+                    ? this.props.node.style.zIndex
                     : 0
                 }
           }
@@ -262,6 +262,7 @@ class Node extends Component {
                 handleClick={e => {
                   this.toggleDisplay(this.props.id);
                 }}
+                pinned={this.props.node.pinned}
                 display={this.props.node.display}
                 styleProps={this.props.node.style}
                 pinNode={this.pinNode}
@@ -299,7 +300,7 @@ class Node extends Component {
   }
 }
 
-function mapStateToProps({Selected, connect, header}) {
+function mapStateToProps({ Selected, connect, header }) {
   // should use an object as global state. with ids as keys.
   return { selected: Selected, connect, header };
 }
