@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { EditorState } from 'draft-js';
 import Draggable from 'react-draggable';
 import { connect } from 'react-redux';
@@ -94,17 +95,36 @@ class Node extends Component {
     // const {clientHeight, clientWidth} = this.node_editor.editor;
     // const editorSize = {width: clientWidth, height: clientHeight};
     // window.editorSize = editorSize;
-    console.log('save node call')
-    const {clientHeight, clientWidth} = this.node_editor.editor;
-    console.log(this.node_editor);
-    console.log(clientHeight, clientWidth)
-    this.props.saveNode(
-      this.props.id,
-      this.state.title,
-      this.state.editorState.getCurrentContent(),
-      {width: clientWidth, height: clientHeight}
-      // add an extra piece of info here to include the width and height of the editor.
-    );
+    // console.log('save node call', this.node_editor.editor);
+    // const {clientHeight, clientWidth} = this.node_editor.editor;
+    // console.log(clientHeight, clientWidth);
+    // console.log('testing', this.node_editor.editor);
+    // console.log('node object', this.props.node);
+    // const {width, height} = this.props.node.editorSize;
+    // console.log(width, height);
+    // this.props.saveNode(
+    //   this.props.id,
+    //   this.state.title,
+    //   this.state.editorState.getCurrentContent(),
+    //   {width, height}
+    //   // add an extra piece of info here to include the width and height of the editor.
+    // );
+    let save_note = this.props.node;
+    let editor;
+    if (save_note.editor_ref) {
+      editor = ReactDOM.findDOMNode(save_note.editor_ref.editor);
+    } else {
+      editor = false;
+    }
+    // let editor = ReactDOM.findDOMNode(save_note.editor_ref.editor);
+    this.props.saveNode(save_note.id, save_note.title, save_note.content, {
+      width: editor
+        ? editor.offsetWidth
+        : save_note.editorSize ? save_note.editorSize.width : null,
+      height: editor
+        ? editor.offsetHeight
+        : save_note.editorSize ? save_note.editorSize.height : null
+    });
     this.props.editNode(null);
     this.props.selectNode(null);
   }

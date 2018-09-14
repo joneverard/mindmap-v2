@@ -72,16 +72,23 @@ class MapView extends Component {
       const save_note = this.props.nodes.filter(
         node => node.id === this.props.selected
       )[0];
-      console.log('save note object', save_note);
 
       if (save_note) {
-        let editor = ReactDOM.findDOMNode(save_note.editor_ref);
+        console.log('save note object.', save_note);
+        window.save_note = save_note;
+        let editor;
+        if (save_note.editor_ref) {
+          editor = ReactDOM.findDOMNode(save_note.editor_ref.editor);
+        } else {
+          editor = false;
+        }
+        // let editor = ReactDOM.findDOMNode(save_note.editor_ref.editor);
         this.props.saveNode(save_note.id, save_note.title, save_note.content, {
           width: editor
-            ? editor.clientWidth
+            ? editor.offsetWidth
             : save_note.editorSize ? save_note.editorSize.width : null,
           height: editor
-            ? editor.clientHeight
+            ? editor.offsetHeight
             : save_note.editorSize ? save_note.editorSize.height : null
         });
         // if you can't find it, set it to the existing value.

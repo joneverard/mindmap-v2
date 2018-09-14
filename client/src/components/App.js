@@ -69,7 +69,7 @@ class App extends Component {
 			return [<Ribbon key={1} window={this.state}/>, <MindMap key={2} />];
 		} else {
 			return (
-				<div className="app-landing">Create a new map to get started!</div>
+				<div className="app-landing">Something went wrong. Please try again later.</div>
 			);
 		}
 	}

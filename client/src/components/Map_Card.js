@@ -62,11 +62,12 @@ class MapCard extends Component {
 				{this.props.hover ? 
 					[
 						<i 
+						  key={1}
 							onClick={(e) => {e.stopPropagation(); this.props.toggleConfirm(map._id)}}
 							className="fa fa-trash right"
 							aria-hidden="true">
 							</i>,
-						<i onClick={(e) => {e.stopPropagation(); this.props.toggleEdit(map._id)}} className="fa fa-pencil right" aria-hidden="true"></i>
+						<i key={2} onClick={(e) => {e.stopPropagation(); this.props.toggleEdit(map._id)}} className="fa fa-pencil right" aria-hidden="true"></i>
 					] : null}
 			</div>
 		)

@@ -67,6 +67,8 @@ class NodeEditor extends React.Component {
   }
 
   handleWheel(e) {
+    console.log(this.editor.clientWidth, this.editor.clientHeight);
+    window.editor = this.editor;
     if (this.editor.scrollHeight > this.editor.clientHeight) {
       e.stopPropagation();
     }
@@ -95,10 +97,12 @@ class NodeEditor extends React.Component {
           className="editor"
           id="parent-div"
           onWheel={this.handleWheel}
+          height={height}
+          width={width}
+          style={{ resize: this.props.edit ? 'both' : 'none', height: height+'px', width: width+'px'}}
           ref={editor => {
-            this.editor = editor;
-          }}
-          style={{ resize: this.props.edit ? 'both' : 'none', height: height+'px', width: width+'px'}}>
+            this.editor = editor; // ???? please work
+          }}>
           <Editor
             readOnly={!this.props.edit}
             editorState={this.props.editorState}

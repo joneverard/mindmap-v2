@@ -52,7 +52,6 @@ export const fetchUser = () => async dispatch => {
 // fetchMap ...
 export const openMap = mapid => async dispatch => {
   const res = await axios.get(`/api/maps/${mapid}`);
-  console.log(res.data);
   dispatch({
     type: OPEN_MAP,
     payload: res.data
@@ -156,7 +155,6 @@ export function createNode(title, selected, position) {
 }
 
 export function selectNode(id, editor_ref) {
-  console.log('id', id, 'editor_ref', editor_ref);
   return {
     type: SELECT,
     payload: { id, editor_ref }
@@ -239,7 +237,7 @@ export function editNode(nodeId) {
 }
 
 export function saveNode(nodeId, title, content, editorSize) {
-  // console.log(...arguments);
+  console.log('save node call.', ...arguments);
   return {
     type: SAVE_NODE,
     payload: { nodeId, title, content, editorSize }
