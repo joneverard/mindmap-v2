@@ -85,13 +85,10 @@ class Header extends Component {
 	// maybe get the switching between maps working first.
 
 	renderUserControls() {
-						// <a href="/auth/google"></a>
+		// <a href="/auth/google"></a>
 		switch (this.props.user) {
 			case false:
-				return (
-					<li className="control-list-item">
-					</li>
-				);
+				return <li className="control-list-item" />;
 			default:
 				return (
 					<li className="control-list-item">
@@ -126,35 +123,21 @@ class Header extends Component {
 		var { height, width } = this.state;
 		return (
 			<nav className="top-bar">
-				<div className={this.props.header.sideMenu ? "meta-menu" : "meta-menu"}>
+				<div className={this.props.header.sideMenu ? 'meta-menu' : 'meta-menu'}>
 					<div className="toggle-menu">
-						<i className="fa fa-bars" aria-hidden="true" onClick={this.props.toggleMenu}></i>
+						<i
+							className="fa fa-bars"
+							aria-hidden="true"
+							onClick={this.props.toggleMenu}
+						/>
 					</div>
 					<div className="logo">
 						<img className="logo-img" src={logo} alt="Logo" />
 					</div>
 					<ul className="user-controls control-list">
 						{this.props.desktop ? this.renderUserControls() : null}
-
 					</ul>
-
 				</div>
-				<CreateNewMap
-					display={this.state.createNew}
-					confirm={this.submitNew}
-					cancel={() => {
-						this.setState({ createNew: false });
-					}}
-				/>
-				<OpenDialog
-					display={this.state.openMap}
-					confirm={this.openMap}
-					mapList={this.props.header.maps}
-					toggleConfirm={this.toggleConfirm}
-					cancel={() => {
-						this.setState({ openMap: false });
-					}}
-				/>
 				<ConfirmBox
 					display={this.state.showConfirm}
 					windowSize={{ height, width }}
@@ -185,12 +168,29 @@ function mapStateToProps({ Nodes, Connections, header, user }) {
 
 export default connect(mapStateToProps, actions)(Header);
 
-					// <ul className="app-controls control-list">
-					// 	{this.props.desktop ? this.renderAppControls() : null}
-					// </ul>
+//<CreateNewMap
+//	display={this.state.createNew}
+//	confirm={this.submitNew}
+//	cancel={() => {
+//		this.setState({ createNew: false });
+//	}}
+///>
+//<OpenDialog
+//	display={this.state.openMap}
+//	confirm={this.openMap}
+//	mapList={this.props.header.maps}
+//	toggleConfirm={this.toggleConfirm}
+//	cancel={() => {
+//		this.setState({ openMap: false });
+//	}}
+///>
 
 
 
+
+// <ul className="app-controls control-list">
+// 	{this.props.desktop ? this.renderAppControls() : null}
+// </ul>
 
 // class Header extends Component {
 // 	renderContent() {
