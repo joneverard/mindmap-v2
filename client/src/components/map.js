@@ -74,7 +74,6 @@ class MapView extends Component {
       )[0];
 
       if (save_note) {
-        console.log('save note object.', save_note);
         window.save_note = save_note;
         let editor;
         if (save_note.editor_ref) {

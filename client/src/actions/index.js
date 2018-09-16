@@ -237,7 +237,6 @@ export function editNode(nodeId) {
 }
 
 export function saveNode(nodeId, title, content, editorSize) {
-  console.log('save node call.', ...arguments);
   return {
     type: SAVE_NODE,
     payload: { nodeId, title, content, editorSize }

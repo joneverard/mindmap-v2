@@ -7,7 +7,8 @@ import {
     DELETE_CONNECTION,
     CREATE_MAP,
     OPEN_MAP,
-    UPDATE_LINES
+    UPDATE_LINES,
+    PIN_NODE
 } from '../actions';
 
 export default function ConnectionsReducer(state = [], action) {
@@ -53,11 +54,11 @@ export default function ConnectionsReducer(state = [], action) {
             //     return conn
             // });
             data = [...state].map(conn => {
-                if (conn.end.id === action.payload.id) {
+                if (conn.end.id === action.payload.id && !conn.end.pinned) {
                     conn.end.position.x += action.payload.mouseDelta.x;
                     conn.end.position.y += action.payload.mouseDelta.y;
                 }
-                if (conn.start.id === action.payload.id) {
+                if (conn.start.id === action.payload.id && !conn.start.pinned) {
                     conn.start.position.x += action.payload.mouseDelta.x;
                     conn.start.position.y += action.payload.mouseDelta.y;
                 }
@@ -124,31 +125,53 @@ export default function ConnectionsReducer(state = [], action) {
                         connection.end.position.y - action.payload.origin.y
                     ]
                 };
-                connection.start.position.x +=
-                    action.payload.scale * vector.start[0];
-                connection.start.position.y +=
-                    action.payload.scale * vector.start[1];
-                connection.end.position.x +=
-                    action.payload.scale * vector.end[0];
-                connection.end.position.y +=
-                    action.payload.scale * vector.end[1];
+                // move start position by vector
+                if (!connection.start.pinned) {
+                    connection.start.position.x +=
+                        action.payload.scale * vector.start[0];
+                    connection.start.position.y +=
+                        action.payload.scale * vector.start[1];                    
+                }
+                // move end position by vector
+                if (!connection.end.pinned) {
+                    connection.end.position.x +=
+                        action.payload.scale * vector.end[0];
+                    connection.end.position.y +=
+                        action.payload.scale * vector.end[1];
+                }
                 return connection;
             });
             return data;
 
         case PAN:
             data = [...state].map(function(connection) {
-                connection.start.position = addVector(
-                    connection.start.position,
-                    action.payload.delta
-                );
-                connection.end.position = addVector(
-                    connection.end.position,
-                    action.payload.delta
-                );
+                if (!connection.start.pinned) {
+                    connection.start.position = addVector(
+                        connection.start.position,
+                        action.payload.delta
+                    );
+                }
+                if (!connection.end.pinned) {
+                    connection.end.position = addVector(
+                        connection.end.position,
+                        action.payload.delta
+                    );  
+                }
                 return connection;
             });
             return data;
+
+        case PIN_NODE:
+            data = [...state].map(conn => {        
+                if (conn.start.id === action.payload) {
+                    console.log('start hit')
+                    conn.start.pinned = !conn.start.pinned;
+                }
+                if (conn.end.id === action.payload) {
+                    console.log('end hit');
+                    conn.end.pinned = !conn.end.pinned;
+                }
+            })
 
         case DELETE_CONNECTION:
             return [...state].filter(conn => action.payload !== conn.id);
