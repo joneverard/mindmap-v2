@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Node from "../components/node";
+import Note from "../components/note";
 import MapView from "../components/map";
 import ConfirmBox from "../components/confirm_box";
 import * as actions from "../actions";
@@ -95,7 +95,7 @@ class MindMap extends Component {
     let styleProps = { ...this.props.style };
     styleProps.backgroundColor = node.color;
     return (
-      <Node
+      <Note
         node={node}
         style={styleProps}
         id={node.id}

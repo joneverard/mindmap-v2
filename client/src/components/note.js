@@ -12,7 +12,7 @@ import NodeHeader from './node_header';
 import '../style/css/font-awesome.css';
 import * as actions from '../actions';
 
-class Node extends Component {
+class Note extends Component {
   constructor(props) {
     super(props);
     this.setState = this.setState.bind(this);
@@ -172,13 +172,13 @@ class Node extends Component {
     // probably a better implementation than this. but this will do for now.
     // should really revisit this. TODO
     if (selectedId === this.props.id && this.props.header.connection) {
-      return 'selected-connect node';
+      return 'note-selected-connect note';
     } else if (selectedId === this.props.id) {
-      return 'selected node';
+      return 'note-selected note';
     } else if (this.props.header.connection) {
-      return 'node-connect node';
+      return 'note-connect note';
     } else {
-      return 'node';
+      return 'note';
     }
   }
 
@@ -190,8 +190,8 @@ class Node extends Component {
       selectedId = 0;
     }
     var handleClass = !this.props.node.edit
-      ? 'node-container handle'
-      : 'node-container';
+      ? 'note-container handle'
+      : 'note-container';
     var selectedClass = this.getClassName(selectedId);
 
     return (
@@ -304,7 +304,7 @@ function mapStateToProps({ Selected, connect, header }) {
   // should use an object as global state. with ids as keys.
   return { selected: Selected, connect, header };
 }
-export default connect(mapStateToProps, actions)(Node);
+export default connect(mapStateToProps, actions)(Note);
 // export default connect(mapStateToProps, mapDispatchToProps)(Node);
 
 // old drag handlers

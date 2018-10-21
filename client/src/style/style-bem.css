@@ -23,7 +23,7 @@ body {
   overflow-y: hidden;
   overflow-x: hidden;
   background-color: #f9f9f9;
-  /* this background color should be editable by the user in the future thinking dark theme
+  /* this background color should be editable by the user in the future - thinking dark theme
      for example. */
 }
 
@@ -130,6 +130,26 @@ body {
 
 }
 
+.icon-btn {
+    display: inline-block;
+    /*height: 30px;*/
+    width: 30px;
+    font-size: 80%;
+    border-radius: 2px;
+    /*border: 1px solid grey;*/
+}
+
+.icon-btn:hover {
+    background-color: lightgrey;
+}
+
+.icon-btn-active {
+    /*color: #0081a8;*/
+    background-color: #f39c12;
+}
+
+
+
 /* call to action buttons */
 .cta-orange {
   background-color: orange !important;
@@ -172,6 +192,12 @@ body {
    height: 100%;
 }
 
+.main {
+  height: 100%;
+  width: 100%;
+  padding: auto;
+}
+
 
 /* ---------------------------- */
 /* #Header and #Navigation
@@ -184,6 +210,8 @@ body {
   position: absolute;
   /* change to off-white-bg */
   background-color: #f9f9f9;
+  top: 0;
+  left: 0;
   z-index: 999;
   border-bottom: 1px solid lightgrey;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -195,6 +223,16 @@ body {
   display: inline-block;
   margin: 0;
   padding: 5px;
+}
+
+.header-controls-item {
+  display: inline-block;
+  margin: 0;
+  margin-right: 15px;
+  height: 100%;
+  cursor: pointer;
+  /*padding: 5px;*/
+  /*margin: 0 15px;*/
 }
 
 .meta-menu {
@@ -220,11 +258,16 @@ body {
 
 .top-bar-toggle-menu {
   display: inline-block;
+  text-align: center;
   font-size: 150%;
-  padding-right: 10px;
+  margin-right: 10px;
+  margin-left: 25px;
+  float: left;
+  /*line-height: 40px;*/
+
 }
 .top-bar-toggle-menu {
-  background-color: #333;
+  /* background-color: #333; */
 }
 .toggle-menu { display: inline-block; font-size: 150%; padding-right: 10px; }
 
@@ -274,7 +317,7 @@ body {
 
 .side-menu-header h4 {
   /* this should have minimal styling... */
-  /*float: right; */
+  display: inline-block; 
   margin-right: 5%;
   margin-top: 5px;
 }
@@ -282,6 +325,7 @@ body {
 .side-menu-header button {
   /* change this to primary button */
   /*float: right;*/
+  display: block;
   margin-right: 5%;
   margin-top: 5px;
   padding: 0 10%;
@@ -338,6 +382,13 @@ body {
 
 .map-card i {
   margin-top: 3px;
+  float: right;
+  margin-left: 5px;
+}
+
+
+.map-card i:hover {
+  background-color: grey;
 }
 
 /* ---------------------------- */
@@ -355,6 +406,10 @@ body {
   padding: 1px auto;
   display: block;
   height: 100%;
+}
+
+.app-landing div {
+  float: left;
 }
 
 
@@ -453,6 +508,28 @@ body {
   /* theme white */
 }
 
+.map-controls-create-btn {
+    font-size: 50px;
+    height: 100%;
+    border-radius: 15px;
+    display: inline-block;
+    text-align: left;
+    background-color: #fff;
+    float: left;
+}
+
+.map-controls button {
+    float: right;
+    margin-right: 5%;
+    margin-top: 5px;
+    padding: 0 10%;
+    background-color: #fff;
+}
+
+.map-controls-create-btn:hover {
+    background-color: #eee;
+}
+
 /* ---------------------------- */
 /* #Note
 /* ---------------------------- */
@@ -469,7 +546,7 @@ body {
   transition: visibility 0.2s ease;
   /* does this need to be here? */
   /* text-align: center;  */
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 5px;
   border: 1px solid grey;
   /* display: inline-block; */

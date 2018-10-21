@@ -12,7 +12,7 @@ class AppControls extends Component {
 
 	renderCreateNew() {
 		return (
-			<form onSubmit={this.props.handleSubmit} className="create-new-map">
+			<form onSubmit={this.props.handleSubmit} className="create-new-form">
 				<input
 					type="text"
 					value={this.props.title}
@@ -28,7 +28,7 @@ class AppControls extends Component {
 
 	render() {
 		return (
-			<div className="app-controls">
+			<div className="side-menu-header">
 				<div>
 					<h4>Your Maps</h4>
 					<button

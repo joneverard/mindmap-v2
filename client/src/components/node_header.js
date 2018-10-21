@@ -11,12 +11,12 @@ class NodeHeader extends Component {
     return (
       <div className="node-header">
         <p className="node-title">{this.props.title}</p>
-        <div className="style-btn" onClick={e => this.props.handleClick(e)}>
+        <div className="icon-btn" onClick={e => this.props.handleClick(e)}>
           <i
             className={
               this.props.display
-                ? 'fa fa-chevron-up open-icon'
-                : 'fa fa-chevron-down open-icon'
+                ? 'fa fa-chevron-up note-open-btn'
+                : 'fa fa-chevron-down note-open-btn'
             }
             aria-hidden="true"
           />
@@ -24,7 +24,7 @@ class NodeHeader extends Component {
         <div
           onClick={e => this.props.pinNode(e)}
           className={
-            this.props.pinned ? 'style-btn style-btn-active' : 'style-btn'
+            this.props.pinned ? 'icon-btn icon-btn-active' : 'icon-btn'
           }>
           <i className={"fa fa-lock "+pinnedClass} aria-hidden="true" />
         </div>

@@ -112,8 +112,8 @@ class SideMenu extends Component {
 			<div
 				className={
 					this.props.display
-						? 'side-menu side-menu-active'
-						: 'side-menu'
+						? 'side-menu side-menu-active height-1'
+						: 'side-menu height-1'
 				}>
 				<AppControls
 					handleSubmit={this.handleSubmit}

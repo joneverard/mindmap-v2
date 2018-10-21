@@ -73,6 +73,7 @@ class MapCard extends Component {
 		)
 	}
 }
-
+// should wrap the <i> elements in a div, then apply styling and call backs to the div.
+// this means there is a larger area for the user to click on. currently it is too small.
 export default MapCard;
 

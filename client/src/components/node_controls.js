@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "../style/css/font-awesome.css";
+import React, { Component } from 'react';
+import '../style/css/font-awesome.css';
 
 class NodeControls extends Component {
   constructor(props) {
@@ -31,41 +31,40 @@ class NodeControls extends Component {
         type="submit"
         className="save-btn"
         onClick={this.props.saveNode}
-        key={1}
-      >
+        key={1}>
         Save
       </button>
     ];
   }
-      // <button type="submit" onClick={this.props.cancel} key={2}>
-      //   Cancel
-      // </button>
+  // <button type="submit" onClick={this.props.cancel} key={2}>
+  //   Cancel
+  // </button>
 
   renderNoteControls() {
-      // <button
-      //   type="submit"
-      //   onClick={() => {
-      //     this.setState({ displayExtra: !this.state.displayExtra });
-      //   }}
-      //   key={4}
-      // >
-      //   <i className="fa fa-ellipsis-v" aria-hidden="true" />
-      // </button>
+    // <button
+    //   type="submit"
+    //   onClick={() => {
+    //     this.setState({ displayExtra: !this.state.displayExtra });
+    //   }}
+    //   key={4}
+    // >
+    //   <i className="fa fa-ellipsis-v" aria-hidden="true" />
+    // </button>
     return [
       <button type="submit" onClick={this.props.editNode} key={1}>
         Edit
       </button>,
       <button
+        className="note-controls-btn"
         type="submit"
         onClick={() => {
           this.props.toggleConnection(true);
           this.props.connectNode(this.props.node, true);
         }}
-        key={2}
-      >
+        key={2}>
         Connect
       </button>,
-      <button type="submit" onClick={this.props.delete} key={3}>
+      <button className="note-controls-btn" type="submit" onClick={this.props.delete} key={3}>
         Delete
       </button>
     ];
@@ -74,29 +73,29 @@ class NodeControls extends Component {
   renderExtraControls() {
     return (
       <div className="level-controls">
-        <p>Level: <span>{this.props.node.rank}</span></p>
+        <p>
+          Level: <span>{this.props.node.rank}</span>
+        </p>
         <button
           type="submit"
           onClick={() => {
             this.promote();
-          }}
-        >
-          <i className="fa fa-arrow-up" aria-hidden="true"></i>
+          }}>
+          <i className="fa fa-arrow-up" aria-hidden="true" />
         </button>
         <button
           type="submit"
           onClick={() => {
             this.demote();
-          }}
-        >
-          <i className="fa fa-arrow-down" aria-hidden="true"></i>
+          }}>
+          <i className="fa fa-arrow-down" aria-hidden="true" />
         </button>
       </div>
     );
   }
 
   render() {
-    var classList = "node-controls fade-in";
+    var classList = 'note-controls fade-in';
     // displayExtra is currently unavailable. levels have been taken out for the time being.
     return (
       <div className={classList}>

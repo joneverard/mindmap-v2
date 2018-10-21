@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import '../style/skeleton.css';
-import '../style/normalize.css';
-import '../style/style.css';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -51,25 +48,25 @@ class Ribbon extends Component {
     return (
       <div
         className={
-          this.props.header.sideMenu ? 'ribbon ribbon-menu-active' : 'ribbon'
+          this.props.header.sideMenu ? 'map-controls map-controls-menu-active' : 'map-controls'
         }>
         <form
           onSubmit={e => {
             this.handleSubmit(e);
           }}>
-          <button type="submit" className="create-btn">
+          <button type="submit" className="map-controls-create-btn">
             +
           </button>
           <input
             type="text"
-            className="title-box"
+            className="map-controls-input"
             placeholder="enter a note title"
             onChange={e => this.onInputChange(e.target.value)}
             value={this.state.title}
           />
         </form>
         <div className="temp-box">
-          <button className="connect-btn" onClick={this.handleConnect}>
+          <button className="map-controls-connect" onClick={this.handleConnect}>
             <i className="fa fa-link" aria-hidden="true" />
           </button>
         </div>
