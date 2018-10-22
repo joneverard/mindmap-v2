@@ -48,25 +48,26 @@ class Ribbon extends Component {
     return (
       <div
         className={
-          this.props.header.sideMenu ? 'map-controls map-controls-menu-active' : 'map-controls'
+          this.props.header.sideMenu ? 'map-controls map-controls-menu-active container' : 'map-controls container'
         }>
         <form
           onSubmit={e => {
             this.handleSubmit(e);
-          }}>
-          <button type="submit" className="map-controls-create-btn">
-            +
+          }}
+          className='row map-controls-create-note'>
+          <button type="submit" className="map-controls-btn-create three columns">
+            <span className='map-controls-create-icon'>+</span>
           </button>
           <input
             type="text"
-            className="map-controls-input"
+            className="map-controls-input nine columns"
             placeholder="enter a note title"
             onChange={e => this.onInputChange(e.target.value)}
             value={this.state.title}
           />
         </form>
-        <div className="temp-box">
-          <button className="map-controls-connect" onClick={this.handleConnect}>
+        <div className="row">
+          <button className="map-controls-btn-connect three columns" onClick={this.handleConnect}>
             <i className="fa fa-link" aria-hidden="true" />
           </button>
         </div>
@@ -74,6 +75,8 @@ class Ribbon extends Component {
     );
   }
 }
+
+// this should probably make use of the columns system to align things properly...
 
 // function mapDispatchToProps(dispatch) {
 //   return bindActionCreators({ createNode, createConnection }, dispatch);

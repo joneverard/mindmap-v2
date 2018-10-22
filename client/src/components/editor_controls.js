@@ -29,8 +29,8 @@ class StyleButton extends Component {
             <div
                 className={
                     this.props.active
-                        ? 'style-btn style-btn-active'
-                        : 'style-btn'
+                        ? 'editor-style-btn editor-style-btn-active'
+                        : 'editor-style-btn'
                 }
                 onMouseDown={this.onToggle}>
                 <i className={className} aria-hidden="true" />

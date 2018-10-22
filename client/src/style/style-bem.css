@@ -84,7 +84,7 @@ body {
 /* #Animations
 /* ---------------------------- */
 .fade-in {
-  opacity: 0;
+  opacity: 1;
   animation-name: fadeInOpacity;
 }
 
@@ -123,12 +123,6 @@ body {
 .primary-btn {
   background-color: #fff;
 }
-.secondary-btn {
-  /* do we have any of these? */
-}
-.icon-btn {
-
-}
 
 .icon-btn {
     display: inline-block;
@@ -136,11 +130,12 @@ body {
     width: 30px;
     font-size: 80%;
     border-radius: 2px;
+    text-align: center;
     /*border: 1px solid grey;*/
 }
 
 .icon-btn:hover {
-    background-color: lightgrey;
+    background-color: #bbb;
 }
 
 .icon-btn-active {
@@ -266,15 +261,6 @@ body {
   /*line-height: 40px;*/
 
 }
-.top-bar-toggle-menu {
-  /* background-color: #333; */
-}
-.toggle-menu { display: inline-block; font-size: 150%; padding-right: 10px; }
-
-
-/*.top-bar {*/
-  /*background-color: #f9f9f9;*/
-/*}*/
 
 
 
@@ -380,7 +366,11 @@ body {
   display: inline-block;
 }
 
-.map-card i {
+.map-card-btns {
+  float: right;
+}
+
+/* .map-card i {
   margin-top: 3px;
   float: right;
   margin-left: 5px;
@@ -389,7 +379,7 @@ body {
 
 .map-card i:hover {
   background-color: grey;
-}
+} */
 
 /* ---------------------------- */
 /* #Landing Screen
@@ -479,56 +469,41 @@ body {
 .map-controls {
   position: absolute;
   top: 50px;
-  left: 0;
-  display: block;
-  float: left;
-  font-size: 50px;
-  padding-left: 15px;
-  transition: 0.2s;
+  left: 0; 
+  width: 25%;
+  transition: 0.5s;
+  margin-left: 15px;
 }
 
 .map-controls-menu-active {
-  top: 50px;
   left: 25%;
 }
 
-/* .ribbon form TODO */
-.map-controls-input {
-  display: block;
-  text-align: left;
+.map-controls-create-note {
+  margin-bottom: 0;
+  font-size: 150%;
 }
 
-.map-controls-connect {
-  font-size: 12px;
-  /* float: left; */
-  padding: 10px;
-  margin-left: 25px;
-  margin-top: 15px;
-  background-color: #fff
-  /* theme white */
+.map-controls-create-note input {
+  margin-bottom: 0;
 }
 
-.map-controls-create-btn {
-    font-size: 50px;
-    height: 100%;
-    border-radius: 15px;
-    display: inline-block;
-    text-align: left;
-    background-color: #fff;
-    float: left;
+.map-controls-btn-create, .map-controls-btn-connect {
+  font-size: 150%;
+  text-align: center;
+  padding: 0;
+  background-color: #fff;
 }
 
-.map-controls button {
-    float: right;
-    margin-right: 5%;
-    margin-top: 5px;
-    padding: 0 10%;
-    background-color: #fff;
+.map-controls-btn-create:hover, .map-controls-btn-connect:hover {
+  background-color: #eee;
 }
 
-.map-controls-create-btn:hover {
-    background-color: #eee;
+.map-controls-btn-connect {
+  font-size: 120%;
 }
+
+
 
 /* ---------------------------- */
 /* #Note
@@ -546,7 +521,7 @@ body {
   transition: visibility 0.2s ease;
   /* does this need to be here? */
   /* text-align: center;  */
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 5px;
   border: 1px solid grey;
   /* display: inline-block; */
@@ -567,16 +542,8 @@ body {
   border: 2px solid #f39c12;
 }
 
-/* .open-icon */
-.note-open-btn {
-  opacity: 0;
-  position: relative;
-  margin-right: 5px;
-  font-size: 150%;
-}
-
-.note-container:hover .note-open-btn {
-  /* opacity: 0; */
+.note-header-btns {
+  float: right;
 }
 
 .note p {
@@ -592,17 +559,18 @@ body {
 }
 
 .note-controls-btn {
+  text-transform: capitalize;
   display: inline-block;
   padding: 0 6px 0 6px;
   background-color: #fff;
   font-size: 85%;
-  font-weight: 150%;
-  border-radius: 10px;
+  font-weight: 300;
+  border-radius: 5px;
   margin-right: 5px;
   margin-left: 0px;
 }
 
-.note-controls-save-btn {
+.note-controls-edit-save-btn {
   background-color: #0081a8;
   color: #fff;
 }
@@ -660,6 +628,29 @@ body {
   background-color: #f39c12;
 }
 
+
+/* ---------------------------- */
+/* #SVG Options
+/* ---------------------------- */
+svg {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.floating-option {
+  position: absolute;
+  width: 75px;
+  height: 38px;
+}
+
+.floating-option button {
+  border-radius: 10px;
+  padding: 0 10px;
+  background-color: white;
+}
+
+
+
 /* ---------------------------- */
 /* #Message Box
 /* ---------------------------- */
@@ -684,10 +675,6 @@ body {
   padding: 0 auto;
   display: table;
   margin: 0 auto;
-}
-
-.message-box-btn {
-  /* background-white */
 }
 
 /* ---------------------------- */

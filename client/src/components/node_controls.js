@@ -29,29 +29,21 @@ class NodeControls extends Component {
     return [
       <button
         type="submit"
-        className="save-btn"
+        className="note-controls-btn note-controls-edit-save-btn"
         onClick={this.props.saveNode}
         key={1}>
         Save
       </button>
     ];
   }
-  // <button type="submit" onClick={this.props.cancel} key={2}>
-  //   Cancel
-  // </button>
 
   renderNoteControls() {
-    // <button
-    //   type="submit"
-    //   onClick={() => {
-    //     this.setState({ displayExtra: !this.state.displayExtra });
-    //   }}
-    //   key={4}
-    // >
-    //   <i className="fa fa-ellipsis-v" aria-hidden="true" />
-    // </button>
     return [
-      <button type="submit" onClick={this.props.editNode} key={1}>
+      <button 
+        type="submit" 
+        onClick={this.props.editNode} 
+        key={1}
+        className="note-controls-btn note-controls-edit-save-btn">
         Edit
       </button>,
       <button
