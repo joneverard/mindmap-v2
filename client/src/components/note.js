@@ -111,7 +111,7 @@ class Note extends Component {
     let save_note = this.props.node;
     let editor;
     if (save_note.editor_ref) {
-      editor = ReactDOM.findDOMNode(save_note.editor_ref.editor);
+      editor = ReactDOM.findDOMNode(save_note.editor_ref);
     } else {
       editor = false;
     }

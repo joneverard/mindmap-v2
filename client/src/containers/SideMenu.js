@@ -16,6 +16,7 @@ class SideMenu extends Component {
 		this.renderMaps = this.renderMaps.bind(this);
 		this.confirmDelete = this.confirmDelete.bind(this);
 		this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+		this.toggleConfirm = this.toggleConfirm.bind(this);
 	}
 
 	componentDidMount() {
