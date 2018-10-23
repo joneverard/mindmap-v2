@@ -12,8 +12,6 @@ import logo from './NOTEMAPS1-02 original.png';
 // import 'materialize-css/dist/css/materialize.min.css';
 
 // component to perform meta functions.
-// --> create map
-// --> switch map
 // --> log in / log out
 // shoulw display important info like the user that is currently logged in.
 // will be present on nearly all views.
@@ -22,62 +20,15 @@ class Header extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { createNew: false, openMap: false, feedback: false };
-		this.submitNew = this.submitNew.bind(this);
-		this.openMap = this.openMap.bind(this);
+		// this.submitNew = this.submitNew.bind(this);
+		// this.openMap = this.openMap.bind(this);
 		this.toggleConfirm = this.toggleConfirm.bind(this);
 		this.confirmDelete = this.confirmDelete.bind(this);
-	}
-
-	componentDidMount() {
-		// this.setState({ width: window.innerWidth, height: window.innerHeight });
-		// // console.log(this.props.header);
-		// this.props.fetchMaps();
-		// this.props.openMap(this.props.header.active);
-		// for future use. TODO
-		// setTimeout(() => {
-		// 	this.setState({feedback: true});
-		// }, 2000);
 	}
 
 	updateWindowDimensions() {
 		// should really extract this up to the app level.
 		this.setState({ width: window.innerWidth, height: window.innerHeight });
-	}
-
-	renderAppControls() {
-		if (this.props.user) {
-			return [
-				<li
-					key={1}
-					className="header-controls-item"
-					onClick={e => {
-						this.setState({ createNew: true });
-					}}>
-					New
-				</li>,
-				<li
-					key={2}
-					className="header-controls-item"
-					onClick={e => {
-						this.setState({ openMap: true });
-					}}>
-					Open
-				</li>,
-				<li
-					key={3}
-					className="header-controls-item"
-					onClick={() =>
-						this.props.saveMap(
-							this.props.Nodes,
-							this.props.Connections,
-							this.props.header.active
-						)
-					}>
-					Save
-				</li>
-			];
-		}
-		return null;
 	}
 
 	// saveMap needs to take in the nodes, connections and current mapId.
@@ -96,17 +47,6 @@ class Header extends Component {
 					</li>
 				);
 		}
-	}
-
-	openMap(mapId) {
-		this.setState({ openMap: false });
-		this.props.openMap(mapId);
-	}
-
-	submitNew(title) {
-		// call action creator here and set state.
-		this.props.createMap(title);
-		this.setState({ createNew: false });
 	}
 
 	toggleConfirm(mapId) {
@@ -166,5 +106,3 @@ function mapStateToProps({ Nodes, Connections, header, user }) {
 }
 
 export default connect(mapStateToProps, actions)(Header);
-// {this.props.header.sideMenu ? 'meta-menu' : 'meta-menu'}
-
