@@ -77,7 +77,7 @@ class MapView extends Component {
         window.save_note = save_note;
         let editor;
         if (save_note.editor_ref) {
-          editor = ReactDOM.findDOMNode(save_note.editor_ref.editor);
+          editor = ReactDOM.findDOMNode(save_note.editor_ref); // save_note.editor_ref.editor;
         } else {
           editor = false;
         }

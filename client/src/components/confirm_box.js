@@ -27,11 +27,11 @@ class ConfirmBox extends Component {
         if(this.props.display) {
             return (
                 <div
-                    className="confirm-box"
+                    className="message-box"
                     style={position}
                     ref={(box) => this.box = box}>
                     <p>Are you sure?</p>
-                    <div className="confirm-box-btns">
+                    <div className="message-box-btns">
                         <button onClick={(e) => {this.props.confirm()}}>yes</button>
                         <button onClick={(e) => {this.props.cancel(false, null)}}>no</button>
                     </div>

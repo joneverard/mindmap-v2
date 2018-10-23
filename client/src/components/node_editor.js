@@ -1,7 +1,6 @@
 import React from 'react';
 import { Editor, RichUtils } from 'draft-js';
 import EditorControls from './editor_controls';
-import ReactResizeDetector from 'react-resize-detector';
 import '../style/Draft.css';
 
 class NodeEditor extends React.Component {
@@ -59,7 +58,7 @@ class NodeEditor extends React.Component {
     this.onChange(RichUtils.onTab(e, this.props.editorState, 4)); // maxdepth = 4
   }
 
-  handleResize(width, height) {
+  handleResize(_width, _height) {
     // console.log(width, height);
     // need to make sure you take into account the width of the scroll bar. check if this varies from
     // browser to browser.

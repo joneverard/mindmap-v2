@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import CreateNewMap from './CreateNewMap';
-import OpenDialog from './OpenDialog';
 import ConfirmBox from './confirm_box';
 import MessageBox from './MessageBox';
 import FeedbackBox from './FeedbackBox';
@@ -12,8 +10,6 @@ import logo from './NOTEMAPS1-02 original.png';
 // import 'materialize-css/dist/css/materialize.min.css';
 
 // component to perform meta functions.
-// --> create map
-// --> switch map
 // --> log in / log out
 // shoulw display important info like the user that is currently logged in.
 // will be present on nearly all views.
@@ -22,62 +18,15 @@ class Header extends Component {
 	constructor(props) {
 		super(props);
 		this.state = { createNew: false, openMap: false, feedback: false };
-		this.submitNew = this.submitNew.bind(this);
-		this.openMap = this.openMap.bind(this);
+		// this.submitNew = this.submitNew.bind(this);
+		// this.openMap = this.openMap.bind(this);
 		this.toggleConfirm = this.toggleConfirm.bind(this);
 		this.confirmDelete = this.confirmDelete.bind(this);
-	}
-
-	componentDidMount() {
-		// this.setState({ width: window.innerWidth, height: window.innerHeight });
-		// // console.log(this.props.header);
-		// this.props.fetchMaps();
-		// this.props.openMap(this.props.header.active);
-		// for future use. TODO
-		// setTimeout(() => {
-		// 	this.setState({feedback: true});
-		// }, 2000);
 	}
 
 	updateWindowDimensions() {
 		// should really extract this up to the app level.
 		this.setState({ width: window.innerWidth, height: window.innerHeight });
-	}
-
-	renderAppControls() {
-		if (this.props.user) {
-			return [
-				<li
-					key={1}
-					className="control-list-item"
-					onClick={e => {
-						this.setState({ createNew: true });
-					}}>
-					New
-				</li>,
-				<li
-					key={2}
-					className="control-list-item"
-					onClick={e => {
-						this.setState({ openMap: true });
-					}}>
-					Open
-				</li>,
-				<li
-					key={3}
-					className="control-list-item"
-					onClick={() =>
-						this.props.saveMap(
-							this.props.Nodes,
-							this.props.Connections,
-							this.props.header.active
-						)
-					}>
-					Save
-				</li>
-			];
-		}
-		return null;
 	}
 
 	// saveMap needs to take in the nodes, connections and current mapId.
@@ -88,25 +37,14 @@ class Header extends Component {
 		// <a href="/auth/google"></a>
 		switch (this.props.user) {
 			case false:
-				return <li className="control-list-item" />;
+				return <li className="header-controls-item" />;
 			default:
 				return (
-					<li className="control-list-item">
+					<li className="header-controls-item">
 						<a href="/api/logout">Log out</a>
 					</li>
 				);
 		}
-	}
-
-	openMap(mapId) {
-		this.setState({ openMap: false });
-		this.props.openMap(mapId);
-	}
-
-	submitNew(title) {
-		// call action creator here and set state.
-		this.props.createMap(title);
-		this.setState({ createNew: false });
 	}
 
 	toggleConfirm(mapId) {
@@ -122,9 +60,8 @@ class Header extends Component {
 	render() {
 		var { height, width } = this.state;
 		return (
-			<nav className="top-bar">
-				<div className={this.props.header.sideMenu ? 'meta-menu' : 'meta-menu'}>
-					<div className="toggle-menu">
+			<nav className="top-bar header">
+					<div className="top-bar-toggle-menu">
 						<i
 							className="fa fa-bars"
 							aria-hidden="true"
@@ -134,10 +71,10 @@ class Header extends Component {
 					<div className="logo">
 						<img className="logo-img" src={logo} alt="Logo" />
 					</div>
-					<ul className="user-controls control-list">
+					<ul className="user-controls header-controls">
 						{this.props.desktop ? this.renderUserControls() : null}
 					</ul>
-				</div>
+				
 				<ConfirmBox
 					display={this.state.showConfirm}
 					windowSize={{ height, width }}
@@ -167,77 +104,3 @@ function mapStateToProps({ Nodes, Connections, header, user }) {
 }
 
 export default connect(mapStateToProps, actions)(Header);
-
-//<CreateNewMap
-//	display={this.state.createNew}
-//	confirm={this.submitNew}
-//	cancel={() => {
-//		this.setState({ createNew: false });
-//	}}
-///>
-//<OpenDialog
-//	display={this.state.openMap}
-//	confirm={this.openMap}
-//	mapList={this.props.header.maps}
-//	toggleConfirm={this.toggleConfirm}
-//	cancel={() => {
-//		this.setState({ openMap: false });
-//	}}
-///>
-
-
-
-
-// <ul className="app-controls control-list">
-// 	{this.props.desktop ? this.renderAppControls() : null}
-// </ul>
-
-// class Header extends Component {
-// 	renderContent() {
-// 		// the whole user object is available through this.props.auth, since the reducer returns the whole user model
-// 		switch (this.props.auth) {
-// 			case null:
-// 				return;
-// 			case false:
-// 				return (
-// 					<li>
-// 						<a href="/auth/google">Login with Google</a>
-// 					</li>
-// 				);
-// 			default:
-// 				return [
-// 					<li key={1}>
-// 						<Payments />
-// 					</li>,
-// 					<li key={2} style={{ margin: '0 10px' }}>
-// 						Credits: {this.props.auth.credits}
-// 					</li>,
-// 					<li key={3}>
-// 						<a href="/api/logout">Logout</a>
-// 					</li>
-// 				];
-// 		}
-// 	}
-
-// 	render() {
-// 		return (
-// 			<nav>
-// 				<div className="class-wrapper">
-// 					<Link
-// 						to={this.props.auth ? '/surveys' : '/'}
-// 						className="left brand-logo"
-// 					>
-// 						Emaily
-// 					</Link>
-// 					<ul className="right">{this.renderContent()}</ul>
-// 				</div>
-// 			</nav>
-// 		);
-// 	}
-// }
-
-// function mapStateToProps({ auth }) {
-// 	return { auth };
-// }
-
-// export default connect(mapStateToProps)(Header);

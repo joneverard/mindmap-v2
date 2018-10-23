@@ -1,0 +1,765 @@
+/* 
+  -- App level -- 
+  html, body .app
+  making the app full screen for example.
+  resetting stuff to make it work properly
+
+  -- Navigation --
+  is this even used?
+  contains the side menu button?
+  container for all the header. should rename to top-bar
+
+  -- Side Menu --
+
+*/
+/* ---------------------------- */
+/* #Globals - yes I know; it's naughty
+/* ---------------------------- */
+html, body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  background-color: #f9f9f9;
+  /* this background color should be editable by the user in the future - thinking dark theme
+     for example. */
+}
+
+/* ---------------------------- */
+/* #Modifiers
+/* ---------------------------- */
+.small {
+  font-size: 75%;
+}
+.medium {
+  font-size: 100%;
+}
+.large {
+  font-size: 150%;
+}
+
+
+.full-height {
+  height: 100%;
+}
+.full-width {
+  width: 100%;
+}
+.full-size {
+  height: 100%;
+  width: 100%;
+}
+
+/* 
+ * include shaders for modifiers, think theme.
+ * theme-orange, theme-white theme-blue etc.
+ */
+.white-bg {
+  background-color: #fff;
+}
+.off-white-bg {
+  background-color: #f9f9f9;
+}
+
+
+.height-1 {
+  /* 
+   * height-1 is a placeholder - need to figure out the actual ordering / 
+   * height of each one of these.
+   */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.height-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.hide {
+  display: none;
+}
+
+/* ---------------------------- */
+/* #Animations
+/* ---------------------------- */
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+}
+
+.fade-out {
+  opacity: 0;
+  animation-name: fadeOutOpacity;
+}
+
+.fade-in, .fade-out {
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.1s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOpacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------- */
+/* #Buttons
+/* ---------------------------- */
+.primary-btn {
+  background-color: #fff;
+}
+
+.icon-btn {
+    display: inline-block;
+    /*height: 30px;*/
+    width: 30px;
+    font-size: 80%;
+    border-radius: 2px;
+    text-align: center;
+    /*border: 1px solid grey;*/
+}
+
+.icon-btn:hover {
+    background-color: #bbb;
+}
+
+.icon-btn-active {
+    /*color: #0081a8;*/
+    background-color: #f39c12;
+}
+
+
+
+/* call to action buttons */
+.cta-orange {
+  background-color: orange !important;
+  color: #333;
+}
+
+
+/* begin blocks, within which include elements. */
+/* ---------------------------- */
+/* #Logo
+/* ---------------------------- */
+.logo {
+    display: inline-block;
+    margin-right: 15px;
+    /* float: left; */
+}
+
+.logo img {
+    max-height: 40px;
+    float: left;
+}
+
+
+/* ---------------------------- */
+/* #Application Window
+/* ---------------------------- */
+/* I guess some of the globals could be included here. */
+.app {
+  /* full-size */
+  width: 100%;
+  height: 100%;
+}
+
+.app div {
+  /* 
+   * inside div which is created from react?  is there
+   * a way that we can apply styles by passing in a property?
+   * add a full-height className property.
+   */
+   height: 100%;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+  padding: auto;
+}
+
+
+/* ---------------------------- */
+/* #Header and #Navigation
+/* ---------------------------- */
+.header {
+  float: left;
+  /* full-width */
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  /* change to off-white-bg */
+  background-color: #f9f9f9;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  border-bottom: 1px solid lightgrey;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.header-controls {
+  /* ul */
+  list-style: none;
+  display: inline-block;
+  margin: 0;
+  padding: 5px;
+}
+
+.header-controls-item {
+  display: inline-block;
+  margin: 0;
+  margin-right: 15px;
+  height: 100%;
+  cursor: pointer;
+  /*padding: 5px;*/
+  /*margin: 0 15px;*/
+}
+
+.meta-menu {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: 0.2s;
+}
+
+.top-bar {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* full-width */
+  width: 100%;
+  transition: 0.2s;
+  /* off-white-bg */
+  background-color: #f9f9f9;
+}
+
+.top-bar-toggle-menu {
+  display: inline-block;
+  text-align: center;
+  font-size: 150%;
+  margin-right: 10px;
+  margin-left: 25px;
+  float: left;
+  /*line-height: 40px;*/
+
+}
+
+
+
+/* ---------------------------- */
+/* #Side-Menu
+/* ---------------------------- */
+/* should map list and map cards be included here? not sure. */
+/* side-menu is the block element. */
+.side-menu {
+  position: absolute;
+  padding-top: 50px;
+  z-index: 998; 
+  top: 0;
+  left: -33%;
+  /* full-height */
+  height: 100%;
+  width: 25%;
+  /* off-white-bg */
+  background-color: #f9f9f9;
+  transition: 0.2s;
+  /* height-1 */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.side-menu-active {
+  left: 0;
+}
+
+/* ----- Side Menu App Controls ----- */
+.side-menu-header {
+  border-bottom: 1px solid lightgrey;
+  margin: 0;
+  width: 100%;
+}
+.side-menu-header button {
+  /* .primary-btn */
+  float: right;
+  margin-right: 5%;
+  margin-top: 5px;
+  padding: 0 10%;
+  background-color: #fff;
+}
+
+.side-menu-header h4 {
+  /* this should have minimal styling... */
+  display: inline-block; 
+  margin-right: 5%;
+  margin-top: 5px;
+}
+
+.side-menu-header button {
+  /* change this to primary button */
+  /*float: right;*/
+  display: block;
+  margin-right: 5%;
+  margin-top: 5px;
+  padding: 0 10%;
+  background-color: #fff;
+}
+
+.create-new-form {
+  padding: 0 5%;
+  margin-bottom: 15px;
+}
+
+.create-new-form input {
+  background-color: #fff;
+}
+
+
+/* ----- Side Menu Maps list ----- */
+.map-list {
+  /*full height */
+  height: 100%;
+  margin: 0 10px;
+  margin-top: 10px;
+  /*background-color: #fbfbfb*/
+  /*border: 1px solid red;  */
+}
+
+.map-card {
+  /* theme white */
+  background-color: #f9f9f9;
+  /*border-radius: 3px;*/
+  padding: 0 5px;
+  /*margin-bottom: 5px;*/
+  margin: 5px 0;
+  margin-right: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.map-card:hover {
+  background-color: lightgrey;
+}
+
+.map-card p {
+  margin: 0;
+  display: inline-block;
+}
+
+.map-card-btns {
+  float: right;
+}
+
+/* .map-card i {
+  margin-top: 3px;
+  float: right;
+  margin-left: 5px;
+}
+
+
+.map-card i:hover {
+  background-color: grey;
+} */
+
+/* ---------------------------- */
+/* #Landing Screen
+/* ---------------------------- */
+.app-landing {
+  /* full height */
+  position: relative;
+  margin: 0 auto;
+  top: 100px;
+  /*float: left;*/
+  text-align: center;
+  /*height: 100px;*/
+  /*width: 50%;*/
+  padding: 1px auto;
+  display: block;
+  height: 100%;
+}
+
+.app-landing div {
+  float: left;
+}
+
+
+/* ---------------------------- */
+/* #Key-Benefits
+/* ---------------------------- */
+.key-benefits {
+  /*height: 400px;*/
+  /*padding: 50px 30px;*/
+  /*background-color: #f6f6f6;*/
+}
+
+.key-benefit-card {
+  /*theme white*/
+  /*overflow y ??*/
+  /*full width and height. there are some funny things going on here with the containers etc.*/
+
+  overflow-y: hidden;
+  background-color: #fff;
+  /*min-height: 250px !important;*/
+  height: 100%;
+  width: 100%;
+  padding: 30px 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  /*box-shadow: 2px 2px 5px lightgrey;*/
+  /*height-2*/
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-sizing: border-box;
+}
+
+.key-benefit-card i {
+  font-size: 250%;
+  margin-bottom: 15px;
+}
+
+/* ---------------------------- */
+/* #Login-btns
+/* ---------------------------- */
+.login-btn {
+  display: inline-block;
+  margin: 15% 0 50% 0;  
+}
+
+/* ---------------------------- */
+/* #User-Menu
+/* ---------------------------- */
+.user-controls {
+  float: right;
+}
+
+.user-controls a {
+  /*this should be changed to a panel which includes settings such as dark theme.*/
+  color: black;
+}
+
+/* ---------------------------- */
+/*                              */
+/* #Begin App Section           */
+/*                              */
+/* ---------------------------- */
+
+/* ---------------------------- */
+/* #App Controls
+/* ---------------------------- */
+/* .ribbon */
+.map-controls {
+  position: absolute;
+  top: 50px;
+  left: 0; 
+  width: 25%;
+  transition: 0.5s;
+  margin-left: 15px;
+}
+
+.map-controls-menu-active {
+  left: 25%;
+}
+
+.map-controls-create-note {
+  margin-bottom: 0;
+  font-size: 150%;
+}
+
+.map-controls-create-note input {
+  margin-bottom: 0;
+}
+
+.map-controls-btn-create, .map-controls-btn-connect {
+  font-size: 150%;
+  text-align: center;
+  padding: 0;
+  background-color: #fff;
+}
+
+.map-controls-btn-create:hover, .map-controls-btn-connect:hover {
+  background-color: #eee;
+}
+
+.map-controls-btn-connect {
+  font-size: 120%;
+}
+
+
+
+/* ---------------------------- */
+/* #Note
+/* ---------------------------- */
+/* .node  TODO */
+.note-container {
+  position: absolute;
+  /* display: inline-block */
+  width: auto; /* ???? */
+}
+
+.note {
+  background-color: #fdfdfd;
+  /* off-white-2 */
+  transition: visibility 0.2s ease;
+  /* does this need to be here? */
+  /* text-align: center;  */
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid grey;
+  /* display: inline-block; */
+  margin-bottom: 5px;
+}
+
+.note-connect:hover {
+  border: 2px solid #f39c12;
+}
+
+.note-selected {
+  border: 1.5px solid #0081a8;
+  transition: border-color 0.2s ease;
+  z-index: 100;
+}
+
+.note-selected-connect {
+  border: 2px solid #f39c12;
+}
+
+.note-header-title-input, .note-header-title-input input {
+  margin-bottom: 3px;
+  width: 100%;
+}
+
+.note-header-btns {
+  float: right;
+}
+
+.note p {
+  display: inline;
+  /* margin-bottom: 5px; */
+  padding: 6px 6px 6px 10px;
+}
+/* ---------------------------- */
+/* #Note Controls
+/* ---------------------------- */
+.note-controls {
+  position: relative;
+}
+
+.note-controls-btn {
+  text-transform: capitalize;
+  display: inline-block;
+  padding: 0 6px 0 6px;
+  background-color: #fff;
+  font-size: 85%;
+  font-weight: 300;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-left: 0px;
+}
+
+.note-controls-edit-save-btn {
+  background-color: #0081a8;
+  color: #fff;
+}
+
+
+/* ---------------------------- */
+/* #Editor
+/* ---------------------------- */
+.editor {
+  width: 100%;
+  height: 100%;
+  min-height: 40px;
+  min-width: 194px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: inline-block;
+  border-top: 1px solid grey;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+.editor ul div {
+  display: inline-block;
+
+}
+
+.editor ul li, .editor ol li {
+  margin-bottom: 0;
+}
+
+.editor ul, .editor ol {
+  margin: 0;
+}
+
+/* .editor-ctrl  TODO */
+.editor-controls {
+  border-top: 1px solid grey;
+  padding-bottom: 3px;
+  max-height: 30px;
+  text-align: center;
+}
+
+/* .style-btn TODO */
+.editor-style-btn {
+  display: inline-block;
+  width: 30px;
+  font-size: 80%;
+  border-radius: 2px;
+}
+
+.editor-style-btn:hover {
+  background-color: lightgrey;
+}
+
+.editor-style-btn-active {
+  background-color: #f39c12;
+}
+
+
+/* ---------------------------- */
+/* #SVG Options
+/* ---------------------------- */
+svg {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.floating-option {
+  position: absolute;
+  width: 75px;
+  height: 38px;
+}
+
+.floating-option button {
+  border-radius: 10px;
+  padding: 0 10px;
+  background-color: white;
+}
+
+
+
+/* ---------------------------- */
+/* #Message Box
+/* ---------------------------- */
+/* need to change .confirm-box to message-box.  TODO */
+.message-box {
+  width: 220px;
+  height: 110px;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 999;
+  border: 1px solid grey;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.message-box p {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.message-box div {
+  padding: 0 auto;
+  display: table;
+  margin: 0 auto;
+}
+
+/* ---------------------------- */
+/* #Quick Start
+/* ---------------------------- */
+.quick-start-container {
+  width: 100%;
+  height: 100%;
+  /* white background */
+  background-color: #f9f9f9;
+}
+
+.quick-start-outer {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.quick-start-img {
+height: 70%;
+display: table;
+width: 100%;
+}
+
+.quick-start-img-inner, .quick-start-intro {
+display: table-cell;
+vertical-align: middle;
+text-align: center;
+}
+
+.quick-start-img-inner video {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
+}
+
+.quick-start-intro {
+  width: 70%;
+  padding: 0 15%;
+}
+
+.quick-start-intro-btns {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.quick-start-intro-btns button {
+  width: 100%;
+  white-space: normal;
+  min-width: 250px;
+  max-width: 500px;
+  display: block;
+  margin: 5% auto;
+  background-color: #fff;
+}
+
+.quick-start-img img {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  /*width: 400px;*/
+  /*whatever width you want*/
+}
+
+.quick-start-txt {
+    height: 15%;
+    text-align: center;
+}
+
+.quick-start-controls {
+    height: 15%;
+    padding: 0 20%;
+}
+
+.quick-start-controls button {
+    float: right;
+    margin: 0 1%;
+    width: 20%;
+    background-color: #fff;
+}
+
+.quick-start-controls button:first-of-type {
+    float: left;
+}
+
+.quick-start-intro h3 {
+    /*width: 10px;*/
+    margin: 0 30%;
+}
+

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// should this be called sidemenucontrols?
 class AppControls extends Component {
 	constructor(props) {
 		super(props);
@@ -12,7 +13,8 @@ class AppControls extends Component {
 
 	renderCreateNew() {
 		return (
-			<form onSubmit={this.props.handleSubmit} className="create-new-map">
+			<form onSubmit={this.props.handleSubmit} className="create-new-form row">
+				<div className="eight columns full-width">
 				<input
 					type="text"
 					value={this.props.title}
@@ -20,23 +22,24 @@ class AppControls extends Component {
 						// this.setState({ title: e.target.value });
 						this.props.onInputChange(e.target.value);
 					}}
+					placeholder="Enter a map title."
+					className="full-width"
 				/>
-				<input type="submit" value="submit" />
+				</div>
+				<div className="four columns">
+					<input type="submit" value="Create" />
+				</div>
 			</form>
 		);
 	}
 
 	render() {
 		return (
-			<div className="app-controls">
-				<div>
+			<div className="side-menu-header container">
+				<div className="row">
 					<h4>Your Maps</h4>
-					<button
-						onClick={() => this.setState({ createNew: !this.state.createNew })}>
-						{this.state.createNew ? "Cancel" : "New"}
-					</button>
 				</div>
-				{this.state.createNew ? this.renderCreateNew() : null}
+				{this.renderCreateNew()}
 			</div>
 		);
 	}
@@ -44,6 +47,11 @@ class AppControls extends Component {
 
 export default AppControls;
 
+//{this.state.createNew ? this.renderCreateNew() : null}
+// <button
+// onClick={() => this.setState({ createNew: !this.state.createNew })}>
+// {this.state.createNew ? "Cancel" : "New"}
+// </button>
 
 					// <button
 					// 	onClick={e => {

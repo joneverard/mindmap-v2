@@ -96,7 +96,7 @@ class QuickStart extends Component {
 						</h4>
 						<div className="quick-start-intro-btns">
 							<button
-								className="cta"
+								className="cta-orange"
 								onClick={e => {
 									this.setState({ intro: false });
 								}}>
@@ -146,7 +146,7 @@ class QuickStart extends Component {
 						onClick={e => {
 							this.next(this.state.current);
 						}}
-						className="cta">
+						className="cta-orange">
 						next
 					</button>
 					<button

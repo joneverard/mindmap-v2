@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './style/style.css';
+// import './style/style.css';
+import './style/skeleton.css';
+import './style/style-bem.css';
 import App from './components/App';
 // import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducers';

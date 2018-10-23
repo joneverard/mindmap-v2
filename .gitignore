@@ -1,7 +1,11 @@
 node_modules
 dev.js
 client/build
+<<<<<<< HEAD
 .vscode/*
 security/*
 css notes.txt
 notes
+=======
+.vscode/*
+>>>>>>> style-refactor

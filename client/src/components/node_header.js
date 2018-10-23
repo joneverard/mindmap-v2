@@ -9,24 +9,26 @@ class NodeHeader extends Component {
   render() {
     var pinnedClass = !this.props.pinned ? 'open-icon' : null;
     return (
-      <div className="node-header">
-        <p className="node-title">{this.props.title}</p>
-        <div className="style-btn" onClick={e => this.props.handleClick(e)}>
-          <i
+      <div>
+        <p>{this.props.title}</p>
+        <div className="note-header-btns">
+          <div className="icon-btn" onClick={e => this.props.handleClick(e)}>
+            <i
+              className={
+                this.props.display
+                  ? 'fa fa-chevron-up note-open-btn'
+                  : 'fa fa-chevron-down note-open-btn'
+              }
+              aria-hidden="true"
+            />
+          </div>
+          <div
+            onClick={e => this.props.pinNode(e)}
             className={
-              this.props.display
-                ? 'fa fa-chevron-up open-icon'
-                : 'fa fa-chevron-down open-icon'
-            }
-            aria-hidden="true"
-          />
-        </div>
-        <div
-          onClick={e => this.props.pinNode(e)}
-          className={
-            this.props.pinned ? 'style-btn style-btn-active' : 'style-btn'
-          }>
-          <i className={"fa fa-lock "+pinnedClass} aria-hidden="true" />
+              this.props.pinned ? 'icon-btn icon-btn-active' : 'icon-btn'
+            }>
+            <i className={"fa fa-lock "+pinnedClass} aria-hidden="true" />
+          </div>
         </div>
       </div>
     );

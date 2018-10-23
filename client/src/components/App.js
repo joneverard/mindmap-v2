@@ -84,7 +84,7 @@ class App extends Component {
 				return (
 					<div className="app-landing">
 						<Benefits />
-						<a href="/auth/google" className="sign-in-btn">
+						<a href="/auth/google" className="login-btn">
 							<img src={this.state.width > 1000 ? signinSrcBig : signinSrcSmall} alt="google sign in"/>
 						</a>
 					</div>
