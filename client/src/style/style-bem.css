@@ -291,6 +291,8 @@ body {
 /* ----- Side Menu App Controls ----- */
 .side-menu-header {
   border-bottom: 1px solid lightgrey;
+  margin: 0;
+  width: 100%;
 }
 .side-menu-header button {
   /* .primary-btn */
@@ -325,14 +327,6 @@ body {
 
 .create-new-form input {
   background-color: #fff;
-}
-
-.create-new-form input:first-of-type {
-  width: 50%;
-}
-
-.create-new-form input:last-of-type {
-  float: right;   
 }
 
 
