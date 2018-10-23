@@ -542,6 +542,11 @@ body {
   border: 2px solid #f39c12;
 }
 
+.note-header-title-input, .note-header-title-input input {
+  margin-bottom: 3px;
+  width: 100%;
+}
+
 .note-header-btns {
   float: right;
 }
@@ -610,6 +615,7 @@ body {
   border-top: 1px solid grey;
   padding-bottom: 3px;
   max-height: 30px;
+  text-align: center;
 }
 
 /* .style-btn TODO */

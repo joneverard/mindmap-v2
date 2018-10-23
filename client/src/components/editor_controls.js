@@ -25,12 +25,13 @@ class StyleButton extends Component {
 
     render() {
         var className = `fa fa-${this.props.display}`;
+        //editor-style-btn
         return (
             <div
                 className={
                     this.props.active
-                        ? 'editor-style-btn editor-style-btn-active'
-                        : 'editor-style-btn'
+                        ? 'icon-btn editor-style-btn-active'
+                        : 'icon-btn'
                 }
                 onMouseDown={this.onToggle}>
                 <i className={className} aria-hidden="true" />
@@ -48,7 +49,7 @@ class EditorControls extends Component {
             .getType();
         var currentStyle = this.props.editorState.getCurrentInlineStyle();
         return (
-            <div className="editor-ctrl">
+            <div className="editor-controls">
                 {inlineStyles.map(styleBtn => {
                     return (
                         <StyleButton
