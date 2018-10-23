@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import CreateNewMap from './CreateNewMap';
-import OpenDialog from './OpenDialog';
 import ConfirmBox from './confirm_box';
 import MessageBox from './MessageBox';
 import FeedbackBox from './FeedbackBox';
