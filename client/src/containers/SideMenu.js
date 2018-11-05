@@ -115,7 +115,8 @@ class SideMenu extends Component {
 					this.props.display
 						? 'side-menu side-menu-active height-1'
 						: 'side-menu height-1'
-				}>
+				}
+				onClick={(e) => {this.props.toggleEditMap(null);}}>
 				<AppControls
 					handleSubmit={this.handleSubmit}
 					onInputChange={this.handleInputChange}

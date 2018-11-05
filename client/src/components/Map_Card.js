@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 
-// what do we need in this component?
-// need hover behaviour - to show and hide the icons.
-// 		-> need to set state on sidemenu
-// onclick fire an event to change the map
-
 class MapCard extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +29,7 @@ class MapCard extends Component {
   renderTitle() {
     if (this.props.edit) {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="map-card-edit-form">
           <input onChange={this.onInputChange} value={this.state.title} />
         </form>
       );
@@ -50,41 +45,39 @@ class MapCard extends Component {
         className="map-card"
         key={map._id}
         onClick={() => {
+          this.props.toggleEdit(null);
           this.props.openMap(map._id);
         }}
-        onMouseEnter={e => {
+        onMouseEnter={() => {
           this.props.hoverMap(map._id);
         }}
-        onMouseLeave={e => {
+        onMouseLeave={() => {
           this.props.hoverMap(0);
         }}
       >
         {this.renderTitle()}
-        {this.props.hover
-          ? <div className="map-card-btns">
-              <div className="icon-btn">
-                <i
-                  onClick={e => {
-                    e.stopPropagation();
-                    this.props.toggleEdit(map._id);
-                  }}
-                  className="fa fa-pencil right"
-                  aria-hidden="true"
-                />
-              </div>          
-              <div className="icon-btn">
-                <i
-                  onClick={e => {
-                    e.stopPropagation();
-                    this.props.toggleConfirm(map._id);
-                  }}
-                  className="fa fa-trash right"
-                  aria-hidden="true"
-                />
-              </div>
-
+        {this.props.hover ? (
+          <div className="map-card-btns">
+            <div
+              className="icon-btn"
+              onClick={e => {
+                e.stopPropagation();
+                this.props.toggleEdit(map._id);
+              }}
+            >
+              <i className="fa fa-pencil right" aria-hidden="true" />
             </div>
-          : null}
+            <div
+              className="icon-btn"
+              onClick={e => {
+                e.stopPropagation();
+                this.props.toggleConfirm(map._id);
+              }}
+            >
+              <i className="fa fa-trash right" aria-hidden="true" />
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }
