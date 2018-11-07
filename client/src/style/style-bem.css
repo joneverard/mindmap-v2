@@ -327,6 +327,8 @@ body {
 
 .create-new-form input {
   background-color: #fff;
+  padding: 0 5%;
+  width: 100%;
 }
 
 
@@ -350,6 +352,11 @@ body {
   margin: 5px 0;
   margin-right: 10px;
   border-bottom: 1px solid lightgrey;
+}
+
+.map-card-edit-form {
+  display: inline-block;
+  margin-bottom: 0px;
 }
 
 .map-card:hover {
@@ -549,7 +556,7 @@ body {
 .note p {
   display: inline;
   /* margin-bottom: 5px; */
-  padding: 6px 6px 6px 10px;
+  padding: 6px 6px 6px 6px;
 }
 /* ---------------------------- */
 /* #Note Controls
