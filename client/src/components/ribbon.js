@@ -12,16 +12,17 @@ class Ribbon extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const selected_node = this.props.nodes.filter(node => node.id === this.props.selected)[0];
     const position = {
       x: this.props.window.width / 2.0,
       y: this.props.window.height / 2.0
     };
     const newNode = this.props.createNode(
       this.state.title,
-      this.props.selected,
+      selected_node,
       position
     );
-    this.props.createConnection(this.props.selected, newNode.payload);
+    this.props.createConnection(selected_node, newNode.payload);
     this.setState({ title: '' });
   }
 
@@ -82,8 +83,8 @@ class Ribbon extends Component {
 //   return bindActionCreators({ createNode, createConnection }, dispatch);
 // }
 
-function mapStateToProps({ Selected, header }) {
-  return { selected: Selected, header };
+function mapStateToProps({ Selected, header, Nodes }) {
+  return { selected: Selected, header, nodes: Nodes };
 }
 
 export default connect(mapStateToProps, actions)(Ribbon);
