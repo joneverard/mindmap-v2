@@ -266,6 +266,7 @@ class Note extends Component {
                 display={this.props.node.display}
                 styleProps={this.props.node.style}
                 pinNode={this.pinNode}
+                width={this.props.node.editorSize && this.props.node.editorSize.width}
               />
             )}
             {this.props.node.display ? (

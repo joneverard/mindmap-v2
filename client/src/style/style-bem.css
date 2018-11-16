@@ -544,12 +544,42 @@ body {
   border: 2px solid #f39c12;
 }
 
+/* ---------------------------- */
+/* #Note Header
+/* ---------------------------- */
+.note-header-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.note-header {
+  display: inline-block;
+  /* width: 100%; */
+}
+
+.note-header-title {
+  float: left;
+  display: inline-block;
+  /* width: 75% - 30px; */
+  margin: 0;
+  padding: 0;
+}
+
+
 .note-header-title-input, .note-header-title-input input {
   margin-bottom: 3px;
   width: 100%;
 }
 
 .note-header-btns {
+  width: 60px;
+  float: right;
+  /* display: inline-block; */
+  margin: 0;
+  padding: 0;
+}
+
+.note-header-btns .icon-btn {
   float: right;
 }
 
