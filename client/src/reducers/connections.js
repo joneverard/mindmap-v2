@@ -12,7 +12,6 @@ import {
 } from '../actions';
 
 export default function ConnectionsReducer(state = [], action) {
-    // console.log(state);
     var data;
     switch (action.type) {
         case CREATE_MAP:
@@ -84,6 +83,7 @@ export default function ConnectionsReducer(state = [], action) {
             if (action.payload.start) {
                 var newConn = {
                     start: {
+                        pinned: action.payload.start.pinned,
                         id: action.payload.start.id,
                         position: {
                             x: action.payload.start.anchor.x,
@@ -91,6 +91,7 @@ export default function ConnectionsReducer(state = [], action) {
                         }
                     },
                     end: {
+                        pinned: action.payload.end.pinned,
                         id: action.payload.end.id,
                         position: {
                             x: action.payload.end.anchor.x,
@@ -164,11 +165,9 @@ export default function ConnectionsReducer(state = [], action) {
         case PIN_NODE:
             data = [...state].map(conn => {        
                 if (conn.start.id === action.payload) {
-                    console.log('start hit')
                     conn.start.pinned = !conn.start.pinned;
                 }
                 if (conn.end.id === action.payload) {
-                    console.log('end hit');
                     conn.end.pinned = !conn.end.pinned;
                 }
             })
