@@ -76,26 +76,21 @@ class MapView extends Component {
       if (save_note) {
         window.save_note = save_note;
         let editor;
-        if (save_note.editor_ref) {
-          editor = ReactDOM.findDOMNode(save_note.editor_ref); // save_note.editor_ref.editor;
+        let editorSize;
+        // need to check if the note is fully displayed or not. If not, then use the stored editor size.
+        if (save_note.display && save_note.editor_ref) {
+          editor = ReactDOM.findDOMNode(save_note.editor_ref);
+          editorSize = {width: editor.offsetWidth, height: editor.offsetHeight}
         } else {
-          editor = false;
+          // if you can't find it, set it to the existing value.
+          editorSize = save_note.editorSize || {width: null, height: null};
         }
-        // let editor = ReactDOM.findDOMNode(save_note.editor_ref.editor);
-        this.props.saveNode(save_note.id, save_note.title, save_note.content, {
-          width: editor
-            ? editor.offsetWidth
-            : save_note.editorSize ? save_note.editorSize.width : null,
-          height: editor
-            ? editor.offsetHeight
-            : save_note.editorSize ? save_note.editorSize.height : null
-        });
-        // if you can't find it, set it to the existing value.
+        this.props.saveNode(save_note.id, save_note.title, save_note.content, editorSize);
+        
       }
-      this.props.selectNode(null);
+      this.props.selectNode(null, null);
     } else {
-      // this.props.saveNode();
-      this.props.selectNode(null);
+      this.props.selectNode(null, null);
     }
 
     this.props.editNode(null);

@@ -33,7 +33,6 @@ initialState.push({
 
 function CreateContentState(htmlString) {
   const blocksFromHTML = convertFromHTML(htmlString);
-  // console.log(blocksFromHTML);
   if (blocksFromHTML.contentBlocks) {
     const content = ContentState.createFromBlockArray(
       blocksFromHTML.contentBlocks,
@@ -45,36 +44,41 @@ function CreateContentState(htmlString) {
 }
 
 export default function NodesReducer(state = initialState, action) {
-  // console.log('state', state);
-  // console.log('action', action);
   var data;
   var ret;
   switch (action.type) {
     case CREATE_MAP:
-      console.log(action);
       // need to perform some operations on the node data...
-      return (
-        [...action.payload.map.nodes].map(node => {
+      if (action.payload.map) {
+        return (
+          [...action.payload.map.nodes].map(node => {
+            ret = { ...node };
+            ret.content = CreateContentState(node.content);
+            ret.selected = false;
+            ret.id = node.nodeId;
+            return ret;
+          }) || []
+        );
+      } else {
+        return [];
+      }
+
+    case OPEN_MAP:
+      // probably need to use convert from raw here first.
+      if (action.payload.nodes) {
+        return [...action.payload.nodes].map(node => {
           ret = { ...node };
           ret.content = CreateContentState(node.content);
           ret.selected = false;
           ret.id = node.nodeId;
           return ret;
-        }) || []
-      );
-
-    case OPEN_MAP:
-      // probably need to use convert from raw here first.
-      return [...action.payload.nodes].map(node => {
-        ret = { ...node };
-        ret.content = CreateContentState(node.content);
-        ret.selected = false;
-        ret.id = node.nodeId;
-        return ret;
-      });
+        });
+      } else {
+        return [];
+      }
+      
 
     case CREATE:
-      // console.log(action.payload.selected);
       if (action.payload.selected) {
         var newNode = { ...action.payload };
         // calculate node position based on selected node (origin) specified radius and random angle.
@@ -109,12 +113,11 @@ export default function NodesReducer(state = initialState, action) {
         if (node && action.payload) {
           if (node.id !== action.payload.id) {
             // reset to defaults
-            node.editor_ref = null; // reset reference to selected note HTML object
+            // node.editor_ref = null; // reset reference to selected note HTML object
             node.edit = false;
             node.selected = false;
           } else if (node.id === action.payload.id) {
             node.selected = true;
-            // console.log('editor ref in reducer.', action.payload.editor_ref);
             node.editor_ref = action.payload.editor_ref;
           }
         }
@@ -125,7 +128,6 @@ export default function NodesReducer(state = initialState, action) {
     case PIN_NODE:
       data = [...state].map(node => {
         if (node.id === action.payload) {
-          console.log('pinned', node);
           node.pinned = !node.pinned;
         }
         return node;
@@ -148,11 +150,9 @@ export default function NodesReducer(state = initialState, action) {
     //         }
     //         return node;
     //     })
-    //     // console.log('data', data);
     //     return data;
 
     case UPDATE_POS:
-      // console.log(state);
       data = [...state].map(node => {
         if (node.id === action.payload.id && !node.pinned) {
           node.position.x += action.payload.mouseDelta.x;
@@ -174,7 +174,6 @@ export default function NodesReducer(state = initialState, action) {
       return data;
 
     case UPDATE_RANK:
-      // console.log('hello there');
       data = [...state].map(node => {
         if (node.id === action.payload.nodeId) {
           node.rank = action.payload.rank;
@@ -193,7 +192,6 @@ export default function NodesReducer(state = initialState, action) {
       var filtered = array.filter(function(node) {
         return node.id !== action.payload;
       });
-      // console.log(filtered);
       return filtered;
 
     case UPDATE_ANCHOR:
@@ -277,4 +275,3 @@ export default function NodesReducer(state = initialState, action) {
 //     }
 // }
 // difference.sort(function(a,b) {return (a.magnitude > b.magnitude) ? 1 : ((b.magnitude > a.magnitude) ? -1 : 0);} );
-// console.log('difference',difference);

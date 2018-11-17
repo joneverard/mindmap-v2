@@ -69,7 +69,6 @@ export const fetchMaps = () => async dispatch => {
 
 export const createMap = (title, tutorial) => async dispatch => {
   const res = await axios.post('/api/maps', { title, tutorial });
-  // console.log(res.data);
   dispatch({
     type: CREATE_MAP,
     payload: res.data
@@ -79,7 +78,6 @@ export const createMap = (title, tutorial) => async dispatch => {
 export const saveMap = (nodes, connections, mapid) => async dispatch => {
   // need to convert all of the contentState objects in nodes to a html string.
   if (mapid) {
-    // console.log('action creator');
     const nodeData = [...nodes].map(node => {
       var ret = { ...node };
       ret.content = stateToHTML(node.content);
@@ -115,7 +113,6 @@ export const editMap = (mapId, title) => async dispatch => {
 
 export const deleteMap = mapId => async dispatch => {
   const res = await axios.delete(`/api/maps/${mapId}`);
-  // console.log(res.data);
   dispatch({
     type: DELETE_MAP,
     payload: { data: res.data, mapId }
