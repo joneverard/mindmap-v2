@@ -53,6 +53,7 @@
     "react-redux": "^5.0.6",
     "react-resize-detector": "^2.2.0",
     "react-router-dom": "^4.2.2",
+    "react-spinners": "^0.4.7",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
@@ -106,7 +107,8 @@
   "babel": {
     "presets": [
       "react-app"
-    ]
+    ],
+    "plugins": ["emotion"]
   },
   "eslintConfig": {
     "extends": "react-app"
