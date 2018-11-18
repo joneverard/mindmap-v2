@@ -87,7 +87,7 @@ class QuickStart extends Component {
 
 	renderIntro() {
 		return (
-			<div className="quick-start-container">
+			<div className={this.props.show ? "quick-start-container show" : "quick-start-container"}>
 				<div className="quick-start-outer">
 					<div className="quick-start-intro">
 						<h4>

@@ -25,6 +25,7 @@ class SideMenu extends Component {
 		// in order to fix an uncommon bug where the user is not defined, may need to
 		// bring the call to fetchUser() into this component.
 		// currently stored in App.js
+		this.props.setLoading('loadingMap', true);
 		this.props.fetchUser().then(res => {
 			this.props.fetchMaps().then(res => {
 				// if it is the user's first visit, and there are no maps, 
@@ -43,6 +44,7 @@ class SideMenu extends Component {
 							this.props.openMap(maps[0]._id);
 						}
 					}
+					this.props.setLoading('loadingMap', false);
 				});
 		})
 		// thingy.then(res => {console.log('finished', this.props.header)});
