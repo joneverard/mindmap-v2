@@ -29,7 +29,7 @@ module.exports = app => {
 
 	// two options here... post or put. 
 	app.post('/api/maps/:mapid', requireLogin, async (req, res) => {
-		// console.log('body of request', req.body.nodeData)
+		console.log('body of request', req.body.nodeData)
 		const nodes = req.body.nodeData.map(node => {
 			return {
 				anchor: node.anchor,
@@ -61,7 +61,7 @@ module.exports = app => {
 		}, {new: true}, (err, doc) => {
 			if(err) {
 				console.log(err);
-				res.send(422).send(err);
+				res.sendStatus(422).send(err);
 			}
 			res.send(doc);
 		})
@@ -71,6 +71,7 @@ module.exports = app => {
 
 	app.put('/api/maps/:mapid', requireLogin, async (req, res) => {
 		// should probably use a different route not just a different request...
+		console.log('put request');
 		const map = await NoteMap.findOneAndUpdate({
 			_id: req.params.mapid,
 		}, {

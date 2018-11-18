@@ -37,11 +37,13 @@ class App extends Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.setLoading = this.setLoading.bind(this);
     this.saveState = throttle(e => {
-      this.props.saveMap(
-        this.props.Nodes,
-        this.props.Connections,
-        this.props.header.active
-      ).then(e => this.setState({saved: true}));
+      if (this.props.header.active != "0") {
+        this.props.saveMap(
+          this.props.Nodes,
+          this.props.Connections,
+          this.props.header.active
+        ).then(e => this.setState({saved: true}))
+      };
     }, 2000);
   }
 
@@ -95,6 +97,7 @@ class App extends Component {
       border-color: red;
     `;
     // if (!this.state.loadingMap) {
+      console.log(this.props.header);
       if (this.props.header.active) {
         return [
           <Ribbon key={1} window={this.state} />,

@@ -712,15 +712,15 @@ svg {
   background-color: white;
 }
 
-
-
 /* ---------------------------- */
 /* #Message Box
 /* ---------------------------- */
 /* need to change .confirm-box to message-box.  TODO */
 .message-box {
-  width: 220px;
-  height: 110px;
+  /* width: 220px; */
+  /* height: 110px; */
+  min-width: 220px;
+  min-height: 110px;
   box-sizing: border-box;
   position: absolute;
   z-index: 999;

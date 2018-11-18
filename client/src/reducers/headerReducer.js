@@ -45,7 +45,7 @@ export default function headerReducer(
 			if (action.payload.msg) {
 				return {
 					maps: [...state.maps],
-					active: false,
+					active: "0",
 					msg: action.payload.msg,
 					sideMenu,
 					connection
