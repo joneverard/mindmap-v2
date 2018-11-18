@@ -85,7 +85,7 @@ export default function headerReducer(
 			// console.log(state.active);
 			var _active;
 			if (action.payload.mapId === state.active) {
-				_active = false;
+				_active = "0";
 			} else {
 				_active = state.active;
 			}

@@ -37,7 +37,6 @@ class MindMap extends Component {
   componentDidMount() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
     this.main.addEventListener("mouseup", this.cancelDrag);
-
   }
 
   componentWillUnmount() {

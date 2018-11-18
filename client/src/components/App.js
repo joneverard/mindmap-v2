@@ -96,13 +96,13 @@ class App extends Component {
       margin: 0 auto;
       border-color: red;
     `;
-    // if (!this.state.loadingMap) {
-      console.log(this.props.header);
       if (this.props.header.active) {
-        return [
-          <Ribbon key={1} window={this.state} />,
-          <MindMap key={2} loading={this.state.loadingMap} />
-        ];
+        if (this.props.header.active != "0") {
+          return [
+            <Ribbon key={1} window={this.state} />,
+            <MindMap key={2} loading={this.state.loadingMap} />
+          ];
+        }
       } else {
         return (
           <div className="app-landing">
