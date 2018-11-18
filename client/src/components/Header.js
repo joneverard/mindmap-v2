@@ -5,6 +5,7 @@ import * as actions from '../actions';
 import ConfirmBox from './confirm_box';
 import MessageBox from './MessageBox';
 import FeedbackBox from './FeedbackBox';
+import AppStatus from './AppStatus';
 
 import logo from './NOTEMAPS1-02 original.png';
 // import 'materialize-css/dist/css/materialize.min.css';
@@ -71,6 +72,7 @@ class Header extends Component {
 					<div className="logo">
 						<img className="logo-img" src={logo} alt="Logo" />
 					</div>
+					<AppStatus saved={this.props.saved} />
 					<ul className="user-controls header-controls">
 						{this.props.desktop ? this.renderUserControls() : null}
 					</ul>

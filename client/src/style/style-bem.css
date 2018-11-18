@@ -259,9 +259,31 @@ body {
   margin-left: 25px;
   float: left;
   /*line-height: 40px;*/
-
 }
 
+.top-bar .logo {
+  float: left;
+}
+
+.app-status {
+  display: inline-block;
+  height: 100%;
+  float: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.app-status li {
+  margin-bottom: 0;
+}
+
+.app-status-saved {
+  color: #00B80F;
+}
+
+.app-status-unsaved {
+  color: #EB0000;
+}
 
 
 /* ---------------------------- */

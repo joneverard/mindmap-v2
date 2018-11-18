@@ -31,7 +31,8 @@ class App extends Component {
       height: 250,
       quickStart: false,
       loadingApp: true,
-      loadingMap: true
+      loadingMap: true,
+      saved: true
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.setLoading = this.setLoading.bind(this);
@@ -40,7 +41,7 @@ class App extends Component {
         this.props.Nodes,
         this.props.Connections,
         this.props.header.active
-      );
+      ).then(e => this.setState({saved: true}));
     }, 2000);
   }
 
@@ -56,8 +57,8 @@ class App extends Component {
 
     window.addEventListener("resize", this.updateWindowDimensions);
     this.setState({ width: window.innerWidth, height: window.innerHeight });
-    window.addEventListener("click", this.saveState);
-    window.addEventListener("keypress", this.saveState);
+    window.addEventListener("click", (e) => {this.setState({saved: false}); this.saveState(e)});
+    window.addEventListener("keypress", (e) => {this.setState({saved: false}); this.saveState(e)});
   }
 
   componentWillUnmount() {
@@ -167,7 +168,7 @@ class App extends Component {
         style={{ width: this.state.width, height: this.state.height }}
       >
         <BrowserView device={isBrowser} viewClassName="full-height full-width">
-          <Header user={this.props.user} desktop />
+          <Header user={this.props.user} desktop saved={this.state.saved} />
           <SideMenu
             display={this.props.user && this.props.header.sideMenu}
             setLoading={this.setLoading}
