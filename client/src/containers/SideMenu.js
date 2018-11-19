@@ -10,7 +10,7 @@ import ConfirmBox from "../components/confirm_box";
 class SideMenu extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: "", hover: 0, showConfirm: false };
+    this.state = { title: "", hover: 0, showConfirm: false, selectedMap: 0 };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.renderMaps = this.renderMaps.bind(this);
@@ -82,8 +82,11 @@ class SideMenu extends Component {
 
   confirmDelete() {
     // call action creator
-    this.props.deleteMap(this.state.selectedMap);
-    this.setState({ selectedMap: 0, showConfirm: false });
+    this.props.deleteMap(this.state.selectedMap).then(res => {
+      this.props.openMap(this.props.header.maps[0]._id);
+    });
+    this.setState({ selectedMap: this.props.header.maps[0]._id, showConfirm: false });
+    // this.props.openMap()
   }
 
   renderMaps() {
