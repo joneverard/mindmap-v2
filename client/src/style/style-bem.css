@@ -360,6 +360,7 @@ body {
   height: 100%;
   margin: 0 10px;
   margin-top: 10px;
+  overflow-y: scroll;
   /*background-color: #fbfbfb*/
   /*border: 1px solid red;  */
 }
@@ -374,6 +375,11 @@ body {
   margin: 5px 0;
   margin-right: 10px;
   border-bottom: 1px solid lightgrey;
+}
+
+.map-card-selected {
+  /* background-color: #0081a8; */
+  border-bottom: 2px solid #0081a8;
 }
 
 .map-card-edit-form {

@@ -42,7 +42,7 @@ class MapCard extends Component {
     const { map } = this.props;
     return (
       <div
-        className="map-card"
+        className={this.props.selected ? "map-card map-card-selected" : "map-card"}
         key={map._id}
         onClick={() => {
           this.props.toggleEdit(null);
