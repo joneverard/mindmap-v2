@@ -1,187 +1,241 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116384447-1"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-116384447-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-		  gtag('config', 'UA-116384447-1');
-		</script>
-		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-		<script>
-		window.addEventListener("load", function(){
-		window.cookieconsent.initialise({
-		  "palette": {
-		    "popup": {
-		      "background": "#000"
-		    },
-		    "button": {
-		      "background": "#f39e18"
-		    }
-		  },
-		  "theme": "classic",
-		  "position": "bottom-left"
-		})});
-		</script>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="NoteMaps helps you organise your notes by visually drawing connections between them and providing a big-picture view.">
+      gtag("config", "UA-116384447-1");
+    </script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+      window.addEventListener("load", function() {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: "#000"
+            },
+            button: {
+              background: "#f39e18"
+            }
+          },
+          theme: "classic",
+          position: "bottom-left"
+        });
+      });
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="NoteMaps helps you organise your notes by visually drawing connections between them and providing a big-picture view."
+    />
 
-    <link rel="stylesheet" type="text/css" href="css/css/font-awesome.css"> 
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/skeleton.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/queries.css">
-    <link rel="icon" type="image/png" href="/images/notemaps-favicon-2.png" sizes="30x30">
+    <link rel="stylesheet" type="text/css" href="css/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/skeleton.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/queries.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/notemaps-favicon-2.png"
+      sizes="30x30"
+    />
 
-		<title>NoteMaps</title>
-	</head>
-	<body>
-		<header>
-			<div class="row">
-<!-- 				<nav id="navbar"> -->
-				<div id="nav-box">
-					<nav class="topnav" id="navbar">
-						<!-- <img src="/images/NOTEMAPS1-02 original.png"> -->
-					  <a href="javascript:void(0);" class="icon" onclick="toggleMobileNav()">&#9776;</a>
-					  <a href="/app/">Login</a>
-					  <a href="/privacy/">Privacy</a>
-					  <a href="/contact/">Contact</a>
-					  <a href="/about/">About</a>
-					  <a href="/">Home</a>
-					</nav>
-				</div>
-<!-- 					<img src="/images/NOTEMAPS1-02 original.png">
-					<ul class="main-nav js--main-nav">
-	          <li><a href="/about/">About</a></li>
-	          <li><a href="#works">Pricing</a></li>
-	          <li><a href="/privacy/">Privacy</a></li>
-	          <li><a href="/contact/">Contact</a></li>
-	          <li><a href="/app/">Login</a></li>
-	          <li><a href="#plans">Sign up</a></li>
-		      </ul>
-		     	<a id="mobile-nav-icon" class="mobile-nav-icon" href="#"><i class="fa fa-bars"></i></a>
-				</nav> -->
-			</div>
-		</header>
-		<section class="hero">
-			<div class="container centered hero-box" id="hero-container">
-				<div class="row hero-content centered">
-					<h1 class="hero-text">Information, Visually Connected</h1>
-					<h5 class="hero-text-copy">NoteMaps allows you to visually draw connections between your notes. So you never get lost in information again.</h5>
-					<a class="cta-button button" href="/app/">Try the app for free</a>
-					<div class="arrow bounce">
-						<a href='#main-copy'><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-					</div>
-				</div>
-			</div>
-			<!-- <img /> -->
-		</section>
+    <title>NoteMaps</title>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <!-- <nav id="navbar"> -->
+        <div id="nav-box">
+          <nav class="topnav" id="navbar">
+            <!-- <img src="/images/NOTEMAPS1-02 original.png"> -->
+            <a
+              href="javascript:void(0);"
+              class="icon"
+              onclick="toggleMobileNav()"
+              >&#9776;</a
+            >
+            <a href="/app/">Login</a> <a href="/privacy/">Privacy</a>
+            <a href="/contact/">Contact</a> <a href="/about/">About</a>
+            <a href="/">Home</a>
+          </nav>
+        </div>
+        <!--
+          <img src="/images/NOTEMAPS1-02 original.png">
+          	<ul class="main-nav js--main-nav">
+                 <li><a href="/about/">About</a></li>
+                 <li><a href="#works">Pricing</a></li>
+                 <li><a href="/privacy/">Privacy</a></li>
+                 <li><a href="/contact/">Contact</a></li>
+                 <li><a href="/app/">Login</a></li>
+                 <li><a href="#plans">Sign up</a></li>
+              </ul>
+             	<a id="mobile-nav-icon" class="mobile-nav-icon" href="#"><i class="fa fa-bars"></i></a>
+          </nav>
+        -->
+      </div>
+    </header>
+    <section class="hero">
+      <div class="container centered hero-box" id="hero-container">
+        <div class="row hero-content centered">
+          <h1 class="hero-text">Information, Visually Connected</h1>
+          <h5 class="hero-text-copy">
+            NoteMaps allows you to visually draw connections between your notes.
+            So you never get lost in information again.
+          </h5>
+          <a class="cta-button button" href="/app/">Try the app for free</a>
+          <div class="arrow bounce">
+            <a href="#main-copy"
+              ><i class="fa fa-chevron-down" aria-hidden="true"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- <img /> -->
+    </section>
 
-		<section class="main-copy" id='main-copy'>
-			<div class="container">
-				<div class="row main-copy-container">
-					<div class="six columns main-copy-text">
-						<p>
-							 Visually layout your notes in a mindmap. This allows you to never get lost in 
-							 your notes again. Easily see the connections between each piece of information,
-							 drawing connections and keeping track of everything in one place.
-							 We believe in simple, minimalistic design to clear the clutter and allow you to focus on what really matters.
-						</p>
-					</div>
-					<div class="six columns main-copy-screenshot">
-						<div>
-							<img class="main-screenshot" src="../images/app-screenshot-2.png">
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+    <section class="main-copy" id="main-copy">
+      <div class="container">
+        <div class="row main-copy-container">
+          <div class="six columns main-copy-text">
+            <p>
+              Visually layout your notes in a mindmap. This allows you to never
+              get lost in your notes again. Easily see the connections between
+              each piece of information, drawing connections and keeping track
+              of everything in one place. We believe in simple, minimalistic
+              design to clear the clutter and allow you to focus on what really
+              matters.
+            </p>
+          </div>
+          <div class="six columns">
+            <div class="main-copy-video">
+              <video
+				autoplay
+				controls
+                loop
+                src="https://s3.eu-west-2.amazonaws.com/notemaps-public/notemaps-connect.mp4"
+                type="video/mp4"
+              >
+                <!--
+                  <p>
+                  	Your browser doesn't support HTML5 video. Here is a
+                  	<a href={this.state.pages[this.state.current].url}>link to the video</a> instead.
+                  </p>
+                -->
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<section class="key-benefits">
-			<div class="container">
-				<div class="row">
-					<div class="four columns centered full-height">
-						<div class="key-benefit-card">
-							<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-							<h5>Get Organised</h5>
-							<p>Our simple, easy to use design allows you to focus on your information and get organised.</p>
-						</div>
-					</div>
-					<div class="four columns centered full-height">
-						<div class="key-benefit-card">
-							<i class="fa fa-map-o" aria-hidden="true"></i>
-							<h5>See the whole picture</h5>
-							<p>Zoom out and see all your notes at a glance.</p>
-						</div>
-					</div>
-					<div class="four columns centered full-height">
-						<div class="key-benefit-card">
-							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-							<h5>Find new ideas</h5>
-							<p>See how each note is connected and watch ideas jump out of the screen.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+    <section class="key-benefits">
+      <div class="container">
+        <div class="row">
+          <div class="four columns centered full-height">
+            <div class="key-benefit-card">
+              <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+              <h5>Get Organised</h5>
+              <p>
+                Our simple, easy to use design allows you to focus on your
+                information and get organised.
+              </p>
+            </div>
+          </div>
+          <div class="four columns centered full-height">
+            <div class="key-benefit-card">
+              <i class="fa fa-map-o" aria-hidden="true"></i>
+              <h5>See the whole picture</h5>
+              <p>Zoom out and see all your notes at a glance.</p>
+            </div>
+          </div>
+          <div class="four columns centered full-height">
+            <div class="key-benefit-card">
+              <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+              <h5>Find new ideas</h5>
+              <p>
+                See how each note is connected and watch ideas jump out of the
+                screen.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<section class="testimonial">
-			<div class="container">
-				<div class="row">
-					<div class="twelve columns centered">
-						<blockquote class="testimonial-text">
-							" I created NoteMaps to organise my notes. I grew tired of being unable to see the connections and filter out the clutter. NoteMaps allows me to do both of these things. I believe in simple, easy to use design as this way I can focus on what truly matters: the information I'm looking at. "<br /><br /> ~ Jon, creator
-						</blockquote>
-						<a class="cta-button button" href="/app/">Try the app for free</a>
-					</div>
-				</div>
-			</div>
-		</section>
+    <section class="testimonial">
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns centered">
+            <blockquote class="testimonial-text">
+              " I created NoteMaps to organise my notes. I grew tired of being
+              unable to see the connections and filter out the clutter. NoteMaps
+              allows me to do both of these things. I believe in simple, easy to
+              use design as this way I can focus on what truly matters: the
+              information I'm looking at. "<br /><br />
+              ~ Jon, creator
+            </blockquote>
+            <a class="cta-button button" href="/app/">Try the app for free</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-		<footer>
-			<div class="container">
-				<div class="row footer-links">
-					<div class="three columns">
-						<a href="#">&copy NoteMaps 2018</a>
-					</div>
-					<div class="three columns">
-						<a href="/privacy/">Privacy Policy</a>
-					</div>
-					<div class="three columns">
-						<a href="/termsandconditions/">Terms and Conditions</a>
-					</div>
-					<div class="three columns">
-						<a href="/contact/">Contact us</a>
-					</div>
-				</div>
-						<!-- <ul>
-							<li><a href="/">&copy NoteMaps 2018</a></li>
-							<li><a href="/privacy/">Privacy Policy</a></li>
-							<li><a href="/termsandconditions/">Terms and Conditions</a></li>
-							<li><a href="/contact/">Contact us</a></li>
-						</ul> -->
-				<!-- </div> -->
-			</div>
-		</footer>
-<!-- 		<script type="text/javascript">
-			while (true) {
-				try {
-					const acceptCookie = document.querySelector('#cookiescript_accept');
-	        console.log(acceptCookie);
-	        const styleString = acceptCookie.getAttribute('style');
-	        var newStyle = styleString.replace('background-color: rgb(91, 183, 91);', 'background-color: #F39E18;');
-	        newStyle = newStyle.replace('color: rgb(255, 255, 255);', 'color: rgb(0,0,0);');
-	        acceptCookie.setAttribute('style', newStyle);
-				} catch {
+    <footer>
+      <div class="container">
+        <div class="row footer-links">
+          <div class="three columns"><a href="#">&copy NoteMaps 2018</a></div>
+          <div class="three columns">
+            <a href="/privacy/">Privacy Policy</a>
+          </div>
+          <div class="three columns">
+            <a href="/termsandconditions/">Terms and Conditions</a>
+          </div>
+          <div class="three columns"><a href="/contact/">Contact us</a></div>
+        </div>
+        <!--
+          <ul>
+          	<li><a href="/">&copy NoteMaps 2018</a></li>
+          	<li><a href="/privacy/">Privacy Policy</a></li>
+          	<li><a href="/termsandconditions/">Terms and Conditions</a></li>
+          	<li><a href="/contact/">Contact us</a></li>
+          </ul>
+        -->
+        <!-- </div> -->
+      </div>
+    </footer>
+    <!--
+      <script type="text/javascript">
+      	while (true) {
+      		try {
+      			const acceptCookie = document.querySelector('#cookiescript_accept');
+             console.log(acceptCookie);
+             const styleString = acceptCookie.getAttribute('style');
+             var newStyle = styleString.replace('background-color: rgb(91, 183, 91);', 'background-color: #F39E18;');
+             newStyle = newStyle.replace('color: rgb(255, 255, 255);', 'color: rgb(0,0,0);');
+             acceptCookie.setAttribute('style', newStyle);
+      		} catch {
 
-				}
-			}
-		</script> -->
-		<script src="js/script.js"></script>
-	</body>
+      		}
+      	}
+      </script>
+    -->
+    <script src="js/script.js"></script>
+  </body>
 </html>
