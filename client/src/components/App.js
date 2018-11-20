@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { ClipLoader } from "react-spinners";
+import GoogleButton from 'react-google-button';
 import { css } from "react-emotion";
 import * as actions from "../actions";
 // import './style/App.css';
@@ -38,12 +39,14 @@ class App extends Component {
     this.setLoading = this.setLoading.bind(this);
     this.saveState = throttle(e => {
       if (this.props.header.active != "0") {
-        this.props.saveMap(
-          this.props.Nodes,
-          this.props.Connections,
-          this.props.header.active
-        ).then(e => this.setState({saved: true}))
-      };
+        this.props
+          .saveMap(
+            this.props.Nodes,
+            this.props.Connections,
+            this.props.header.active
+          )
+          .then(e => this.setState({ saved: true }));
+      }
     }, 2000);
   }
 
@@ -59,8 +62,14 @@ class App extends Component {
 
     window.addEventListener("resize", this.updateWindowDimensions);
     this.setState({ width: window.innerWidth, height: window.innerHeight });
-    window.addEventListener("click", (e) => {this.setState({saved: false}); this.saveState(e)});
-    window.addEventListener("keypress", (e) => {this.setState({saved: false}); this.saveState(e)});
+    window.addEventListener("click", e => {
+      this.setState({ saved: false });
+      this.saveState(e);
+    });
+    window.addEventListener("keypress", e => {
+      this.setState({ saved: false });
+      this.saveState(e);
+    });
   }
 
   componentWillUnmount() {
@@ -96,46 +105,46 @@ class App extends Component {
       margin: 0 auto;
       border-color: red;
     `;
-      if (this.props.header.active) {
-        if (this.props.header.active != "0") {
-          return [
-            <Ribbon key={1} window={this.state} />,
-            <MindMap key={2} loading={this.state.loadingMap} />
-          ];
-        }
-      } else {
-        return (
-          <div className="app-landing">
-            <div className="sweet-loading">
-              <ClipLoader
-                className={override}
-                sizeUnit={"px"}
-                size={150}
-                color={"#f39c12"}
-                loading={true}
-              />
-            </div>
-          </div>
-        );
+    if (this.props.header.active) {
+      if (this.props.header.active != "0") {
+        return [
+          <Ribbon key={1} window={this.state} />,
+          <MindMap key={2} loading={this.state.loadingMap} />
+        ];
       }
-    // } else {
-      // return spinner
-      // 	  const override = css`
-      //     display: block;
-      //     margin: 0 auto;
-      //     border-color: red;
-      // `;
+    } else {
+      return (
+        <div className="app-landing">
+          <div className="sweet-loading">
+            <ClipLoader
+              className={override}
+              sizeUnit={"px"}
+              size={150}
+              color={"#f39c12"}
+              loading={true}
+            />
+          </div>
+        </div>
+      );
     }
-    // if (this.props.header.active && !this.state.loadingMap) {
-    //   console.log(this.props.header.active);
-    //   return [<Ribbon key={1} window={this.state} />, <MindMap key={2} loading={this.state.loadingMap} />];
     // } else {
-    //   return (
-    //     <div className="app-landing">
-    //       Something went wrong. Please try again later.
-    //     </div>
-    //   );
-    // }
+    // return spinner
+    // 	  const override = css`
+    //     display: block;
+    //     margin: 0 auto;
+    //     border-color: red;
+    // `;
+  }
+  // if (this.props.header.active && !this.state.loadingMap) {
+  //   console.log(this.props.header.active);
+  //   return [<Ribbon key={1} window={this.state} />, <MindMap key={2} loading={this.state.loadingMap} />];
+  // } else {
+  //   return (
+  //     <div className="app-landing">
+  //       Something went wrong. Please try again later.
+  //     </div>
+  //   );
+  // }
 
   renderMain() {
     // should include different buttons for differing log ins.
@@ -147,14 +156,13 @@ class App extends Component {
       case false:
         // need to bring in the benefits component here. to be displayed above the log in button.
         return (
-          <div className="app-landing">
+          <div className="app-landing container">
             <Benefits />
+            <div className="row">
             <a href="/auth/google" className="login-btn">
-              <img
-                src={this.state.width > 1000 ? signinSrcBig : signinSrcSmall}
-                alt="google sign in"
-              />
+              <GoogleButton onClick={() => {}} type="light" />
             </a>
+            </div>
           </div>
         );
       default:
@@ -176,8 +184,11 @@ class App extends Component {
             display={this.props.user && this.props.header.sideMenu}
             setLoading={this.setLoading}
           />
-          <QuickStart skip={() => this.setState({ quickStart: false })} show={this.state.quickStart}/>
-          {!this.state.quickStart ? this.renderMain() : null }
+          <QuickStart
+            skip={() => this.setState({ quickStart: false })}
+            show={this.state.quickStart}
+          />
+          {!this.state.quickStart ? this.renderMain() : null}
         </BrowserView>
         <MobileView device={isMobile}>
           <Header user={this.props.user} mobile />
@@ -200,3 +211,10 @@ export default connect(
   actions
 )(App);
 //{!this.state.quickStart ? <SideMenu display={this.props.user && this.props.header.sideMenu}/> : null}
+
+// <a href="/auth/google" className="login-btn">
+// <img
+//   src={this.state.width > 1000 ? signinSrcBig : signinSrcSmall}
+//   alt="google sign in"
+// />
+// </a>

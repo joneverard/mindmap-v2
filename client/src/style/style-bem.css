@@ -422,11 +422,11 @@ body {
   /*float: left;*/
   text-align: center;
   height: 100px;
-  width: 50%;
+  /* width: 50%; */
   padding: 1px auto;
   display: block;
   height: 100%;
-  padding-top: 100px;
+  /* padding-top: 100px; */
 }
 
 .app-landing div {
@@ -472,7 +472,8 @@ body {
 /* ---------------------------- */
 .login-btn {
   display: inline-block;
-  margin: 15% 0 50% 0;  
+  margin: 15% 0 50% 0;
+  text-decoration: none;
 }
 
 /* ---------------------------- */
