@@ -117,7 +117,7 @@ class QuickStart extends Component {
 
 	renderPages() {
 		return (
-			<div className="quick-start-container">
+			<div className={this.props.show ? "quick-start-container show" : "quick-start-container"}>
 				<div className="quick-start-img">
 					<div className="quick-start-img-inner">
 						<video
