@@ -14,7 +14,7 @@ class NodeHeader extends Component {
           <div className="note-header-title" style={{width: this.header && this.header.offsetWidth - 60}}>
             <p ref={title => this.title = title}>{this.props.title}</p>
           </div>
-          <div className="note-header-btns">
+          <div className={this.props.showBtns ? "note-header-btns show" : "note-header-btns"}>
             <div className="icon-btn" onClick={e => this.props.handleClick(e)}>
               <i
                 className={

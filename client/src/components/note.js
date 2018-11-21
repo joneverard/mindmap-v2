@@ -27,6 +27,7 @@ class Note extends Component {
     this.onEditorChange = this.onEditorChange.bind(this);
     this.getClassName = this.getClassName.bind(this);
     this.pinNode = this.pinNode.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
     // this.handleMouseMove = this.handleMouseMove.bind(this);
     this.toggleDrag.bind(this);
 
@@ -182,6 +183,11 @@ class Note extends Component {
     }
   }
 
+  handleMouseOver(e) {
+    this.props.handleMove(e);
+    this.props.handleHover();
+  }
+
   render() {
     var selectedId;
     if (this.props.selected) {
@@ -236,7 +242,7 @@ class Note extends Component {
                 }
           }
           onWheel={this.props.handleWheel}
-          onMouseMove={this.props.handleMove}>
+          onMouseMove={this.handleMouseOver}>
           <div
             ref={node => {
               this.node = node;
@@ -267,6 +273,7 @@ class Note extends Component {
                 styleProps={this.props.node.style}
                 pinNode={this.pinNode}
                 width={this.props.node.editorSize && this.props.node.editorSize.width}
+                showBtns={this.props.showBtns}
               />
             )}
             {this.props.node.display ? (

@@ -609,6 +609,17 @@ body {
   /* display: inline-block; */
   margin: 0;
   padding: 0;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  opacity: 0;
+  /* visibility: hidden;  */
+}
+
+.note-header-btns.show {
+opacity: 1;
+visibility: visible; 
 }
 
 .note-header-btns .icon-btn {

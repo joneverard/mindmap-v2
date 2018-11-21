@@ -14,7 +14,8 @@ class MindMap extends Component {
       height: 0,
       displayMsg: true,
       dragging: false,
-      mouse: { x: 0, y: 0 }
+      mouse: { x: 0, y: 0 },
+      hoverNote: 0
     };
     this.setState = this.setState.bind(this);
     this.renderNode = this.renderNode.bind(this);
@@ -63,7 +64,7 @@ class MindMap extends Component {
         // func();
         this.updateNodePosition(nodeId, position, delta);
     }
-    this.setState({ mouse: { x: e.clientX, y: e.clientY }, position });
+    this.setState({ mouse: { x: e.clientX, y: e.clientY }, position, hoverNode: 0 });
   }
 
   triggerDrag(dragging, origin, position, nodeId) {
@@ -101,6 +102,7 @@ class MindMap extends Component {
         key={node.id}
         handleWheel={this.handleWheel}
         handleMove={this.handleMouseMove}
+        handleHover={() => this.setState({hoverNode: node.id})}
         mouseUp={() => {
           this.setState({ dragging: false });
         }}
@@ -108,6 +110,7 @@ class MindMap extends Component {
         triggerDrag={this.triggerDrag}
         toggleDisplay={this.toggleDisplay}
         editorSize={node.editorSize}
+        showBtns={this.state.hoverNode === node.id}
       />
     );
   }
@@ -117,7 +120,7 @@ class MindMap extends Component {
   }
 
   handleMove(e) {
-    this.setState({ mouse: { x: e.clientX, y: e.clientY } });
+    this.setState({ mouse: { x: e.clientX, y: e.clientY }, hoverNode: 0});
   }
 
   confirm() {
