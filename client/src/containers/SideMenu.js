@@ -116,8 +116,6 @@ class SideMenu extends Component {
   render() {
     //this.props.header.sideMenu
     var { height, width } = this.state;
-    console.log('header', this.props.header);
-    console.log('state', this.state);
     return (
       <div
         className={

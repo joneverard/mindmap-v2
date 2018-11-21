@@ -55,7 +55,6 @@ class App extends Component {
     this.props.fetchUser().then(res => {
       if (res.data.visits < 1) {
         this.setState({ quickStart: true });
-        console.log("changed quickStart to true.");
         this.setState({ loadingApp: false });
       }
     });
