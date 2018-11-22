@@ -83,7 +83,9 @@ class SideMenu extends Component {
   confirmDelete() {
     // call action creator
     this.props.deleteMap(this.state.selectedMap).then(res => {
-      this.props.openMap(this.props.header.maps[0]._id);
+      if (this.props.header.maps) {
+        this.props.openMap(this.props.header.maps[0]._id);  
+      }
     });
     this.setState({ selectedMap: this.props.header.maps[0]._id, showConfirm: false });
     // this.props.openMap()
