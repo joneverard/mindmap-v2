@@ -53,7 +53,7 @@ class App extends Component {
   componentDidMount() {
     this.setState({ loadingApp: true });
     this.props.fetchUser().then(res => {
-      if (res.data.visits < 1) {
+      if (res.data.visits <= 1) {
         this.setState({ quickStart: true });
         this.setState({ loadingApp: false });
       }
