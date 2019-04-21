@@ -27,7 +27,7 @@ import signinSrcBig from "../assets/google_sign_in.png";
 // this is the root of the application. this is where react-router will determine which view to render.
 
 
-class App extends Component {
+class Root extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -86,14 +86,6 @@ class App extends Component {
       this.setState({ loadingMap: status });
     }
   }
-
-  // saveState(e) {
-  // 	let timeoutId;
-  // 	if (timeoutId) clearTimeout(timeoutId);
-  // 	timeoutId = setTimeout(() => {
-  // 		console.log('do stuff here.')
-  // 	}, 5000);
-  // }
 
   updateWindowDimensions() {
     // this is where this functionality belongs. the window prop should be passed down to the components that need it.
@@ -212,12 +204,4 @@ function mapStateToProps({ Nodes, Connections, user, header }) {
 export default connect(
   mapStateToProps,
   actions
-)(App);
-//{!this.state.quickStart ? <SideMenu display={this.props.user && this.props.header.sideMenu}/> : null}
-
-// <a href="/auth/google" className="login-btn">
-// <img
-//   src={this.state.width > 1000 ? signinSrcBig : signinSrcSmall}
-//   alt="google sign in"
-// />
-// </a>
+)(Root);

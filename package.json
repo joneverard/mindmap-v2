@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "engines": {
-    "node": "8.9.3",
-    "npm": "5.6.0"
+    "node": "10.15.3",
+    "npm": "6.9.0"
   },
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "client": "npm run start --prefix client",
+    "client": "yarn run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client",
     "webhook": "./sendgrid_webhook.sh"

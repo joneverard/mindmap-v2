@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
 // import './style/style.css';
 import './style/skeleton.css';
 import './style/style-bem.css';
